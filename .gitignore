@@ -76,3 +76,5 @@ dev-server.log
 *.mp3
 *.pdf
 *.zip
+
+docs/website-brief

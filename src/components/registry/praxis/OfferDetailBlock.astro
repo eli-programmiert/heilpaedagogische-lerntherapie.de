@@ -1,0 +1,163 @@
+---
+import Section from "@components/ui/layout/Section.astro";
+import Container from "@components/ui/layout/Container.astro";
+import Heading from "@components/ui/atoms/Heading.astro";
+import Icon from "@components/ui/atoms/Icon.astro";
+import Text from "@components/ui/atoms/Text.astro";
+import Button from "@components/ui/atoms/Button.astro";
+import PraxisImage from "@components/ui/atoms/PraxisImage.astro";
+import SectionIntro from "@components/ui/molecules/SectionIntro.astro";
+import RichText from "@components/ui/molecules/RichText.astro";
+import Callout from "@components/ui/molecules/Callout.astro";
+
+// Why: one offer on /angebot/ (zigzag layout). Each offer has a different
+// mix of content (checklists, method tags, sub-cards, goal box, notices), so
+// all parts are optional and render in a fixed order.
+type Img = { src: string; alt: string; position?: string };
+type List = { title: string; items: string[] };
+
+interface Props {
+  id: string;
+  tone?: "page" | "base";
+  eyebrow?: string;
+  title: string;
+  paragraphs?: string[];
+  image?: Img;
+  imagePosition?: "left" | "right";
+  lists?: List[];
+  tags?: { title: string; items: string[] };
+  subCards?: { title: string; items: string[]; tagsTitle?: string; tags?: string[]; image?: Img }[];
+  goal?: string;
+  notes?: { icon?: string; title?: string; text: string; appearance?: "soft" | "outline" }[];
+  priceHint?: { text: string; link?: { label: string; href: string } };
+  link?: { label: string; href: string };
+  headingTag?: string;
+}
+
+const {
+  id,
+  tone = "page",
+  eyebrow,
+  title,
+  paragraphs = [],
+  image,
+  imagePosition = "left",
+  lists = [],
+  tags,
+  subCards = [],
+  goal,
+  notes = [],
+  priceHint,
+  link,
+  headingTag = "h2",
+} = Astro.props as Props;
+
+// A portrait image only makes sense next to a long text column.
+const isTextHeavy = lists.length > 0 || Boolean(tags) || Boolean(goal);
+---
+
+<Section id={id} tone={tone} class="praxis-anchor">
+  <Container>
+    <div class:list={["grid gap-10 lg:gap-14", image ? "lg:grid-cols-12" : "", isTextHeavy ? "items-start" : "items-center"]}>
+      {image && (
+        <div class:list={["overflow-hidden rounded-2xl lg:col-span-5", isTextHeavy && "lg:sticky lg:top-32", imagePosition === "right" && "lg:order-2"]}>
+          <PraxisImage src={image.src} alt={image.alt} position={image.position} sizes="(min-width: 1024px) 38vw, 100vw" class:list={["aspect-[4/3] w-full object-cover", isTextHeavy && "lg:aspect-[4/5]"]} />
+        </div>
+      )}
+
+      <div class:list={["flex flex-col gap-6", image && "lg:col-span-7", imagePosition === "right" && "lg:order-1"]}>
+        <SectionIntro eyebrow={eyebrow} title={title} headingTag={headingTag} />
+        <RichText text={paragraphs} variant="body" class="text-brand-dark/85" />
+
+        {lists.length > 0 && (
+          <div class:list={["grid gap-6", lists.length > 1 && "md:grid-cols-2"]}>
+            {lists.map((list) => (
+              <div class="flex flex-col gap-3">
+                <Heading tag="h3" variant="feature-title" class="text-brand-primary">{list.title}</Heading>
+                <ul class="flex flex-col gap-2.5">
+                  {list.items.map((item) => (
+                    <li class="flex items-start gap-3">
+                      <Icon name="check-circle" class="mt-0.5 shrink-0 text-xl text-brand-accent" />
+                      <Text tag="span" variant="feature-body-sm" class="text-brand-dark/85">{item}</Text>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+        )}
+
+        {tags && (
+          <div class="flex flex-col gap-3">
+            <Heading tag="h3" variant="feature-title" class="text-brand-primary">{tags.title}</Heading>
+            <ul class="flex flex-wrap gap-2">
+              {tags.items.map((tag) => (
+                <li class="rounded-full border border-brand-primary/20 bg-white px-3.5 py-1.5 text-sm font-medium text-brand-primary">{tag}</li>
+              ))}
+            </ul>
+          </div>
+        )}
+
+        {goal && (
+          <div class="rounded-xl border-l-4 border-brand-accent bg-white p-5 sm:p-6">
+            <RichText text={goal} variant="body" class="text-brand-dark" />
+          </div>
+        )}
+
+        {priceHint && (
+          <div class="flex flex-wrap items-center gap-x-4 gap-y-2">
+            <Text tag="p" variant="body" class="font-semibold text-brand-dark">{priceHint.text}</Text>
+            {priceHint.link && <a href={priceHint.link.href} class="praxis-link">{priceHint.link.label}</a>}
+          </div>
+        )}
+      </div>
+    </div>
+
+    {subCards.length > 0 && (
+      <ul class:list={["mt-10 grid gap-5 lg:mt-12", subCards.length >= 3 ? "md:grid-cols-3" : "md:grid-cols-2"]}>
+        {subCards.map((card) => (
+          <li class:list={["flex flex-col overflow-hidden rounded-xl border border-brand-dark/10", tone === "base" ? "bg-white" : "ui-bg-base"]}>
+            {card.image && (
+              <PraxisImage src={card.image.src} alt={card.image.alt} position={card.image.position} sizes="(min-width: 768px) 30vw, 100vw" class="aspect-[16/9] w-full object-cover" />
+            )}
+            <div class="flex flex-1 flex-col gap-4 p-6">
+              <Heading tag="h3" variant="feature-title" class="text-brand-primary">{card.title}</Heading>
+              <ul class="flex flex-col gap-2">
+                {card.items.map((item) => (
+                  <li class="flex items-start gap-2.5">
+                    <Icon name="check" class="mt-1 shrink-0 text-brand-accent" />
+                    <Text tag="span" variant="feature-body-sm" class="text-brand-dark/85">{item}</Text>
+                  </li>
+                ))}
+              </ul>
+              {card.tags && card.tags.length > 0 && (
+                <div class="mt-auto flex flex-col gap-2 pt-2">
+                  {card.tagsTitle && <Text tag="p" variant="feature-body-sm" class="font-semibold text-brand-dark/70">{card.tagsTitle}</Text>}
+                  <ul class="flex flex-wrap gap-1.5">
+                    {card.tags.map((tag) => (
+                      <li class="rounded-full bg-white px-3 py-1 text-xs font-medium text-brand-primary ring-1 ring-brand-primary/15">{tag}</li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+            </div>
+          </li>
+        ))}
+      </ul>
+    )}
+
+    {notes.length > 0 && (
+      <div class:list={["mt-10 grid gap-4", notes.length > 1 && "lg:grid-cols-2"]}>
+        {notes.map((note) => (
+          <Callout icon={note.icon} title={note.title} text={note.text} appearance={note.appearance ?? (tone === "base" ? "outline" : "soft")} />
+        ))}
+      </div>
+    )}
+
+    {link && (
+      <div class="mt-8">
+        <Button href={link.href} variant="outline">{link.label}</Button>
+      </div>
+    )}
+  </Container>
+</Section>

@@ -4,21 +4,17 @@ import path from 'path';
 const FONTS_DIR = path.join(process.cwd(), 'public/fonts');
 const CSS_FILE = path.join(process.cwd(), 'src/styles/fonts.css');
 
-// Fonty używane w template, self-hosted.
-// Satoshi i Gambarino: Fontshare, ITF Free Font License, darmowa komercyjnie.
-// Outfit: Google Fonts, OFL, darmowa komercyjnie, domyślny font sans Nova.
-// Playfair Display nie jest częścią profilu Nova, więc nie pobieramy zbędnych
-// plików fontu do template’u.
+// Self-hosted fonts of the practice website.
+// Satoshi (body): Fontshare, ITF Free Font License.
+// Jost (headings, close to the Futura-style logo): Google Fonts, OFL.
 const FONT_SOURCES: Record<string, 'fontshare' | 'google'> = {
   Satoshi: 'fontshare',
-  Gambarino: 'fontshare',
-  Outfit: 'google',
+  Jost: 'google',
 };
 
 // Wagi pobierane z Fontshare jako osobne pliki, bez unicode-range.
 const FONTSHARE_WEIGHTS: Record<string, string> = {
   Satoshi: '400,500,700,900',
-  Gambarino: '400,500',
 };
 
 const userAgent = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36';
@@ -64,11 +60,12 @@ async function downloadFontshareFont(fontName: string) {
   let out = '';
   for (const block of blocks) {
     const weightMatch = block.match(/font-weight:\s*(\d+);/);
-    const srcMatch = block.match(/url\((?:https:)?\/\/cdn\.fontshare\.com\/wf\/[^)]+\.woff2\)/);
+    // Fontshare may quote the URL, so quotes are optional.
+    const srcMatch = block.match(/url\(['"]?((?:https:)?\/\/cdn\.fontshare\.com\/wf\/[^)'"]+\.woff2)['"]?\)/);
     if (!weightMatch || !srcMatch) continue;
 
     const weight = weightMatch[1];
-    const remoteUrl = srcMatch[0].replace('url(', '').replace(/^\/\//, 'https://').replace(/\)$/, '');
+    const remoteUrl = srcMatch[1].replace(/^\/\//, 'https://');
     const fileName = `${fontName.toLowerCase().replace(/ /g, '-')}-${weight}.woff2`;
     const filePath = path.join(FONTS_DIR, fileName);
 
@@ -133,6 +130,11 @@ async function run() {
     const css = FONT_SOURCES[font] === 'fontshare'
       ? await downloadFontshareFont(font)
       : await downloadGoogleFont(font);
+    // Never write a fonts.css without a family: the site would silently fall
+    // back to system fonts.
+    if (!css.includes(`font-family: '${font}';`)) {
+      throw new Error(`download-fonts: no @font-face found for ${font}. fonts.css was not changed.`);
+    }
     fullCss += css + '\n';
   }
 

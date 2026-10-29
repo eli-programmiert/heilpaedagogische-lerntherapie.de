@@ -24,9 +24,10 @@ oauth-config.php
 # CMS - lokalny config wygenerowany (zawiera tylko local_backend, ale jest
 # pochodna cms:gen i nie ma sensu trzymac go w repo)
 
-# Client Assets
-src/assets/raw/
+# Client Assets (the practice photos in praxis/ are tracked, see below)
+src/assets/raw/*
 !src/assets/raw/.gitkeep
+!src/assets/raw/praxis/
 
 # macOS-specific files
 .DS_Store
@@ -78,3 +79,16 @@ dev-server.log
 *.zip
 
 docs/website-brief
+
+# Site assets the CI build needs (GitHub Pages builds from the repo).
+# Generated variants in public/assets/images/ stay ignored; `npm run build`
+# recreates them from src/assets/raw/.
+!src/assets/raw/praxis/*.webp
+!public/fonts/*.woff2
+!public/favicon.svg
+!public/icon.svg
+!public/logo.svg
+!public/favicon.ico
+!public/favicon-32x32.png
+!public/apple-touch-icon.png
+!public/og-image.png

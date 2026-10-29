@@ -168,14 +168,14 @@ describe('link audit', () => {
       expect(issues.filter((i) => i.rule === 'broken-route')).toHaveLength(0);
     });
 
-    it('accepts the Polish legal route', () => {
-      const source = '<a href="/pl/polityka-prywatnosci/">Privacy</a>';
+    it('accepts the legal route', () => {
+      const source = '<a href="/datenschutz/">Datenschutz</a>';
       const issues = auditLinks(source, 'src/test.astro', defaultRoutes);
       expect(issues.filter((i) => i.rule === 'broken-route')).toHaveLength(0);
     });
 
-    it('accepts the Polish homepage route', () => {
-      const source = '<a href="/pl/">Polish homepage</a>';
+    it('accepts a content page route', () => {
+      const source = '<a href="/angebot/">Angebot</a>';
       const issues = auditLinks(source, 'src/test.astro', defaultRoutes);
       expect(issues.filter((i) => i.rule === 'broken-route')).toHaveLength(0);
     });
@@ -295,12 +295,11 @@ describe('link audit', () => {
     it('accepts footer with trailing slashes', () => {
       const source = `
         <a href="/">Home</a>
-        <a href="/pl/">Polish homepage</a>
-        <a href="/cookies/">Cookies</a>
-        <a href="/polityka-prywatnosci/">Privacy</a>
-        <a href="https://webscale.pl" target="_blank">WebScale</a>
-        <a href="mailto:biuro@example.com">Email</a>
-        <a href="tel:+48123456789">Phone</a>
+        <a href="/impressum/">Impressum</a>
+        <a href="/datenschutz/">Datenschutz</a>
+        <a href="https://www.instagram.com/heilpaedagogische_lerntherapie/" target="_blank">Instagram</a>
+        <a href="mailto:info@heilpaedagogische-lerntherapie.de">E-Mail</a>
+        <a href="tel:+4915123410823">Telefon</a>
       `;
       const issues = auditLinks(source, 'src/components/Footer.astro', defaultRoutes);
       expect(issues.filter((i) => i.rule !== 'empty-href')).toHaveLength(0);
@@ -309,9 +308,9 @@ describe('link audit', () => {
     it('accepts valid navbar links', () => {
       const source = `
         <a href="/">Home</a>
-        <a href="/pl/">Polish homepage</a>
-        <a href="/cookies/">Cookies</a>
-        <a href="/polityka-prywatnosci/">Privacy</a>
+        <a href="/heilpaedagogik/">Heilpädagogik</a>
+        <a href="/angebot/#adhs">ADHS</a>
+        <a href="/kontakt/">Kontakt</a>
       `;
       const issues = auditLinks(source, 'src/components/Navbar.astro', defaultRoutes);
       expect(issues.filter((i) => i.rule !== 'empty-href')).toHaveLength(0);

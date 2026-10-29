@@ -1,21 +1,19 @@
-// Dlaczego: definicja kolekcji Content Collections w Astro v7
-// Astro v7 uzywa nowego API z `loader` zamiast `type: "content"`
-// `glob()` loader automatycznie wykrywa pliki markdown w podanym katalogu
+// Legal texts (Impressum, Datenschutz) live as Markdown so the final texts
+// from the client can be pasted in without touching any code.
 import { defineCollection } from "astro:content";
 import { glob } from "astro/loaders";
 import { z } from "astro/zod";
 
-const blogCollection = defineCollection({
-  loader: glob({ pattern: "**/*.md", base: "./src/content/blog" }),
+const legalCollection = defineCollection({
+  loader: glob({ pattern: "*.md", base: "./src/content/legal" }),
   schema: z.object({
     title: z.string(),
     description: z.string(),
-    pubDate: z.coerce.date(),
-    tags: z.array(z.string()).default([]),
-    heroImage: z.string().optional(),
+    /** Placeholder texts must never go live (go-live blocker). */
+    draft: z.boolean().default(false),
   }),
 });
 
 export const collections = {
-  blog: blogCollection,
+  legal: legalCollection,
 };

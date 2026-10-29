@@ -3,11 +3,17 @@ import Section from "@components/ui/layout/Section.astro";
 import Container from "@components/ui/layout/Container.astro";
 import Heading from "@components/ui/atoms/Heading.astro";
 import Text from "@components/ui/atoms/Text.astro";
+import LogoRings from "@components/decorations/LogoRings.astro";
+import { formatInternalLink } from "@utils/url";
 
 export interface Props {
   pageHeading?: string;
   heading?: string;
   description?: string;
+  /** Small label above the H1. */
+  eyebrow?: string;
+  /** Jump links (chips) to anchors on the same page. */
+  links?: { label: string; href: string }[];
   id?: string;
   class?: string;
 }
@@ -16,6 +22,8 @@ const {
   pageHeading,
   heading,
   description,
+  eyebrow,
+  links = [],
   id = "page-intro",
   class: className = "",
 } = Astro.props as Props;
@@ -23,19 +31,58 @@ const {
 const resolvedHeading = heading ?? pageHeading ?? "";
 ---
 
-<Section id={id} tone="page" class:list={["min-h-[35vh]", className]}>
+<Section id={id} tone="page" class:list={["relative overflow-hidden", className]}>
+  <LogoRings class="absolute -right-20 -top-10 w-64 sm:w-80 lg:right-[6%] lg:top-6 lg:w-96" />
   <Container>
-    <div class="max-w-3xl py-[clamp(3rem,10vw,7rem)]">
+    <div class="relative max-w-3xl py-[clamp(0.5rem,3vw,2.5rem)]">
+      {eyebrow && <Text tag="p" variant="accent-label" class="praxis-eyebrow mb-5">{eyebrow}</Text>}
       {resolvedHeading && (
-        <Heading tag="h1" variant="hero" class="text-balance">
+        <Heading tag="h1" variant="hero" class="praxis-intro-title">
           {resolvedHeading}
         </Heading>
       )}
       {description && (
-        <Text variant="lead" class="mt-6 max-w-2xl text-brand-dark/70">
+        <Text variant="lead" class="mt-6 max-w-2xl text-brand-dark/80">
           {description}
         </Text>
+      )}
+      {links.length > 0 && (
+        <nav class="mt-8" aria-label="Auf dieser Seite">
+          <ul class="flex flex-wrap gap-2">
+            {links.map((link) => (
+              <li>
+                <a href={formatInternalLink(link.href)} class="praxis-chip">{link.label}</a>
+              </li>
+            ))}
+          </ul>
+        </nav>
       )}
     </div>
   </Container>
 </Section>
+
+<style>
+  .praxis-intro-title {
+    font-size: clamp(2.1rem, calc(1.4rem + 3vw), 3.6rem);
+  }
+
+  .praxis-chip {
+    display: inline-flex;
+    align-items: center;
+    min-height: 2.75rem;
+    padding: 0.5rem 1.1rem;
+    border: 1px solid color-mix(in oklab, var(--color-brand-primary) 25%, transparent);
+    border-radius: 9999px;
+    background: var(--color-brand-light);
+    color: var(--color-brand-primary);
+    font-size: 0.95rem;
+    font-weight: 600;
+    transition: background-color 200ms ease, border-color 200ms ease;
+  }
+
+  .praxis-chip:hover,
+  .praxis-chip:focus-visible {
+    border-color: var(--color-brand-primary);
+    background: var(--color-brand-cream);
+  }
+</style>

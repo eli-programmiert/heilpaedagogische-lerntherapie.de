@@ -1,0 +1,93 @@
+---
+import Section from "@components/ui/layout/Section.astro";
+import Container from "@components/ui/layout/Container.astro";
+import Heading from "@components/ui/atoms/Heading.astro";
+import Icon from "@components/ui/atoms/Icon.astro";
+import Text from "@components/ui/atoms/Text.astro";
+import PraxisImage from "@components/ui/atoms/PraxisImage.astro";
+import SectionIntro from "@components/ui/molecules/SectionIntro.astro";
+import Callout from "@components/ui/molecules/Callout.astro";
+import { formatInternalLink } from "@utils/url";
+
+// Why: offer teaser cards (homepage 2+3, Lerntherapie core areas). The whole
+// card is one link and uses the shared ui-card-interactive hover contract.
+// Cards without a photo show the icon on cream instead.
+type Item = {
+  title: string;
+  description: string;
+  href?: string;
+  linkLabel?: string;
+  image?: { src: string; alt: string; position?: string };
+  icon?: string;
+};
+
+interface Props {
+  id?: string;
+  tone?: "page" | "base";
+  eyebrow?: string;
+  title: string;
+  description?: string;
+  items: Item[];
+  /** `featured` = first two cards wide (2+3), `even` = equal columns. */
+  layout?: "featured" | "even";
+  note?: { icon?: string; title?: string; text: string };
+  headingTag?: string;
+}
+
+const { id = "angebot", tone = "base", eyebrow, title, description, items, layout = "featured", note, headingTag = "h2" } = Astro.props as Props;
+
+const spanClass = (index: number) => {
+  if (layout === "even") return "lg:col-span-2";
+  return index < 2 ? "lg:col-span-3" : "lg:col-span-2";
+};
+---
+
+<Section id={id} tone={tone}>
+  <Container>
+    <SectionIntro eyebrow={eyebrow} title={title} description={description} headingTag={headingTag} />
+
+    <ul class="mt-10 grid gap-5 sm:grid-cols-2 lg:mt-14 lg:grid-cols-6 lg:gap-6">
+      {items.map((item, index) => {
+        const Tag = item.href ? "a" : "div";
+        return (
+          <li class:list={["flex", spanClass(index), index === items.length - 1 && items.length % 2 === 1 && "sm:col-span-2 lg:col-span-2"]}>
+            <Tag
+              href={item.href ? formatInternalLink(item.href) : undefined}
+              class:list={["group flex w-full flex-col overflow-hidden rounded-xl border border-brand-dark/10 bg-white", item.href && "ui-card-interactive"]}
+            >
+              {item.image ? (
+                <div class="overflow-hidden">
+                  <PraxisImage
+                    src={item.image.src}
+                    alt={item.image.alt}
+                    position={item.image.position}
+                    sizes={index < 2 && layout === "featured" ? "(min-width: 1024px) 40vw, (min-width: 640px) 50vw, 100vw" : "(min-width: 1024px) 28vw, (min-width: 640px) 50vw, 100vw"}
+                    class:list={["w-full object-cover", index < 2 && layout === "featured" ? "aspect-[16/10]" : "aspect-[4/3]"]}
+                  />
+                </div>
+              ) : item.icon ? (
+                <div class="flex aspect-[4/3] items-center justify-center ui-bg-base" aria-hidden="true">
+                  <span class="flex size-20 items-center justify-center rounded-full bg-white text-4xl text-brand-primary">
+                    <Icon name={item.icon} />
+                  </span>
+                </div>
+              ) : null}
+              <div class="flex flex-1 flex-col gap-3 p-6">
+                <Heading tag="h3" variant="feature-title" class="text-brand-primary">{item.title}</Heading>
+                <Text variant="feature-body-sm" class="text-brand-dark/80">{item.description}</Text>
+                {item.href && (
+                  <span class="mt-auto inline-flex items-center gap-1.5 pt-2 text-sm font-semibold text-brand-primary">
+                    {item.linkLabel ?? "Mehr erfahren"}
+                    <Icon name="arrow-right" class="transition-transform duration-200 group-hover:translate-x-1" />
+                  </span>
+                )}
+              </div>
+            </Tag>
+          </li>
+        );
+      })}
+    </ul>
+
+    {note && <Callout icon={note.icon} title={note.title} text={note.text} appearance="outline" class="mt-10" />}
+  </Container>
+</Section>

@@ -1,14 +1,13 @@
 import copy from '@data/i18n/nova.json';
 
-export type NovaLocale = 'pl' | 'en';
+// The practice website is German only. 'pl' and 'en' stay in the union so the
+// remaining Nova blocks (dev gallery) keep type-checking their own fallbacks.
+export type NovaLocale = 'de' | 'pl' | 'en';
 
-export function getNovaCopy(locale: NovaLocale = 'pl') {
-  return copy[locale] ?? copy.pl;
-}
+export type SiteCopy = typeof copy.de;
 
-export function getNovaSectionCopy(locale: NovaLocale, dataKey?: string) {
-  if (!dataKey) return undefined;
-  return getNovaCopy(locale).sections[dataKey as keyof typeof copy.pl.sections];
+export function getNovaCopy(_locale: NovaLocale = 'de'): SiteCopy {
+  return copy.de;
 }
 
 function withNovaBase(path: string): string {
@@ -19,16 +18,15 @@ function withNovaBase(path: string): string {
   return `${base}${path}` || '/';
 }
 
-export function getNovaLocalePath(locale: NovaLocale): string {
-  return withNovaBase(locale === 'en' ? '/' : '/pl/');
+export function getNovaLocalePath(_locale: NovaLocale = 'de'): string {
+  return withNovaBase('/');
 }
 
-export function getNovaNavigationPath(href: string, locale: NovaLocale): string {
+export function getNovaNavigationPath(href: string, _locale: NovaLocale = 'de'): string {
   if (href.startsWith('#') || href.startsWith('http') || href.startsWith('mailto:') || href.startsWith('tel:')) {
     return href;
   }
 
   const normalized = href.startsWith('/') ? href : `/${href}`;
-  if (locale === 'en') return withNovaBase(normalized);
-  return withNovaBase(normalized === '/' ? '/pl/' : `/pl${normalized}`);
+  return withNovaBase(normalized);
 }

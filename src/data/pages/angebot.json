@@ -1,0 +1,226 @@
+{
+  "seo": {
+    "title": "Angebot: Förderung, Lerntherapie, Prävention und ADHS-Programm",
+    "description": "Heilpädagogische Förderung, integrative Lerntherapie bei LRS und Dyskalkulie, Prävention im Vorschulalter und das 12-Wochen-Programm „Fokus & Familie“ bei ADHS."
+  },
+  "heading": "Förderung, Therapie und Beratung für Ihr Kind",
+  "sections": [
+    { "id": "navbar", "variant": "floating" },
+    {
+      "id": "pageIntro",
+      "variant": "default",
+      "data": {
+        "eyebrow": "Mein Angebot",
+        "description": "Ob Entwicklungsförderung, Lerntherapie, Prävention oder Begleitung bei ADHS: Jede Förderung beginnt mit einem genauen Blick auf Ihr Kind und wird individuell geplant.",
+        "links": [
+          { "label": "Heilpädagogische Förderung", "href": "#heilpaedagogische-foerderung" },
+          { "label": "Integrative Lerntherapie", "href": "#integrative-lerntherapie" },
+          { "label": "Prävention", "href": "#praevention" },
+          { "label": "ADHS", "href": "#adhs" }
+        ]
+      }
+    },
+    {
+      "id": "offerDetail",
+      "variant": "default",
+      "data": {
+        "id": "heilpaedagogische-foerderung",
+        "tone": "base",
+        "imagePosition": "left",
+        "eyebrow": "Vorschulalter & Schulalter",
+        "title": "Heilpädagogische Förderung",
+        "paragraphs": [
+          "Für Kinder mit Entwicklungsbesonderheiten in Sprache, Wahrnehmung, Motorik, im sozial-emotionalen Bereich oder bei den schulischen Vorläuferfähigkeiten."
+        ],
+        "image": { "src": "/assets/images/praxis/foerderung-bausteine-spiel.webp", "alt": "Kind baut einen Turm aus bunten Holzbausteinen" },
+        "lists": [
+          {
+            "title": "Ablauf",
+            "items": [
+              "Anamnese & heilpädagogische Diagnostik",
+              "Individueller Förderplan",
+              "Spielerische, handlungsorientierte Förderung",
+              "Regelmäßige Rückmeldungen an die Eltern"
+            ]
+          }
+        ],
+        "tags": {
+          "title": "Methoden",
+          "items": [
+            "Heilpädagogische Übungsbehandlung (HPÜ) nach von Oy & Sagi",
+            "Heilpädagogische Spieltherapie",
+            "Psychomotorik",
+            "Sensorische Integration"
+          ]
+        },
+        "notes": [
+          {
+            "icon": "car",
+            "title": "Mobil oder im Therapieraum",
+            "text": "Ihr Kind wird entweder in seiner vertrauten Umgebung gefördert oder in meinem ruhigen, strukturierten Therapieraum in Zeitlarn, je nach Bedarf und familiärer Situation."
+          }
+        ],
+        "link": { "label": "Mehr über Heilpädagogik", "href": "/heilpaedagogik/" }
+      }
+    },
+    {
+      "id": "offerDetail",
+      "variant": "default",
+      "data": {
+        "id": "integrative-lerntherapie",
+        "tone": "page",
+        "imagePosition": "right",
+        "eyebrow": "LRS & Dyskalkulie",
+        "title": "Integrative Lerntherapie",
+        "paragraphs": [
+          "Für Kinder mit Lernstörungen, Teilleistungsstörungen oder schulischen Schwierigkeiten. Die integrative Lerntherapie verbindet fachdidaktische Förderung, psychologische Begleitung und heilpädagogische Methoden."
+        ],
+        "image": { "src": "/assets/images/praxis/lrs-anlautkarten-buzzer.webp", "alt": "Anlautkarten mit Buchstaben und ein blauer Buzzer" },
+        "subCards": [
+          {
+            "title": "LRS / Legasthenie",
+            "items": [
+              "Diagnostik & Fehleranalyse",
+              "Aufbau der Schriftsprachkompetenzen",
+              "Prävention im Vorschulalter: phonologische Bewusstheit, Mengen & Zahlen, Aufmerksamkeit, Graphomotorik"
+            ],
+            "tagsTitle": "Programme",
+            "tags": ["Kieler Rechtschreibaufbau", "Marburger Rechtschreibtraining", "ABC der Tiere", "Orthographikurs"]
+          },
+          {
+            "title": "Dyskalkulie",
+            "image": { "src": "/assets/images/praxis/dyskalkulie-zahlenstrahl-rechenkette.webp", "alt": "Zahlenstrahl bis 10, Rechenkette und Fingerbildkarte" },
+            "items": [
+              "Fehleranalyse & mathematischer Neuaufbau",
+              "Lernen auf enaktiver, ikonischer und symbolischer Ebene (handelnd, bildlich, symbolisch)",
+              "Förderung von Denkprozessen & Automatisierung"
+            ],
+            "tagsTitle": "Programme",
+            "tags": ["Kieler Zahlenbilder", "Kalkulie", "„Komm mit – Rechne mit!“"]
+          },
+          {
+            "title": "Psychologische Begleitung",
+            "items": [
+              "Abbau von Schulangst",
+              "Stärkung des Selbstwerts",
+              "Training exekutiver Funktionen"
+            ]
+          }
+        ],
+        "notes": [
+          {
+            "icon": "house",
+            "title": "Mobil oder im Therapieraum",
+            "text": "Lerntherapie kann sowohl im häuslichen Umfeld als auch in meinem Therapieraum in Zeitlarn stattfinden."
+          },
+          {
+            "icon": "seal-check",
+            "title": "Kostenübernahme möglich",
+            "text": "Für Lerntherapie ist eine Kostenübernahme durch das Jugendamt des Landkreises Regensburg nach § 35a SGB VIII möglich, wenn eine medizinische Diagnose vorliegt. [Mehr zur Kostenübernahme →](/preise/#kostenuebernahme)",
+            "appearance": "outline"
+          }
+        ],
+        "link": { "label": "Mehr über Lerntherapie", "href": "/lerntherapie/" }
+      }
+    },
+    {
+      "id": "offerDetail",
+      "variant": "default",
+      "data": {
+        "id": "praevention",
+        "tone": "base",
+        "imagePosition": "left",
+        "eyebrow": "Vorschulalter & Grundschulalter",
+        "title": "Lerntherapie in der Prävention",
+        "paragraphs": [
+          "Viele Lernschwierigkeiten lassen sich verhindern, wenn Kinder frühzeitig unterstützt werden."
+        ],
+        "image": { "src": "/assets/images/praxis/material-buntstifte-buecher.webp", "alt": "Becher mit Buntstiften, Bilderbuch und Fädelperlen" },
+        "lists": [
+          {
+            "title": "Mein Präventionsangebot richtet sich an Kinder, die …",
+            "items": [
+              "unsicher im Umgang mit Mengen und Zahlen sind",
+              "Schwierigkeiten mit Lauten, Silben oder Reimen haben",
+              "Konzentrationsprobleme zeigen",
+              "motorische oder graphomotorische Herausforderungen haben",
+              "Entwicklungsverzögerungen aufweisen",
+              "schnell frustriert sind oder die Lernfreude verlieren",
+              "erste schulische Schwierigkeiten haben"
+            ]
+          }
+        ],
+        "goal": "**Ziel:** Schulische Vorläuferfähigkeiten stärken, Lernfreude erhalten und Lernstörungen vorbeugen.",
+        "priceHint": {
+          "text": "Präventionspaket LRS/Dyskalkulie (10 Einheiten): 560 €",
+          "link": { "label": "Alle Preise", "href": "/preise/" }
+        }
+      }
+    },
+    {
+      "id": "offerDetail",
+      "variant": "default",
+      "data": {
+        "id": "adhs",
+        "tone": "page",
+        "imagePosition": "right",
+        "eyebrow": "ADHS",
+        "title": "ADHS – heilpädagogische und lerntherapeutische Förderung & Elternbegleitung",
+        "image": { "src": "/assets/images/praxis/foerderung-tablet-kastanien-malen.webp", "alt": "Tablet mit Bildsymbolen als Strukturhilfe, Farben und Kastanien" },
+        "lists": [
+          {
+            "title": "Ziele für das Kind",
+            "items": [
+              "Selbstregulation & Impulskontrolle",
+              "Selbstwertstärkung",
+              "Strukturierungshilfen",
+              "Psychomotorische Methoden",
+              "„Lautes Denken“ nach dem Marburger Konzentrationstraining",
+              "Kreative Methoden zur Stärkung der Frustrationstoleranz"
+            ]
+          },
+          {
+            "title": "Elternbegleitung",
+            "items": [
+              "Psychoedukation: ADHS verstehen",
+              "Strukturberatung für den Familienalltag",
+              "Ressourcenblick: Stärken sehen und nutzen"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "program",
+      "variant": "default",
+      "data": {
+        "id": "fokus-und-familie",
+        "tone": "page",
+        "eyebrow": "ADHS-Kompaktprogramm",
+        "title": "„Fokus & Familie“ – das ADHS-Kompaktprogramm",
+        "meta": ["12 Wochen"],
+        "price": "990 €",
+        "steps": [
+          { "icon": "clipboard-text", "title": "Anamnese & Diagnostik", "description": "Erstgespräch (45–60 Min.), Beobachtungseinheit und ggf. Screening (45 Min.)" },
+          { "icon": "list-checks", "title": "Förderplan", "description": "Erstellung eines individuellen Förderplans" },
+          { "icon": "puzzle-piece", "title": "Intensive Förderung", "description": "10 heilpädagogische Einzeleinheiten" },
+          { "icon": "users-three", "title": "Eltern-Coaching", "description": "Zwei Sitzungen (je 60 Min.) zu Alltagsstrukturierung und Psychoedukation" },
+          { "icon": "phone", "title": "Wöchentliche Updates", "description": "Kurzer telefonischer Austausch (5–10 Min.)" },
+          { "icon": "flag-checkered", "title": "Abschluss & Auswertung", "description": "Abschlussgespräch mit Entwicklungsbericht und konkreten Empfehlungen für den Alltag (60 Min.)" }
+        ],
+        "cta": { "label": "Programm anfragen", "href": "/kontakt/" }
+      }
+    },
+    {
+      "id": "ctaBand",
+      "variant": "default",
+      "data": {
+        "title": "Welches Angebot passt zu Ihrem Kind?",
+        "text": "Das finden wir gemeinsam im Erstgespräch heraus.",
+        "primary": { "label": "Kostenloses Erstgespräch", "href": "/kontakt/" },
+        "secondary": { "label": "Preise ansehen", "href": "/preise/" }
+      }
+    },
+    { "id": "footer", "variant": "nova" }
+  ]
+}

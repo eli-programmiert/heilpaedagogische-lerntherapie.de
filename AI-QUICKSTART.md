@@ -15,9 +15,10 @@ Before editing, inspect the relevant source of truth. Keep changes small and pre
 
 | Task | Edit here | Do not start here |
 | --- | --- | --- |
-| Homepage copy | `src/data/i18n/nova.json` | Astro component markup |
-| Section content | `src/data/sections/*.json` | Hardcoded strings in components |
-| Homepage order | `src/data/pages/index.json` | Route markup |
+| Page copy and section order (practice website) | `src/data/pages/<slug>.json` → `sections[].data` | Astro component markup |
+| Navigation, footer, UI labels | `src/data/i18n/nova.json` (German only) | Hardcoded strings in components |
+| Shared demo content of Nova blocks (dev gallery) | `src/data/sections/*.json` | Hardcoded strings in components |
+| Practice blocks | `src/components/registry/praxis/` + `src/config/section-registry/praxis.ts` | New blocks outside the registry |
 | Section variants | `src/config/section-registry/` | A new component without checking the registry |
 | Component paths | `src/config/component-manifest.ts` | Manual dynamic imports |
 | Design tokens | `design/nova.md` | Generated CSS files |
@@ -31,7 +32,7 @@ Before editing, inspect the relevant source of truth. Keep changes small and pre
 3. Change JSON data when the request is content or section ordering.
 4. Reuse aliases such as `@components/`, `@data/`, `@styles/` and `@utils/`.
 5. Keep internal URLs in trailing-slash form.
-6. Preserve the English and Polish language objects when changing homepage copy.
+6. The site is German only; there are no English or Polish language objects any more.
 7. Run `npm run ai:check` after the change.
 8. Run `npm run build` before packaging or publishing.
 9. Check the result in a browser on mobile and desktop for visual changes.

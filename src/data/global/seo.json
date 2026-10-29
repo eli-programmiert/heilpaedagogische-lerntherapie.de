@@ -1,8 +1,8 @@
 {
-  "defaultTitle": "Nova, websites for ambitious brands",
-  "defaultDescription": "We create modern websites that strengthen your image, attract clients and support business growth.",
+  "defaultTitle": "Fachpraxis für Heilpädagogik & integrative Lerntherapie",
+  "defaultDescription": "Mobile heilpädagogische und lerntherapeutische Fachpraxis für Kinder bei LRS, Dyskalkulie, ADHS und Entwicklungsverzögerungen im Landkreis Regensburg und im südlichen Landkreis Schwandorf.",
   "defaultOgImage": "/og-image.png",
-  "index": false,
+  "index": true,
   "follow": true,
   "analytics": {
     "googleAnalyticsId": "",

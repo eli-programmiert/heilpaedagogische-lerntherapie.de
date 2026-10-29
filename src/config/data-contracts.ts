@@ -3,6 +3,7 @@ import { z } from 'zod';
 export const PageSectionSchema = z.object({
   id: z.string().min(1),
   variant: z.string().min(1),
+  data: z.record(z.string(), z.unknown()).optional(),
 }).passthrough();
 
 export const PageSeoSchema = z.object({

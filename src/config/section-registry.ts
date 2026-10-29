@@ -10,6 +10,7 @@ import { faqSections } from './section-registry/faq';
 import { contactSections } from './section-registry/contact';
 import { ctaSections } from './section-registry/cta';
 import { contentSections } from './section-registry/content';
+import { praxisSections } from './section-registry/praxis';
 
 export { SECTION_GROUPS } from './section-registry/types';
 export type { SectionEntry, SectionGroup, VariantEntry } from './section-registry/types';
@@ -26,4 +27,5 @@ export const SECTION_REGISTRY: Record<string, SectionEntry> = {
   ...contactSections,
   ...ctaSections,
   ...contentSections,
+  ...praxisSections,
 };

@@ -1,0 +1,87 @@
+---
+import fs from "node:fs";
+import path from "node:path";
+import sharp from "sharp";
+
+// Why: photos live in src/assets/raw/ and `npm run assets:img` writes AVIF/WebP
+// variants (@220 … @1920, base file = 800 px) to public/assets/images/. This atom
+// mirrors that naming contract and builds the srcset from the original's width,
+// so the JSON only needs the base path and an alt text.
+interface Props {
+  /** Base path of the derivative, e.g. /assets/images/praxis/foto.webp */
+  src: string;
+  alt: string;
+  sizes?: string;
+  class?: string;
+  /** CSS object-position, e.g. "50% 30%" to keep a face in the upper third. */
+  position?: string;
+  loading?: "lazy" | "eager";
+  fetchpriority?: "high" | "low" | "auto";
+}
+
+const {
+  src,
+  alt,
+  sizes = "(min-width: 1024px) 50vw, 100vw",
+  class: className = "",
+  position,
+  loading = "lazy",
+  fetchpriority,
+} = Astro.props;
+
+const VARIANTS = [
+  { suffix: "@220", width: 220 },
+  { suffix: "@480", width: 480 },
+  { suffix: "@640", width: 640 },
+  { suffix: "", width: 800 },
+  { suffix: "@1080", width: 1080 },
+  { suffix: "@1280", width: 1280 },
+  { suffix: "@1600", width: 1600 },
+  { suffix: "@1920", width: 1920 },
+];
+
+const publicPrefix = "/assets/images/";
+const relative = src.startsWith(publicPrefix) ? src.slice(publicPrefix.length).replace(/\.(webp|avif)$/, "") : null;
+const rawBase = relative ? path.join(process.cwd(), "src/assets/raw", relative) : null;
+const rawFile = rawBase
+  ? [".webp", ".jpg", ".jpeg", ".png", ".avif"].map((ext) => rawBase + ext).find((file) => fs.existsSync(file))
+  : undefined;
+
+let width = 800;
+let height = 600;
+let srcset: { avif: string; webp: string } | null = null;
+
+if (rawFile && relative) {
+  const meta = await sharp(rawFile).metadata();
+  const rotated = (meta.orientation ?? 1) >= 5;
+  const originalWidth = (rotated ? meta.height : meta.width) ?? 800;
+  const originalHeight = (rotated ? meta.width : meta.height) ?? 600;
+  const baseWidth = Math.min(800, originalWidth);
+  width = baseWidth;
+  height = Math.round(baseWidth * (originalHeight / originalWidth));
+
+  // Same filter as optimize-images.ts: no upscaled or duplicate variants.
+  const available = VARIANTS.filter(({ suffix, width: w }) => {
+    if (suffix === "") return true;
+    if (w > originalWidth) return false;
+    return Math.min(w, originalWidth) !== baseWidth;
+  });
+  const build = (ext: string) =>
+    available
+      .map(({ suffix, width: w }) => `${publicPrefix}${relative}${suffix}.${ext} ${suffix === "" ? baseWidth : Math.min(w, originalWidth)}w`)
+      .join(", ");
+  srcset = { avif: build("avif"), webp: build("webp") };
+}
+
+const style = position ? `object-position: ${position}` : undefined;
+---
+
+{srcset ? (
+  <picture>
+    <source type="image/avif" srcset={srcset.avif} sizes={sizes} />
+    <source type="image/webp" srcset={srcset.webp} sizes={sizes} />
+    <img src={src} alt={alt} width={width} height={height} loading={loading} decoding="async" fetchpriority={fetchpriority} class={className} style={style} />
+  </picture>
+) : (
+  <img src={src} alt={alt} width={width} height={height} loading={loading} decoding="async" fetchpriority={fetchpriority} class={className} style={style} />
+)}

@@ -1,0 +1,30 @@
+---
+import seal from "@data/global/iflw-seal.json";
+
+// Why: IFLW only allows Elisabeth's personal snippet, unchanged (title,
+// www.iflw.de and exam number included). Size is constrained by this wrapper
+// only; never edit the snippet markup, links or inline styles. Never place it
+// directly next to her name.
+interface Props {
+  class?: string;
+}
+
+const { class: className = "" } = Astro.props;
+---
+
+<!-- data-audit-ignore: third-party markup that must not be changed, excluded from check:images. -->
+<div class:list={["iflw-seal mx-auto w-full max-w-[22rem] text-brand-dark", className]} data-audit-ignore>
+  <Fragment set:html={seal.html} />
+</div>
+
+<style>
+  .iflw-seal :global(img) {
+    width: 100%;
+    max-width: 10rem;
+    height: auto;
+  }
+
+  .iflw-seal :global(a) {
+    color: var(--color-brand-primary);
+  }
+</style>

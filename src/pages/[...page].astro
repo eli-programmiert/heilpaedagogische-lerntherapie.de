@@ -5,8 +5,7 @@ import type { PageConfig } from "@/types/config";
 import { pageModules } from "@data/pages/_registry";
 import { BUILD_SCOPE, SITE_LOCALE } from "../../site.config.mjs";
 import { isPageAllowed, getFullBleedTop } from "@utils/page-scope";
-import { ACTIVE_TEMPLATE } from "@/config/template";
-import { getNovaCopy, type NovaLocale } from "@utils/nova-i18n";
+import type { NovaLocale } from "@utils/nova-i18n";
 
 export async function getStaticPaths() {
   // Scope: w buildzie generuj tylko aktywne strony zgodne z BUILD_SCOPE.pages.
@@ -26,9 +25,6 @@ export async function getStaticPaths() {
       const slug = path.split("/").pop()?.replace(".json", "") || "";
       return { params: { page: slug === "index" ? undefined : slug } };
     })
-    // /blog ma wlasny route (blog/index.astro). Blog.json trafialby tez do catch-all
-    // jako /blog, co przy buildzie sypalo "conflicts with /blog". Wykluczamy ten slug.
-    .filter(({ params }) => params.page !== "blog")
     .filter(({ params }) => !import.meta.env.PROD || isAllowed(params.page ?? "index"));
 }
 
@@ -44,15 +40,14 @@ if (!config) {
 }
 
 const { seo, layout: layoutConfig } = config;
-const locale: NovaLocale = SITE_LOCALE === "en" ? "en" : "pl";
-const novaPageCopy = ACTIVE_TEMPLATE === "nova" && slug === "index" ? getNovaCopy(locale).page : undefined;
-const resolvedTitle = novaPageCopy?.title ?? seo?.title;
-const resolvedDescription = novaPageCopy?.description ?? seo?.description;
-const resolvedHeading = novaPageCopy?.heading ?? config.heading;
+const locale = SITE_LOCALE as NovaLocale;
+const resolvedTitle = seo?.title;
+const resolvedDescription = seo?.description;
+const resolvedHeading = config.heading;
 
 // Why: Local casting bypasses the cascade after a corrupt PageConfig type
 // (@types/config error) and the sections are validated by check-page-registry.
-const sections = (config.sections ?? []) as { id: string; variant?: string }[];
+const sections = config.sections ?? [];
 
 // Why: navbar/footer renders Layout globally, so page only
 // wybiera wariant (fallback: defaultVariant z rejestru, czyli floating).

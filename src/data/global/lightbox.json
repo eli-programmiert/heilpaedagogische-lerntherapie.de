@@ -1,7 +1,7 @@
 {
-  "closeLabel": "Close preview",
-  "alt": "Enlarged image preview",
-  "prevLabel": "Previous image",
-  "nextLabel": "Next image",
-  "emptyLabel": "No image preview"
+  "closeLabel": "Vorschau schließen",
+  "alt": "Vergrößerte Bildvorschau",
+  "prevLabel": "Vorheriges Bild",
+  "nextLabel": "Nächstes Bild",
+  "emptyLabel": "Keine Bildvorschau verfügbar"
 }

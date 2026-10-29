@@ -1,0 +1,29 @@
+---
+import Section from "@components/ui/layout/Section.astro";
+import Container from "@components/ui/layout/Container.astro";
+import Text from "@components/ui/atoms/Text.astro";
+import IflwSeal from "@components/ui/molecules/IflwSeal.astro";
+import RichText from "@components/ui/molecules/RichText.astro";
+
+// Why: the seal always gets its own section, separated from the portrait and
+// name (IFLW rules: no name directly under the seal).
+interface Props {
+  id?: string;
+  tone?: "page" | "base";
+  eyebrow?: string;
+  text?: string;
+  compact?: boolean;
+}
+
+const { id = "qualifikation", tone = "page", eyebrow, text, compact = false } = Astro.props as Props;
+---
+
+<Section id={id} tone={tone} class={compact ? "praxis-section-compact" : ""}>
+  <Container>
+    <div class="mx-auto flex max-w-2xl flex-col items-center gap-4 text-center">
+      {eyebrow && <Text tag="p" variant="accent-label" class="praxis-eyebrow">{eyebrow}</Text>}
+      {text && <RichText text={text} variant="lead" class="text-brand-dark/80" />}
+      <IflwSeal />
+    </div>
+  </Container>
+</Section>

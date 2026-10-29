@@ -1,0 +1,143 @@
+{
+  "seo": {
+    "title": "Über mich: Elisabeth Eggersdorfer, Heilpädagogin und Lerntherapeutin",
+    "description": "Staatlich anerkannte Heilpädagogin, heilpädagogische Förderlehrerin und integrative Lerntherapeutin (IFLW) aus Zeitlarn, gemeinsam mit Hündin Frieda."
+  },
+  "heading": "Hallo, ich bin Elisabeth.",
+  "sections": [
+    { "id": "navbar", "variant": "floating" },
+    {
+      "id": "profile",
+      "variant": "default",
+      "data": {
+        "id": "profil",
+        "tone": "page",
+        "size": "full",
+        "eyebrow": "Über mich",
+        "title": "Hallo, ich bin Elisabeth.",
+        "role": "Staatlich anerkannte Heilpädagogin · Heilpädagogische Förderlehrerin · Integrative Lerntherapeutin (IFLW)",
+        "paragraphs": [
+          "Ich arbeite als heilpädagogische Förderlehrerin an einem sonderpädagogischen Förderzentrum. Schon während meiner Ausbildung zur Erzieherin durfte ich in sonderpädagogischen Einrichtungen arbeiten, und dort wusste ich: Ich möchte Heilpädagogin werden.",
+          "Neben meiner Arbeit im Förderzentrum starte ich nun freiberuflich meine mobile Fachpraxis. Dort verbinde ich Heilpädagogik und Lerntherapie, damit Kinder mit Lernschwierigkeiten, ADHS oder Entwicklungsbesonderheiten wieder Zutrauen in die eigenen Fähigkeiten gewinnen."
+        ],
+        "checks": [
+          "Staatlich anerkannte Heilpädagogin",
+          "Zusatzabschluss heilpädagogische Förderlehrerin",
+          "Integrative Lerntherapeutin (IFLW)"
+        ],
+        "tags": ["Diagnostik", "LRS", "Dyskalkulie", "ADHS", "Psychomotorik"],
+        "image": {
+          "src": "/assets/images/praxis/elisabeth-eggersdorfer-portrait.webp",
+          "alt": "Elisabeth Eggersdorfer, Heilpädagogin und Lerntherapeutin",
+          "position": "50% 25%"
+        }
+      }
+    },
+    {
+      "id": "timeline",
+      "variant": "default",
+      "data": {
+        "id": "mein-weg",
+        "tone": "base",
+        "eyebrow": "Werdegang",
+        "title": "Mein Weg",
+        "items": [
+          {
+            "icon": "baby",
+            "label": "2017–2022",
+            "title": "Staatlich anerkannte Erzieherin",
+            "description": "Mit 15 Jahren habe ich die Ausbildung zur Erzieherin begonnen. Schon damals durfte ich in sonderpädagogischen Einrichtungen arbeiten, und dort wurde mir klar, dass ich Heilpädagogin werden möchte."
+          },
+          {
+            "icon": "graduation-cap",
+            "label": "2022–2024",
+            "title": "Staatlich anerkannte Heilpädagogin & heilpädagogische Förderlehrerin",
+            "description": "Weiterbildung zur staatlich anerkannten Heilpädagogin mit zusätzlichem Abschluss als heilpädagogische Förderlehrerin. Durch ein Vertiefungsmodul in Diagnostik bin ich mit gängigen projektiven Testverfahren, der Intelligenzdiagnostik und der Diagnostik von Teilleistungsstörungen vertraut."
+          },
+          {
+            "icon": "book-open-text",
+            "label": "2025–2026",
+            "title": "Integrative Lerntherapeutin (IFLW)",
+            "description": "Neben meiner Arbeit im Förderzentrum habe ich die Weiterbildung zur integrativen Lerntherapeutin am Institut für integrative Lerntherapie und Weiterbildung (IFLW) abgeschlossen."
+          },
+          {
+            "icon": "house-line",
+            "label": "Heute",
+            "title": "Förderzentrum & eigene Fachpraxis",
+            "description": "Heilpädagogische Förderlehrerin an einem sonderpädagogischen Förderzentrum und Inhaberin der mobilen Fachpraxis für Heilpädagogik & integrative Lerntherapie."
+          }
+        ]
+      }
+    },
+    {
+      "id": "iflwSeal",
+      "variant": "default",
+      "data": {
+        "id": "qualifikation",
+        "tone": "page",
+        "eyebrow": "Qualifikation"
+      }
+    },
+    {
+      "id": "mediaSplit",
+      "variant": "default",
+      "data": {
+        "id": "frieda",
+        "tone": "base",
+        "imagePosition": "right",
+        "eyebrow": "Tiergestützte Leseförderung",
+        "title": "Lesen mit Frieda",
+        "paragraphs": [
+          "Mit meiner Hündin Frieda, einem Zwergpudel, erleben Kinder eine wertfreie, entspannte Lernumgebung. Frieda unterstützt Lesemotivation, Emotionsregulation und Selbstvertrauen.",
+          "Frieda ist über den **Verein für helfende Hunde e. V.** ausgebildet."
+        ],
+        "image": {
+          "src": "/assets/images/praxis/frieda-buchstabenkarte.webp",
+          "alt": "Zwergpudel Frieda hält eine Buchstabenkarte mit dem Buchstaben A im Maul",
+          "position": "50% 30%"
+        },
+        "extraImages": [
+          {
+            "src": "/assets/images/praxis/frieda-buzzer-anlautkarten.webp",
+            "alt": "Frieda drückt mit der Pfote auf einen Buzzer zwischen Anlautkarten",
+            "position": "50% 30%"
+          },
+          {
+            "src": "/assets/images/praxis/frieda-decke-verein-helfende-hunde.webp",
+            "alt": "Frieda liegt auf einer Decke des Vereins für helfende Hunde e. V.",
+            "position": "50% 30%"
+          }
+        ]
+      }
+    },
+    {
+      "id": "cardGrid",
+      "variant": "default",
+      "data": {
+        "id": "persoenliches",
+        "tone": "page",
+        "eyebrow": "Persönliches",
+        "description": "In meiner Freizeit spiele ich Querflöte, bin gern in der Natur und unter Menschen und verbringe viel Zeit mit Frieda.",
+        "columns": 4,
+        "compact": true,
+        "items": [
+          { "icon": "music-notes", "title": "Querflöte" },
+          { "icon": "tree", "title": "Natur" },
+          { "icon": "users", "title": "Menschen" },
+          { "icon": "dog", "title": "Zeit mit Frieda" }
+        ]
+      }
+    },
+    {
+      "id": "ctaBand",
+      "variant": "default",
+      "data": {
+        "title": "Lernen wir uns kennen",
+        "text": "Im kostenlosen telefonischen Erstgespräch nehme ich mir Zeit für Ihre Fragen.",
+        "primary": { "label": "Kontakt aufnehmen", "href": "/kontakt/" },
+        "secondary": { "label": "0151 23410823", "href": "tel:+4915123410823" }
+      }
+    },
+    { "id": "footer", "variant": "nova" }
+  ]
+}

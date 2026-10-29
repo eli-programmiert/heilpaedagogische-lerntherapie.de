@@ -14,6 +14,25 @@ export function getComponentPath(name: string, entry: ComponentManifestEntry): s
 
 /** Public blocks included in the Nova template package. */
 export const COMPONENT_MANIFEST: Record<string, ComponentManifestEntry> = {
+  // Practice website blocks.
+  PraxisHeroBlock: { category: 'core', status: 'confirmed' },
+  CalloutBlock: { category: 'core', status: 'confirmed' },
+  RichTextBlock: { category: 'core', status: 'confirmed' },
+  TopicTilesBlock: { category: 'core', status: 'confirmed' },
+  OfferCardsBlock: { category: 'core', status: 'confirmed' },
+  OfferDetailBlock: { category: 'core', status: 'confirmed' },
+  ProgramBlock: { category: 'core', status: 'confirmed' },
+  ProfileBlock: { category: 'core', status: 'confirmed' },
+  MediaSplitBlock: { category: 'core', status: 'confirmed' },
+  CardGridBlock: { category: 'core', status: 'confirmed' },
+  StepsBlock: { category: 'core', status: 'confirmed' },
+  TimelineBlock: { category: 'core', status: 'confirmed' },
+  FaqBlock: { category: 'core', status: 'confirmed' },
+  PriceListBlock: { category: 'core', status: 'confirmed' },
+  PackagesBlock: { category: 'core', status: 'confirmed' },
+  IflwSealBlock: { category: 'core', status: 'confirmed' },
+  ContactCardsBlock: { category: 'core', status: 'confirmed' },
+  CtaBandBlock: { category: 'core', status: 'confirmed' },
   AboutBlock: { category: 'core', status: 'provisional' },
   AboutExpertBlock: { category: 'core', status: 'provisional' },
   AboutMarqueeSplitBlock: { category: 'core', status: 'provisional' },
@@ -21,7 +40,6 @@ export const COMPONENT_MANIFEST: Record<string, ComponentManifestEntry> = {
   AboutSplitLeanBlock: { category: 'core', status: 'provisional' },
   TeamBlock: { category: 'core', status: 'provisional' },
   AudienceSplitBlock: { category: 'core', status: 'provisional' },
-  BlogListBlock: { category: 'core', status: 'provisional' },
   CardsFilterableBlock: { category: 'core', status: 'provisional' },
   ContactSplitBlock: { category: 'core', status: 'provisional' },
   CtaBlock: { category: 'core', status: 'provisional' },

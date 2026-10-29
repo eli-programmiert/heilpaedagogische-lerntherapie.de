@@ -41,6 +41,15 @@ export function buildRouteMap(): RouteMap {
     }
   }
 
+  // Pages rendered by the catch-all route [...page].astro from page JSON files.
+  const dataPagesDir = path.resolve('src/data/pages');
+  if (fs.existsSync(dataPagesDir)) {
+    for (const file of fg.sync('*.json', { cwd: dataPagesDir })) {
+      const slug = file.replace(/\.json$/, '');
+      if (slug !== 'index' && slug !== '404') validRoutes.add('/' + slug);
+    }
+  }
+
   const jsonPaths = [
     'src/data/navigation/header.json',
     'src/data/navigation/footer.json',

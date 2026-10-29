@@ -1,0 +1,87 @@
+{
+  "seo": {
+    "title": "Was ist Heilpädagogik? Heilpädagogische Förderung für Kinder",
+    "description": "Heilpädagogik stärkt Ressourcen, Interessen und Entwicklungspotenziale. So arbeite ich: von der Anamnese über den Förderplan bis zur Elternberatung."
+  },
+  "heading": "Was ist eigentlich Heilpädagogik?",
+  "sections": [
+    { "id": "navbar", "variant": "floating" },
+    {
+      "id": "pageIntro",
+      "variant": "default",
+      "data": {
+        "eyebrow": "Heilpädagogik",
+        "description": "Heilpädagogik unterstützt, fördert und begleitet Menschen mit Beeinträchtigungen oder Entwicklungsbesonderheiten in ihren individuellen Entwicklungsprozessen."
+      }
+    },
+    {
+      "id": "mediaSplit",
+      "variant": "default",
+      "data": {
+        "id": "definition",
+        "tone": "base",
+        "imagePosition": "right",
+        "title": "Eine Brücke zwischen Pädagogik, Psychologie und Medizin",
+        "paragraphs": [
+          "Heilpädagogik ist eine wissenschaftliche Disziplin der Erziehungswissenschaften und bildet eine Schnittstelle zwischen Pädagogik, Psychologie und Medizin. Ziel ist es, Teilhabe in der Gesellschaft zu ermöglichen und Kinder in ihrer Gesamtpersönlichkeit zu stärken."
+        ],
+        "featuresTitle": "Heilpädagogik stärkt",
+        "features": [
+          { "icon": "sparkle", "title": "Ressourcen", "text": "Was Ihr Kind schon kann, ist die Grundlage." },
+          { "icon": "heart", "title": "Interessen", "text": "Was Ihr Kind begeistert, öffnet Türen." },
+          { "icon": "trend-up", "title": "Entwicklungspotenziale", "text": "Der nächste Schritt, im eigenen Tempo." }
+        ],
+        "image": {
+          "src": "/assets/images/praxis/foerderung-tablet-kastanien-malen.webp",
+          "alt": "Fördermaterialien: Tablet mit Bildsymbolen, Farben und Kastanien"
+        }
+      }
+    },
+    {
+      "id": "cardGrid",
+      "variant": "default",
+      "data": {
+        "id": "haltung",
+        "tone": "page",
+        "eyebrow": "Meine Haltung",
+        "title": "Worauf meine Arbeit beruht",
+        "columns": 2,
+        "items": [
+          { "icon": "hand-heart", "title": "Heilpädagogische Haltung nach Paul Moor", "text": "Achtung, Geduld, Feinfühligkeit und Vertrauen" },
+          { "icon": "users", "title": "Beziehungsgestaltung nach Carl Rogers", "text": "Empathie, Kongruenz und Wertschätzung" }
+        ]
+      }
+    },
+    {
+      "id": "timeline",
+      "variant": "default",
+      "data": {
+        "id": "prozess",
+        "tone": "base",
+        "eyebrow": "So arbeite ich",
+        "title": "Der heilpädagogische Prozess",
+        "description": "Meine Förderung folgt einem klar strukturierten, professionellen Ablauf.",
+        "items": [
+          { "icon": "clipboard-text", "title": "Anamnese", "description": "Erfassung der Lebenswelt, Entwicklung und Bedürfnisse des Kindes." },
+          { "icon": "magnifying-glass", "title": "Beobachtung und Diagnostik", "description": "Spielbasierte, entwicklungsorientierte und alltagsnahe Diagnostik zur Ermittlung von Stärken und Unterstützungsbedarfen." },
+          { "icon": "list-checks", "title": "Förderplan", "description": "Individuelle Zielsetzung und Auswahl geeigneter Methoden." },
+          { "icon": "handshake", "title": "Beziehungsaufbau", "description": "Aufbau einer tragfähigen, wertschätzenden Beziehung als Grundlage jeder Förderung." },
+          { "icon": "puzzle-piece", "title": "Förderung", "description": "Spielerische, handlungsorientierte und ressourcenorientierte Entwicklungsbegleitung." },
+          { "icon": "users-three", "title": "Netzwerkarbeit & Sozialraumorientierung", "description": "Zusammenarbeit mit Eltern, Einrichtungen und Fachstellen sowie Nutzung der Ressourcen im Lebensumfeld des Kindes." },
+          { "icon": "chats-circle", "title": "Entwicklungs- und Beratungsgespräche", "description": "Regelmäßiger Austausch mit Eltern und Bezugspersonen für Transparenz, Reflexion und gemeinsame Weiterentwicklung." }
+        ]
+      }
+    },
+    {
+      "id": "ctaBand",
+      "variant": "default",
+      "data": {
+        "title": "Heilpädagogische Förderung für Ihr Kind?",
+        "text": "Im Erstgespräch klären wir, welche Unterstützung sinnvoll ist.",
+        "primary": { "label": "Kostenloses Erstgespräch", "href": "/kontakt/" },
+        "secondary": { "label": "Zum Angebot", "href": "/angebot/#heilpaedagogische-foerderung" }
+      }
+    },
+    { "id": "footer", "variant": "nova" }
+  ]
+}

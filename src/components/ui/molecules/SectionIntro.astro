@@ -1,0 +1,45 @@
+---
+import Heading from "@components/ui/atoms/Heading.astro";
+import Text from "@components/ui/atoms/Text.astro";
+import { renderInline } from "@utils/inline-markup";
+
+// Why: every practice section opens with the same eyebrow / heading / lead
+// trio; this molecule keeps spacing and hierarchy consistent.
+interface Props {
+  eyebrow?: string;
+  title?: string;
+  description?: string | string[];
+  headingTag?: string;
+  align?: "left" | "center";
+  size?: "default" | "hero";
+  class?: string;
+}
+
+const {
+  eyebrow,
+  title,
+  description,
+  headingTag = "h2",
+  align = "left",
+  size = "default",
+  class: className = "",
+} = Astro.props;
+
+const paragraphs = (Array.isArray(description) ? description : description ? [description] : []).filter(Boolean);
+---
+
+<div class:list={["flex flex-col gap-4", align === "center" ? "mx-auto max-w-3xl items-center text-center" : "max-w-3xl", className]}>
+  {eyebrow && (
+    <Text tag="p" variant="accent-label" class="praxis-eyebrow">
+      {eyebrow}
+    </Text>
+  )}
+  {title && (
+    <Heading tag={headingTag} variant={size === "hero" ? "hero" : "section-heading-lg"}>
+      {title}
+    </Heading>
+  )}
+  {paragraphs.map((paragraph) => (
+    <Text variant="lead" class="max-w-2xl"><Fragment set:html={renderInline(paragraph)} /></Text>
+  ))}
+</div>

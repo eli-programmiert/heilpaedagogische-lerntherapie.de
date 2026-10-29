@@ -1,6 +1,5 @@
 ---
 import { getNavDrawerSocialLinks } from "./nav-drawer-social";
-import LanguageSwitch from "./LanguageSwitch.astro";
 import { getNovaCopy, getNovaNavigationPath, type NovaLocale } from "@utils/nova-i18n";
 
 interface Props {
@@ -8,9 +7,10 @@ interface Props {
 	locale?: NovaLocale;
 }
 
-const { drawerMode = "mobile", locale = "pl" } = Astro.props;
+const { drawerMode = "mobile", locale = "de" } = Astro.props;
 const headerData = getNovaCopy(locale).navigation;
-const rootVisibility = drawerMode === "mobile" ? "lg:hidden" : "";
+// Why: the desktop menu only fits from xl, so the drawer serves up to that breakpoint.
+const rootVisibility = drawerMode === "mobile" ? "xl:hidden" : "";
 const socialLinks = getNavDrawerSocialLinks();
 
 // Why: submenu (children) wymagaja osobnej struktury wiersza:
@@ -164,7 +164,10 @@ function subId(index: number): string {
 				</nav>
 
 				<div class="ui-nav-drawer__bottom">
-					<LanguageSwitch locale={locale} />
+					<a href={headerData.phone.href} class="ui-nav-drawer__phone">
+						<i class="ph ph-phone" aria-hidden="true"></i>
+						{headerData.phone.label}
+					</a>
 				</div>
 
 				<div class="ui-nav-drawer__social-row">

@@ -1,0 +1,115 @@
+{
+  "seo": {
+    "title": "Was ist Lerntherapie? Hilfe bei LRS, Dyskalkulie und ADHS",
+    "description": "Lerntherapie setzt an den Ursachen von Lernschwierigkeiten an, nicht am Schulstoff. Ganzheitliche Diagnostik, individuelle Förderung und Elternarbeit."
+  },
+  "heading": "Was ist eigentlich Lerntherapie?",
+  "sections": [
+    { "id": "navbar", "variant": "floating" },
+    {
+      "id": "pageIntro",
+      "variant": "default",
+      "data": {
+        "eyebrow": "Lerntherapie",
+        "description": "Lerntherapie ist eine außerschulische Förderung für Kinder und Jugendliche, die schwerwiegende und anhaltende Schwierigkeiten beim Lernen haben. Sie setzt nicht am aktuellen Schulstoff an, sondern an den Grundursachen der Lernschwierigkeiten."
+      }
+    },
+    {
+      "id": "cardGrid",
+      "variant": "default",
+      "data": {
+        "id": "keine-nachhilfe",
+        "tone": "base",
+        "eyebrow": "Der Unterschied",
+        "title": "Lerntherapie ist keine Nachhilfe",
+        "columns": 2,
+        "items": [
+          { "icon": "notebook", "title": "Nachhilfe", "text": "Übt den aktuellen Schulstoff, damit die nächste Probe klappt." },
+          { "icon": "plant", "title": "Lerntherapie", "text": "Baut fehlende Grundlagen Schritt für Schritt neu auf und stärkt Lernmotivation und Selbstvertrauen, damit Lernen nachhaltig gelingt.", "highlight": true }
+        ]
+      }
+    },
+    {
+      "id": "offerCards",
+      "variant": "default",
+      "data": {
+        "id": "kernbereiche",
+        "tone": "page",
+        "eyebrow": "Kernbereiche",
+        "title": "Kernbereiche der Lerntherapie",
+        "layout": "even",
+        "items": [
+          {
+            "title": "Legasthenie / LRS",
+            "description": "Gezieltes Rechtschreibtraining, Förderung der Leseflüssigkeit und Aufbau phonologischer Kompetenzen.",
+            "href": "/angebot/#integrative-lerntherapie",
+            "linkLabel": "Zur integrativen Lerntherapie",
+            "image": { "src": "/assets/images/praxis/lesefoerderung-satzkarten.webp", "alt": "Lesekarten mit kurzen Sätzen und Bildkarten" }
+          },
+          {
+            "title": "Dyskalkulie",
+            "description": "Aufbau von Mengen- und Zahlenverständnis, Strukturierung mathematischer Grundprinzipien und Festigung der Grundrechenarten.",
+            "href": "/angebot/#integrative-lerntherapie",
+            "linkLabel": "Zur integrativen Lerntherapie",
+            "image": { "src": "/assets/images/praxis/dyskalkulie-zahlenstrahl-rechenkette.webp", "alt": "Zahlenstrahl bis 10, Rechenkette und Fingerbildkarte" }
+          },
+          {
+            "title": "ADHS",
+            "description": "Vermittlung von Selbstregulationsstrategien, Konzentrationstraining sowie Strukturierung des Arbeitsplatzes und des Lernumfelds.",
+            "href": "/angebot/#adhs",
+            "linkLabel": "Zur Begleitung bei ADHS",
+            "image": { "src": "/assets/images/praxis/adhs-gehirn-schmetterling.webp", "alt": "Gehirn aus weißen Fäden mit einem bunten Schmetterling" }
+          }
+        ]
+      }
+    },
+    {
+      "id": "steps",
+      "variant": "default",
+      "data": {
+        "id": "verlauf",
+        "tone": "base",
+        "eyebrow": "So arbeite ich",
+        "title": "Der therapeutische Verlauf",
+        "steps": [
+          { "title": "Ganzheitliche Diagnostik", "description": "Screening, qualitative Fehleranalyse sowie Erfassung der Lernbiografie und des familiären Umfelds." },
+          { "title": "Individuelle Förderung", "description": "Ein passgenauer Therapieplan, der sich an der Nullfehlergrenze des Kindes orientiert, um Lernmotivation und Selbstvertrauen zu stärken." },
+          { "title": "Schrittweiser Kompetenzaufbau", "description": "Mehrsinnige Methoden und spezielle Therapiematerialien helfen, Lerninhalte nachhaltig im Langzeitgedächtnis zu verankern." },
+          { "title": "Umfeldarbeit", "description": "Regelmäßige Beratungsgespräche mit Eltern, Lehrkräften und weiteren Bezugspersonen sichern den Transfer in den Alltag." }
+        ]
+      }
+    },
+    {
+      "id": "callout",
+      "variant": "default",
+      "data": {
+        "id": "kostenuebernahme",
+        "tone": "page",
+        "icon": "seal-check",
+        "title": "Kostenübernahme durch das Jugendamt",
+        "text": "Für Lerntherapie ist eine **Kostenübernahme durch das Jugendamt des Landkreises Regensburg** im Rahmen der Eingliederungshilfe nach **§ 35a SGB VIII** möglich, wenn eine medizinische Diagnose vorliegt. [Mehr zur Kostenübernahme →](/preise/#kostenuebernahme)"
+      }
+    },
+    {
+      "id": "iflwSeal",
+      "variant": "default",
+      "data": {
+        "tone": "page",
+        "compact": true,
+        "eyebrow": "Geprüfte Qualifikation",
+        "text": "Ich bin integrative Lerntherapeutin mit Fachkundeprüfung am Institut für integrative Lerntherapie und Weiterbildung (IFLW)."
+      }
+    },
+    {
+      "id": "ctaBand",
+      "variant": "default",
+      "data": {
+        "title": "Schwierigkeiten beim Lesen, Schreiben oder Rechnen?",
+        "text": "Gemeinsam finden wir heraus, wo Ihr Kind steht und was es jetzt braucht.",
+        "primary": { "label": "Kostenloses Erstgespräch", "href": "/kontakt/" },
+        "secondary": { "label": "Integrative Lerntherapie", "href": "/angebot/#integrative-lerntherapie" }
+      }
+    },
+    { "id": "footer", "variant": "nova" }
+  ]
+}

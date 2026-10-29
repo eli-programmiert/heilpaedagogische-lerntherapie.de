@@ -1,0 +1,92 @@
+---
+import Section from "@components/ui/layout/Section.astro";
+import Container from "@components/ui/layout/Container.astro";
+import Heading from "@components/ui/atoms/Heading.astro";
+import Icon from "@components/ui/atoms/Icon.astro";
+import Text from "@components/ui/atoms/Text.astro";
+import SectionIntro from "@components/ui/molecules/SectionIntro.astro";
+import RichText from "@components/ui/molecules/RichText.astro";
+
+// Why: small static cards for comparisons and info columns (attitude,
+// tutoring vs. learning therapy, contact info, personal interests). A card
+// can be `highlight`ed to mark the preferred side of a comparison.
+type Card = {
+  icon?: string;
+  eyebrow?: string;
+  title: string;
+  text?: string | string[];
+  list?: string[];
+  link?: { label: string; href: string; external?: boolean };
+  highlight?: boolean;
+};
+
+interface Props {
+  id?: string;
+  tone?: "page" | "base";
+  eyebrow?: string;
+  title?: string;
+  description?: string;
+  items: Card[];
+  columns?: 2 | 3 | 4;
+  /** Compact padding for small icon rows. */
+  compact?: boolean;
+  headingTag?: string;
+}
+
+const { id, tone = "page", eyebrow, title, description, items, columns = 2, compact = false, headingTag = "h2" } = Astro.props as Props;
+
+const columnClass = {
+  2: "md:grid-cols-2",
+  3: "md:grid-cols-3",
+  4: "sm:grid-cols-2 lg:grid-cols-4",
+}[columns];
+---
+
+<Section id={id} tone={tone} class={compact ? "praxis-section-compact" : ""}>
+  <Container>
+    {(eyebrow || title || description) && (
+      <SectionIntro eyebrow={eyebrow} title={title} description={description} headingTag={headingTag} class="mb-10 lg:mb-14" />
+    )}
+    <ul class:list={["grid gap-5 lg:gap-6", columnClass]}>
+      {items.map((card) => (
+        <li
+          class:list={[
+            "flex flex-col gap-3 rounded-xl border",
+            compact ? "p-5" : "p-6 sm:p-8",
+            card.highlight ? "border-brand-primary/40 bg-white shadow-soft" : "border-brand-dark/10",
+            !card.highlight && (tone === "base" ? "bg-white" : "ui-bg-base"),
+          ]}
+        >
+          {card.icon && (
+            <span class:list={["flex size-12 items-center justify-center rounded-full text-2xl", card.highlight ? "bg-brand-primary text-white" : tone === "base" ? "ui-bg-base text-brand-primary" : "bg-white text-brand-primary"]} aria-hidden="true">
+              <Icon name={card.icon} />
+            </span>
+          )}
+          {card.eyebrow && <Text tag="p" variant="accent-label" class="praxis-eyebrow">{card.eyebrow}</Text>}
+          <Heading tag="h3" variant="feature-title" class="text-brand-primary">{card.title}</Heading>
+          {card.text && <RichText text={card.text} variant="feature-body-sm" class="text-brand-dark/80" />}
+          {card.list && (
+            <ul class="flex flex-col gap-2">
+              {card.list.map((entry) => (
+                <li class="flex items-start gap-2.5">
+                  <Icon name="check" class="mt-1 shrink-0 text-brand-accent" />
+                  <Text tag="span" variant="feature-body-sm" class="text-brand-dark/85">{entry}</Text>
+                </li>
+              ))}
+            </ul>
+          )}
+          {card.link && (
+            <a
+              href={card.link.href}
+              class="praxis-link mt-auto w-fit pt-1"
+              target={card.link.external ? "_blank" : undefined}
+              rel={card.link.external ? "noopener noreferrer" : undefined}
+            >
+              {card.link.label}
+            </a>
+          )}
+        </li>
+      ))}
+    </ul>
+  </Container>
+</Section>

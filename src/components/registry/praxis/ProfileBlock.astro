@@ -1,0 +1,99 @@
+---
+import Section from "@components/ui/layout/Section.astro";
+import Container from "@components/ui/layout/Container.astro";
+import Heading from "@components/ui/atoms/Heading.astro";
+import Text from "@components/ui/atoms/Text.astro";
+import Icon from "@components/ui/atoms/Icon.astro";
+import Button from "@components/ui/atoms/Button.astro";
+import PraxisImage from "@components/ui/atoms/PraxisImage.astro";
+import LogoRings from "@components/decorations/LogoRings.astro";
+import RichText from "@components/ui/molecules/RichText.astro";
+
+// Why: portrait + bio + qualifications. Short teaser on the homepage, full
+// profile (H1) on /ueber-mich/. Never combined with the IFLW seal: the seal
+// must not sit next to her name (IFLW rules).
+interface Props {
+  id?: string;
+  tone?: "page" | "base";
+  eyebrow?: string;
+  title: string;
+  role?: string;
+  paragraphs?: string[];
+  checks?: string[];
+  tags?: string[];
+  link?: { label: string; href: string };
+  image: { src: string; alt: string; position?: string };
+  /** `teaser` = compact card, `full` = large portrait for the profile page. */
+  size?: "teaser" | "full";
+  headingTag?: string;
+}
+
+const {
+  id = "ueber-mich",
+  tone = "page",
+  eyebrow,
+  title,
+  role,
+  paragraphs = [],
+  checks = [],
+  tags = [],
+  link,
+  image,
+  size = "teaser",
+  headingTag = "h2",
+} = Astro.props as Props;
+
+const isFull = size === "full";
+---
+
+<Section id={id} tone={tone} class="relative overflow-hidden">
+  <Container>
+    <div class:list={["grid items-center gap-10 lg:gap-16", isFull ? "lg:grid-cols-[0.9fr_1.1fr]" : "lg:grid-cols-[0.7fr_1.3fr]"]}>
+      <div class:list={["relative mx-auto w-full", isFull ? "max-w-md" : "max-w-xs lg:max-w-sm"]}>
+        <LogoRings class="absolute -left-12 -top-12 w-56 sm:w-64" />
+        <div class="relative overflow-hidden rounded-[2rem] rounded-tl-[6rem] ui-bg-base">
+          <PraxisImage
+            src={image.src}
+            alt={image.alt}
+            position={image.position}
+            sizes={isFull ? "(min-width: 1024px) 28rem, 90vw" : "(min-width: 1024px) 24rem, 20rem"}
+            loading={isFull ? "eager" : "lazy"}
+            class="aspect-[4/5] w-full object-cover"
+          />
+        </div>
+      </div>
+
+      <div class="flex flex-col gap-5">
+        {eyebrow && <Text tag="p" variant="accent-label" class="praxis-eyebrow">{eyebrow}</Text>}
+        <Heading tag={headingTag} variant={isFull ? "hero" : "section-heading-lg"}>{title}</Heading>
+        {role && <Text tag="p" variant="feature-body-sm" class="font-semibold leading-relaxed text-brand-primary">{role}</Text>}
+        <RichText text={paragraphs} variant="body" class="max-w-2xl text-brand-dark/85" />
+
+        {checks.length > 0 && (
+          <ul class="flex flex-col gap-3">
+            {checks.map((check) => (
+              <li class="flex items-start gap-3">
+                <Icon name="check-circle" class="mt-0.5 shrink-0 text-xl text-brand-accent" />
+                <Text tag="span" variant="feature-body-sm" class="font-medium text-brand-dark">{check}</Text>
+              </li>
+            ))}
+          </ul>
+        )}
+
+        {tags.length > 0 && (
+          <ul class="flex flex-wrap gap-2" aria-label="Schwerpunkte">
+            {tags.map((tag) => (
+              <li class="rounded-full border border-brand-primary/20 bg-white px-3.5 py-1.5 text-sm font-medium text-brand-primary">{tag}</li>
+            ))}
+          </ul>
+        )}
+
+        {link && (
+          <div class="pt-2">
+            <Button href={link.href} variant="outline">{link.label}</Button>
+          </div>
+        )}
+      </div>
+    </div>
+  </Container>
+</Section>

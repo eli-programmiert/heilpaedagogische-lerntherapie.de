@@ -1,0 +1,76 @@
+---
+import Section from "@components/ui/layout/Section.astro";
+import Container from "@components/ui/layout/Container.astro";
+import Heading from "@components/ui/atoms/Heading.astro";
+import Icon from "@components/ui/atoms/Icon.astro";
+import SectionIntro from "@components/ui/molecules/SectionIntro.astro";
+import RichText from "@components/ui/molecules/RichText.astro";
+
+// Why: native <details> accordion (works without JS) with a FAQPage JSON-LD,
+// so the questions can show up as rich results.
+interface Props {
+  id?: string;
+  tone?: "page" | "base";
+  eyebrow?: string;
+  title: string;
+  description?: string;
+  items: { q: string; a: string }[];
+  headingTag?: string;
+}
+
+const { id = "fragen", tone = "base", eyebrow, title, description, items, headingTag = "h2" } = Astro.props as Props;
+
+const stripMarkup = (text: string) => text.replace(/\*\*([^*]+)\*\*/g, "$1").replace(/\[([^\]]+)\]\([^)]+\)/g, "$1");
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: items.map((item) => ({
+    "@type": "Question",
+    name: item.q,
+    acceptedAnswer: { "@type": "Answer", text: stripMarkup(item.a) },
+  })),
+};
+---
+
+<Section id={id} tone={tone}>
+  <Container>
+    <div class="grid gap-10 lg:grid-cols-12 lg:gap-14">
+      <SectionIntro eyebrow={eyebrow} title={title} description={description} headingTag={headingTag} class="lg:col-span-4" />
+
+      <div class="flex flex-col gap-3 lg:col-span-8">
+        {items.map((item) => (
+          <details class="praxis-faq group rounded-xl border border-brand-dark/10 bg-white">
+            <summary class="flex cursor-pointer list-none items-center justify-between gap-4 p-5 sm:p-6">
+              <Heading tag="h3" class="text-base font-semibold text-brand-dark sm:text-lg">{item.q}</Heading>
+              <span class="flex size-9 shrink-0 items-center justify-center rounded-full ui-bg-base text-brand-primary transition-transform duration-300 group-open:rotate-45" aria-hidden="true">
+                <Icon name="plus" />
+              </span>
+            </summary>
+            <div class="px-5 pb-6 sm:px-6">
+              <RichText text={item.a} variant="body" class="text-brand-dark/80" />
+            </div>
+          </details>
+        ))}
+      </div>
+    </div>
+  </Container>
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema).replace(/</g, "\\u003c")} />
+</Section>
+
+<style>
+  .praxis-faq summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .praxis-faq summary:focus-visible {
+    outline: 2px solid var(--color-brand-primary);
+    outline-offset: -2px;
+    border-radius: var(--ui-radius-md);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .praxis-faq summary span {
+      transition: none;
+    }
+  }
+</style>

@@ -4,7 +4,7 @@ import { formatInternalLink } from '@utils/url';
 
 interface Props {
   href?: string;
-  variant?: 'primary' | 'accent' | 'outline' | 'ghost' | 'secondary' | 'success' | 'warning' | 'error' | 'info';
+  variant?: 'primary' | 'accent' | 'outline' | 'ghost' | 'secondary' | 'success' | 'warning' | 'error' | 'info' | 'light' | 'outline-light';
   size?: 'sm' | 'md' | 'lg' | 'icon';
   full?: boolean;
   class?: string;
@@ -38,6 +38,8 @@ const variantClasses: Record<string, string> = {
   warning: 'ui-button-warning',
   error: 'ui-button-error',
   info: 'ui-button-info',
+  light: 'ui-button-light',
+  'outline-light': 'ui-button-outline-light',
 };
 
 const sizeClasses: Record<string, string> = {

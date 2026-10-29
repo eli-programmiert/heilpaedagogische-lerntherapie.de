@@ -1,0 +1,64 @@
+---
+import Section from "@components/ui/layout/Section.astro";
+import Container from "@components/ui/layout/Container.astro";
+import Heading from "@components/ui/atoms/Heading.astro";
+import Icon from "@components/ui/atoms/Icon.astro";
+import Text from "@components/ui/atoms/Text.astro";
+import SectionIntro from "@components/ui/molecules/SectionIntro.astro";
+
+// Why: vertical timeline for longer sequences (7-step process, career path).
+// Each item shows an icon or a label such as years in a ring on the line.
+interface Props {
+  id?: string;
+  tone?: "page" | "base";
+  eyebrow?: string;
+  title: string;
+  description?: string;
+  items: { title: string; description: string; icon?: string; label?: string }[];
+  headingTag?: string;
+}
+
+const { id, tone = "base", eyebrow, title, description, items, headingTag = "h2" } = Astro.props as Props;
+---
+
+<Section id={id} tone={tone}>
+  <Container>
+    <div class="grid gap-10 lg:grid-cols-12 lg:gap-14">
+      <SectionIntro eyebrow={eyebrow} title={title} description={description} headingTag={headingTag} class="lg:col-span-4 lg:sticky lg:top-32 lg:self-start" />
+
+      <ol class="praxis-timeline relative flex flex-col gap-8 lg:col-span-8">
+        {items.map((item, index) => (
+          <li class="relative grid grid-cols-[3rem_1fr] gap-4 sm:grid-cols-[3.5rem_1fr] sm:gap-6">
+            <span class="relative z-10 flex size-12 items-center justify-center rounded-full border border-brand-accent/60 bg-white text-xl text-brand-primary sm:size-14 sm:text-2xl" aria-hidden="true">
+              {item.icon ? <Icon name={item.icon} /> : <span class="font-heading text-base font-semibold">{String(index + 1).padStart(2, "0")}</span>}
+            </span>
+            <div class="flex flex-col gap-2 rounded-xl border border-brand-dark/10 bg-white p-5 sm:p-6">
+              {item.label && <Text tag="span" variant="feature-body-sm" class="font-semibold uppercase tracking-[0.12em] text-brand-primary/80">{item.label}</Text>}
+              <Heading tag="h3" variant="feature-title" class="text-brand-primary">{item.title}</Heading>
+              <Text variant="feature-body-sm" class="text-brand-dark/80">{item.description}</Text>
+            </div>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </Container>
+</Section>
+
+<style>
+  /* Vertical line through the ring centres. */
+  .praxis-timeline::before {
+    content: "";
+    position: absolute;
+    top: 1.5rem;
+    bottom: 1.5rem;
+    left: 1.5rem;
+    width: 1px;
+    background: color-mix(in oklab, var(--color-brand-accent) 45%, transparent);
+  }
+
+  @media (min-width: 640px) {
+    .praxis-timeline::before {
+      left: 1.75rem;
+    }
+  }
+</style>

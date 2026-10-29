@@ -1,0 +1,72 @@
+
+> templar-t001-nova@0.0.1 prebuild
+> node src/scripts/sync-phosphor-css.mjs
+
+phosphor: wygenerowano pełny zestaw 1530 ikon z @phosphor-icons/web
+
+> templar-t001-nova@0.0.1 build
+> npm run assets:gen && npm run assets:fonts && npm run assets:img && node src/scripts/scope-pages.mjs build && node src/scripts/clean-dist.mjs && node src/scripts/prune-images.mjs && node src/scripts/strip-html-comments.mjs && node src/scripts/prune-phosphor-css.mjs && node scripts/prefix-base-assets.mjs
+
+
+> templar-t001-nova@0.0.1 assets:gen
+> node src/scripts/generate-favicons.cjs
+
+OK Favikony i logo.svg juz istnieja, pomijam generowanie.
+
+> templar-t001-nova@0.0.1 assets:fonts
+> tsx src/scripts/download-fonts.ts
+
+✨ Fonty juz pobrane, pomijam (kompletne @font-face w fonts.css).
+
+> templar-t001-nova@0.0.1 assets:img
+> tsx src/scripts/optimize-images.ts
+
+🚀 Start smart optymalizacji zdjęć...
+
+✨ Wszystkie zdjęcia zoptymalizowane!
+scope-pages: wyłączono dev/components/[section]/[variant].astro (/dev/components/[section]/[variant]/)
+scope-pages: wyłączono dev/components/library/[section].astro (/dev/components/library/[section]/)
+scope-pages: wyłączono dev/components/preview/[section]/[variant].astro (/dev/components/preview/[section]/[variant]/)
+scope-pages: wyłączono dev/components/thumbnail/[section]/[variant].astro (/dev/components/thumbnail/[section]/[variant]/)
+scope-pages: wyłączono dev/components.astro (/dev/components/)
+scope-pages: wyłączono qa/mobile-fixture.astro (/qa/mobile-fixture/)
+scope-pages: przeniesiono 6 stron spoza zakresu do _disabled/
+23:27:23 [content] Syncing content
+23:27:23 [content] Synced content
+23:27:23 [types] Generated 720ms
+23:27:23 [build] output: "static"
+23:27:23 [build] mode: "static"
+23:27:23 [build] directory: /home/manus/code/heilpaedagogische-lerntherapie.de/dist/
+23:27:23 [build] Collecting build info...
+23:27:23 [build] ✓ Completed in 794ms.
+23:27:23 [build] Building static entrypoints...
+23:27:24 [vite] ✓ built in 1.36s
+23:27:24 [vite] ✓ built in 334ms
+23:27:24 [build] Rearranging server assets...
+
+ generating static routes 
+23:27:25   ├─ /404.html (+25ms) 
+23:27:25   ├─ /datenschutz/index.html[legal] Datenschutzerklärung is still a placeholder (draft: true). Go-live blocker.
+ (+16ms) 
+23:27:25   ├─ /impressum/index.html[legal] Impressum is still a placeholder (draft: true). Go-live blocker.
+ (+7ms) 
+23:27:25   ├─ /robots.txt (+3ms) 
+23:27:25   ├─ /angebot/index.html (+24ms) 
+23:27:25   ├─ /heilpaedagogik/index.html (+10ms) 
+23:27:25   ├─ /index.html (+16ms) 
+23:27:25   ├─ /kontakt/index.html (+7ms) 
+23:27:25   ├─ /lerntherapie/index.html (+7ms) 
+23:27:25   ├─ /preise/index.html (+8ms) 
+23:27:25   ├─ /ueber-mich/index.html (+9ms) 
+23:27:25 ✓ Completed in 266ms.
+
+23:27:25 [build] ✓ Completed in 2.00s.
+23:27:25 [@astrojs/sitemap] `sitemap-index.xml` created at `dist`
+23:27:25 [build] 10 page(s) built in 2.84s
+23:27:25 [build] Complete!
+scope-pages: przywrocono 6 stron z _disabled/
+clean-dist: usunieto 0 elementow deny listy/pliki public z dist/
+prune-assets: zostawiono 146 plików (5.64 MiB), usunięto 7 nieużywanych (0.07 MiB) z dist/
+✅ Usunięto komentarze HTML: 205 w 10 plikach.
+phosphor: usunięto 1486 nieużywanych reguł w 1 plikach CSS; używane ikony: 44
+prefix-base-assets: brak PUBLIC_BASE_PATH, pomijam.

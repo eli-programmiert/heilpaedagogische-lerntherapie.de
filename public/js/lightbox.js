@@ -20,7 +20,7 @@
     function showPlaceholder(label) {
       img.classList.add('hidden');
       if (loader) loader.classList.add('hidden');
-      if (placeholderLabel) placeholderLabel.textContent = label || 'Brak podglądu obrazu';
+      if (placeholderLabel) placeholderLabel.textContent = label || 'Keine Bildvorschau verfügbar';
       if (placeholder) placeholder.classList.remove('hidden');
     }
 
@@ -38,7 +38,7 @@
 
     img.addEventListener('error', function() {
       var item = gallery[currentIndex];
-      showPlaceholder((item && (item.alt || item.title)) || 'Brak podglądu obrazu');
+      showPlaceholder((item && (item.alt || item.title)) || 'Keine Bildvorschau verfügbar');
     });
 
     function readGallery(el, src, alt) {
@@ -81,7 +81,7 @@
     function renderImage() {
       var item = gallery[currentIndex];
       if (!item || !item.src) {
-        showPlaceholder((item && (item.alt || item.title)) || 'Brak podglądu obrazu');
+        showPlaceholder((item && (item.alt || item.title)) || 'Keine Bildvorschau verfügbar');
         return;
       }
 

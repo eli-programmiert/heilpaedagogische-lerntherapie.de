@@ -1,55 +1,41 @@
 ---
 import Layout from "./Layout.astro";
 import Heading from "@/components/ui/atoms/Heading.astro";
-import Text from "@/components/ui/atoms/Text.astro";
 import legalData from "@data/global/legal.json";
-import { getNovaNavigationPath, type NovaLocale } from "@utils/nova-i18n";
+import { getNovaNavigationPath } from "@utils/nova-i18n";
 
 interface Props {
   title: string;
   description?: string;
-  lastUpdated: string;
-  locale?: NovaLocale;
 }
 
-const { title, description, lastUpdated, locale = "en" } = Astro.props;
-const legalCopy = legalData[locale] ?? legalData.en;
-const homeHref = getNovaNavigationPath("/", locale);
-const contactHref = getNovaNavigationPath(legalCopy.legalContactHref, locale);
+const { title, description } = Astro.props;
+const legalCopy = legalData.de;
+const homeHref = getNovaNavigationPath("/");
 ---
 
-<!-- Why: legal pages reuse the homepage shell; main content still receives
-     header spacing because the floating navbar overlays the page background. -->
+<!-- Why: legal pages reuse the site shell; main content receives header
+     spacing because the floating navbar overlays the page background. -->
 <Layout
   title={title}
   description={description}
   navbarVariant="floating"
   footerVariant="nova"
-  locale={locale}
-  lang={locale}
 >
-  <div class="bg-brand-light pb-16 lg:pb-24">
-    <div class="px-4 mx-auto max-w-4xl">
-      <div class="mb-12 border-b border-brand-dark/10 pb-8">
-        <a href={homeHref} class="inline-flex items-center gap-2 text-sm font-medium text-brand-dark/60 hover:text-brand-primary transition-colors mb-8">
-          <i class="ph ph-arrow-left"></i>
-          {legalCopy.legalBackLabel}
-        </a>
-        <Heading level={1} variant="section-heading-xl" class="mb-4">{title}</Heading>
-        <Text class="text-brand-dark/60 italic">{legalCopy.updatedLabel} {lastUpdated}</Text>
-      </div>
+  <div class="ui-bg-page pb-16 pt-8 lg:pb-24 lg:pt-12">
+    <div class="ui-container">
+      <div class="mx-auto max-w-3xl">
+        <div class="mb-10 border-b border-brand-dark/10 pb-8">
+          <a href={homeHref} class="mb-8 inline-flex items-center gap-2 text-sm font-medium text-brand-dark/70 transition-colors hover:text-brand-primary">
+            <i class="ph ph-arrow-left" aria-hidden="true"></i>
+            {legalCopy.legalBackLabel}
+          </a>
+          <Heading level={1} variant="section-heading-xl">{title}</Heading>
+        </div>
 
-      <div class="legal-content prose prose-brand max-w-none">
-        <slot />
-      </div>
-
-      <div class="mt-16 rounded-3xl bg-brand-primary/5 p-8 border border-brand-primary/10">
-        <Text class="font-bold mb-4">{legalCopy.legalFaqTitle}</Text>
-        <Text class="mb-6">{legalCopy.legalFaqText}</Text>
-        <a href={contactHref} class="inline-flex items-center gap-2 font-bold text-brand-dark hover:text-brand-primary transition-colors">
-          <i class="ph ph-envelope"></i>
-          {legalCopy.legalContactCta}
-        </a>
+        <div class="legal-content">
+          <slot />
+        </div>
       </div>
     </div>
   </div>
@@ -57,43 +43,59 @@ const contactHref = getNovaNavigationPath(legalCopy.legalContactHref, locale);
 
 <style is:global>
   .legal-content h2 {
-    font-size: 1.75rem;
-    font-weight: 800;
-    margin-top: 3.5rem;
-    margin-bottom: 1.5rem;
-    color: var(--color-brand-dark, #0a0a0a);
-    letter-spacing: -0.02em;
+    margin-top: 3rem;
+    margin-bottom: 1rem;
+    color: var(--color-brand-primary);
+    font-family: var(--font-heading);
+    font-size: 1.6rem;
+    font-weight: 600;
+    line-height: 1.2;
+  }
+
+  .legal-content h3 {
+    margin-top: 2rem;
+    margin-bottom: 0.75rem;
+    color: var(--color-brand-primary);
+    font-family: var(--font-heading);
+    font-size: 1.2rem;
+    font-weight: 600;
   }
 
   .legal-content p {
-    margin-bottom: 1.5rem;
-    line-height: 1.8;
-    color: rgba(10, 10, 10, 0.8);
+    margin-bottom: 1.25rem;
+    color: var(--ui-text-on-light);
     font-size: 1.0625rem;
+    line-height: 1.75;
+  }
+
+  .legal-content a {
+    color: var(--color-brand-primary);
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
+    word-break: break-word;
+  }
+
+  .legal-content ul,
+  .legal-content ol {
+    margin-bottom: 1.5rem;
+    padding-left: 1.25rem;
   }
 
   .legal-content ul {
-    margin-bottom: 2rem;
-    list-style-type: none;
-    padding-left: 0;
+    list-style: disc;
+  }
+
+  .legal-content ol {
+    list-style: decimal;
   }
 
   .legal-content li {
-    margin-bottom: 0.75rem;
-    padding-left: 1.5rem;
-    position: relative;
-    color: rgba(10, 10, 10, 0.8);
+    margin-bottom: 0.5rem;
+    color: var(--ui-text-on-light);
+    line-height: 1.7;
   }
 
-  .legal-content li::before {
-    content: "•";
-    color: var(--color-brand-primary);
-    font-weight: bold;
-    position: absolute;
-    left: 0;
-  }
-
-  .legal-content section {
-    scroll-margin-top: 100px;
+  .legal-content li::marker {
+    color: var(--color-brand-accent);
   }
 </style>

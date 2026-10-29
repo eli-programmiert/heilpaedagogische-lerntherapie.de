@@ -1,0 +1,92 @@
+---
+import Section from "@components/ui/layout/Section.astro";
+import Container from "@components/ui/layout/Container.astro";
+import Heading from "@components/ui/atoms/Heading.astro";
+import Icon from "@components/ui/atoms/Icon.astro";
+import Text from "@components/ui/atoms/Text.astro";
+import Button from "@components/ui/atoms/Button.astro";
+import PraxisImage from "@components/ui/atoms/PraxisImage.astro";
+import SectionIntro from "@components/ui/molecules/SectionIntro.astro";
+import RichText from "@components/ui/molecules/RichText.astro";
+
+// Why: text + photo split (Frieda, "Was ist Heilpädagogik"). Optional
+// feature tiles under the text and extra photos under the main image.
+type Img = { src: string; alt: string; position?: string };
+
+interface Props {
+  id?: string;
+  tone?: "page" | "base";
+  eyebrow?: string;
+  title: string;
+  paragraphs?: string[];
+  image: Img;
+  extraImages?: Img[];
+  imagePosition?: "left" | "right";
+  featuresTitle?: string;
+  features?: { icon?: string; title: string; text: string }[];
+  link?: { label: string; href: string };
+  headingTag?: string;
+}
+
+const {
+  id,
+  tone = "page",
+  eyebrow,
+  title,
+  paragraphs = [],
+  image,
+  extraImages = [],
+  imagePosition = "right",
+  featuresTitle,
+  features = [],
+  link,
+  headingTag = "h2",
+} = Astro.props as Props;
+---
+
+<Section id={id} tone={tone}>
+  <Container>
+    <div class="grid items-center gap-10 lg:grid-cols-12 lg:gap-14">
+      <div class:list={["flex flex-col gap-6 lg:col-span-7", imagePosition === "left" && "lg:order-2"]}>
+        <SectionIntro eyebrow={eyebrow} title={title} headingTag={headingTag} />
+        <RichText text={paragraphs} variant="body" class="max-w-2xl text-brand-dark/85" />
+
+        {features.length > 0 && (
+          <div class="flex flex-col gap-4 pt-2">
+            {featuresTitle && <Heading tag="h3" variant="feature-title" class="text-brand-primary">{featuresTitle}</Heading>}
+            <ul class="grid gap-3 sm:grid-cols-3">
+              {features.map((feature) => (
+                <li class="flex flex-col gap-2 rounded-xl border border-brand-dark/10 bg-white p-5">
+                  {feature.icon && <Icon name={feature.icon} class="text-2xl text-brand-accent" />}
+                  <Text tag="span" variant="feature-body-sm" class="font-semibold text-brand-primary">{feature.title}</Text>
+                  <Text variant="feature-body-sm" class="text-brand-dark/75">{feature.text}</Text>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+
+        {link && (
+          <div class="pt-1">
+            <Button href={link.href} variant="outline">{link.label}</Button>
+          </div>
+        )}
+      </div>
+
+      <div class:list={["flex flex-col gap-4 lg:col-span-5", imagePosition === "left" && "lg:order-1"]}>
+        <div class="overflow-hidden rounded-2xl">
+          <PraxisImage src={image.src} alt={image.alt} position={image.position} sizes="(min-width: 1024px) 36vw, 100vw" class="aspect-square w-full object-cover" />
+        </div>
+        {extraImages.length > 0 && (
+          <div class="grid grid-cols-2 gap-4">
+            {extraImages.map((extra) => (
+              <div class="overflow-hidden rounded-2xl">
+                <PraxisImage src={extra.src} alt={extra.alt} position={extra.position} sizes="(min-width: 1024px) 18vw, 50vw" class="aspect-square w-full object-cover" />
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
+    </div>
+  </Container>
+</Section>

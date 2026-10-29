@@ -1,0 +1,60 @@
+---
+import Heading from "@components/ui/atoms/Heading.astro";
+import Icon from "@components/ui/atoms/Icon.astro";
+import Text from "@components/ui/atoms/Text.astro";
+import { renderInline } from "@utils/inline-markup";
+
+// Why: notices (disclaimer, Jugendamt / § 35a, mobile practice) appear on
+// several pages; one molecule keeps their look identical.
+export interface CalloutProps {
+  icon?: string;
+  title?: string;
+  text: string | string[];
+  /** `soft` = cream panel, `outline` = white panel with blue border. */
+  appearance?: "soft" | "outline";
+  size?: "default" | "large";
+  headingTag?: string;
+  class?: string;
+}
+
+const {
+  icon = "info",
+  title,
+  text,
+  appearance = "soft",
+  size = "default",
+  headingTag = "h3",
+  class: className = "",
+} = Astro.props as CalloutProps;
+
+const paragraphs = Array.isArray(text) ? text : [text];
+---
+
+<aside
+  class:list={[
+    "praxis-callout flex flex-col gap-4 rounded-xl border sm:flex-row sm:gap-5",
+    appearance === "soft" ? "border-brand-dark/10 ui-bg-base" : "border-brand-accent/40 bg-white",
+    size === "large" ? "p-6 sm:p-10" : "p-5 sm:p-6",
+    className,
+  ]}
+>
+  <span
+    class:list={[
+      "flex shrink-0 items-center justify-center rounded-full bg-brand-primary text-white",
+      size === "large" ? "size-12 text-2xl" : "size-10 text-xl",
+    ]}
+    aria-hidden="true"
+  >
+    <Icon name={icon} />
+  </span>
+  <div class="flex min-w-0 flex-col gap-2">
+    {title && (
+      <Heading tag={headingTag} variant={size === "large" ? "section-heading-lg" : "feature-title"} class="text-brand-primary">
+        {title}
+      </Heading>
+    )}
+    {paragraphs.map((paragraph) => (
+      <Text variant={size === "large" ? "lead" : "body"} class="text-brand-dark/85"><Fragment set:html={renderInline(paragraph)} /></Text>
+    ))}
+  </div>
+</aside>

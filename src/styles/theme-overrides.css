@@ -20,3 +20,161 @@
 [data-theme="nova"] .ui-type-cta-label {
   font-family: var(--font-heading) !important;
 }
+
+/* Practice website: navy headings (logo colour), relaxed line height and
+ * automatic hyphenation so long German compound words such as
+ * „Lese-Rechtschreib-Schwäche" never overflow on narrow screens. */
+[data-theme="nova"] body {
+  hyphens: auto;
+  hyphenate-limit-chars: 10 4 4;
+  overflow-wrap: break-word;
+}
+
+[data-theme="nova"] .ui-type-heading-section-xl,
+[data-theme="nova"] .ui-type-heading-section-lg,
+[data-theme="nova"] .ui-type-heading-hero,
+[data-theme="nova"] .ui-type-section-title,
+[data-theme="nova"] .ui-type-section-subtitle {
+  color: var(--color-brand-primary);
+  letter-spacing: var(--ui-type-heading-tracking);
+  line-height: 1.12;
+  text-wrap: balance;
+}
+
+[data-theme="nova"] .ui-type-heading-hero {
+  font-weight: 600;
+}
+
+/* Text swap + colour slide on buttons, same mechanics as the default theme. */
+[data-theme="nova"] .ui-button::after {
+  transition: translate 600ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+[data-theme="nova"] .ui-button:hover::after {
+  --tw-translate-y: 0;
+}
+
+[data-theme="nova"] .ui-button-primary::after {
+  background: var(--color-brand-dark);
+}
+
+[data-theme="nova"] .ui-button-primary {
+  box-shadow: none;
+}
+
+[data-theme="nova"] .ui-button-outline {
+  border-color: color-mix(in oklab, var(--color-brand-primary) 35%, transparent);
+  color: var(--color-brand-primary);
+}
+
+[data-theme="nova"] .ui-button-outline::after {
+  background: var(--color-brand-primary);
+}
+
+[data-theme="nova"] .ui-button-outline:hover {
+  border-color: var(--color-brand-primary);
+  color: var(--color-brand-light);
+}
+
+/* Light button on the blue CTA band. */
+[data-theme="nova"] .ui-button-light {
+  background: var(--color-brand-light);
+  color: var(--color-brand-primary);
+}
+
+[data-theme="nova"] .ui-button-light::after {
+  background: var(--color-brand-dark);
+}
+
+[data-theme="nova"] .ui-button-light:hover {
+  color: var(--color-brand-light);
+}
+
+[data-theme="nova"] .ui-button-outline-light {
+  border: 2px solid color-mix(in oklab, var(--color-brand-light) 60%, transparent);
+  color: var(--color-brand-light);
+}
+
+[data-theme="nova"] .ui-button-outline-light::after {
+  background: var(--color-brand-light);
+}
+
+[data-theme="nova"] .ui-button-outline-light:hover {
+  color: var(--color-brand-primary);
+}
+
+/* Text links inside running copy. */
+[data-theme="nova"] .praxis-link {
+  color: var(--color-brand-primary);
+  font-weight: 600;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.2em;
+  text-decoration-color: color-mix(in oklab, var(--color-brand-accent) 70%, transparent);
+  transition: text-decoration-color 200ms ease;
+}
+
+[data-theme="nova"] .praxis-link:hover {
+  text-decoration-color: var(--color-brand-primary);
+}
+
+/* Mobile drawer: the contact CTA is a full-width button. */
+[data-theme="nova"] .ui-nav-drawer__cta,
+[data-theme="nova"] .ui-nav-drawer__cta:hover {
+  margin-top: 0.75rem;
+  border-radius: 9999px;
+  background: var(--color-brand-primary);
+  color: var(--color-brand-light);
+  font-size: 1.1rem;
+}
+
+/* Eyebrow above section headings: navy (light blue fails contrast at this size). */
+[data-theme="nova"] .praxis-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  color: var(--color-brand-primary);
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  line-height: 1.4;
+  text-transform: uppercase;
+}
+
+[data-theme="nova"] .praxis-eyebrow::before {
+  content: '';
+  width: 1.75rem;
+  height: 2px;
+  background: var(--color-brand-accent);
+}
+
+/* Section rhythm helpers for the practice blocks. */
+[data-theme="nova"] .ui-section.praxis-section-compact {
+  padding-top: clamp(2rem, 4vw, 3.5rem);
+  padding-bottom: clamp(2rem, 4vw, 3.5rem);
+}
+
+[data-theme="nova"] .ui-section.praxis-section-flush-top {
+  padding-top: 0;
+}
+
+/* Anchor targets stay visible below the fixed header. */
+[data-theme="nova"] section[id] {
+  scroll-margin-top: 5.5rem;
+}
+
+/* Calmer button labels than Nova's wide agency tracking. */
+[data-theme="nova"] .ui-type-cta-label {
+  font-family: var(--font-sans) !important;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+
+/* Wide screens have room for whole words in headings; hyphenate only on phones. */
+@media (min-width: 1024px) {
+  [data-theme="nova"] .ui-type-heading-section-lg,
+  [data-theme="nova"] .ui-type-heading-hero {
+    hyphens: manual;
+  }
+}

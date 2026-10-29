@@ -267,9 +267,14 @@
     padding-bottom: 0.25rem;
   }
 
-  .ui-nav-drawer__bottom .nova-language-switch {
-    gap: 0.4rem;
-    font-size: 0.875rem;
+  .ui-nav-drawer__phone {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    min-height: 2.75rem;
+    color: var(--color-brand-primary);
+    font-size: 1.05rem;
+    font-weight: 600;
   }
 
   /* ─── Nav links ──────────────────────────────────────────────────── */

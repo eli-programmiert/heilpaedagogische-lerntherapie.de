@@ -1,0 +1,40 @@
+---
+// Why: the logo motif (a large ring holding a small one, adult and child) is
+// the recurring decoration of the practice website. Static, thin strokes,
+// geometric shapes only (Nova rule: no dots, no pulsing).
+interface Props {
+  class?: string;
+  /** Stroke tone: `accent` on light sections, `light` on the blue CTA band. */
+  tone?: "accent" | "light";
+}
+
+const { class: className = "", tone = "accent" } = Astro.props;
+---
+
+<svg
+  class:list={["praxis-rings pointer-events-none select-none", `praxis-rings--${tone}`, className]}
+  viewBox="0 0 200 200"
+  fill="none"
+  aria-hidden="true"
+>
+  <circle cx="88" cy="112" r="78" class="praxis-rings__large" stroke-width="1.5" />
+  <circle cx="148" cy="42" r="24" class="praxis-rings__small" stroke-width="1.5" />
+</svg>
+
+<style>
+  .praxis-rings--accent .praxis-rings__large {
+    stroke: color-mix(in oklab, var(--color-brand-primary) 22%, transparent);
+  }
+
+  .praxis-rings--accent .praxis-rings__small {
+    stroke: color-mix(in oklab, var(--color-brand-accent) 55%, transparent);
+  }
+
+  .praxis-rings--light .praxis-rings__large {
+    stroke: color-mix(in oklab, var(--color-brand-light) 22%, transparent);
+  }
+
+  .praxis-rings--light .praxis-rings__small {
+    stroke: var(--color-brand-accent);
+  }
+</style>

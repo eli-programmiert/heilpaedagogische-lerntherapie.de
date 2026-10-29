@@ -1,0 +1,29 @@
+---
+import Section from "@components/ui/layout/Section.astro";
+import Container from "@components/ui/layout/Container.astro";
+import Callout from "@components/ui/molecules/Callout.astro";
+
+// Why: notice as its own section (Jugendamt recognition under the hero,
+// cost coverage on /preise/). Inside other blocks, use the Callout molecule.
+interface Props {
+  id?: string;
+  tone?: "page" | "base";
+  icon?: string;
+  title?: string;
+  text: string | string[];
+  size?: "default" | "large";
+  /** Tighter vertical padding when the notice follows a related section. */
+  compact?: boolean;
+  headingTag?: string;
+}
+
+const { id, tone = "base", icon, title, text, size = "default", compact = false, headingTag = "h2" } = Astro.props as Props;
+---
+
+<Section id={id} tone={tone} class={compact ? "praxis-section-compact" : ""}>
+  <Container>
+    <div class="mx-auto max-w-4xl">
+      <Callout icon={icon} title={title} text={text} size={size} appearance={tone === "base" ? "outline" : "soft"} headingTag={headingTag} />
+    </div>
+  </Container>
+</Section>

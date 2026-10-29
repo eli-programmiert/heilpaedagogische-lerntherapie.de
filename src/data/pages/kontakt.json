@@ -1,0 +1,87 @@
+{
+  "seo": {
+    "title": "Kontakt: kostenloses Erstgespräch vereinbaren",
+    "description": "Rufen Sie mich an oder schreiben Sie mir für ein kostenloses telefonisches Erstgespräch. Mobil im Landkreis Regensburg und südlichen Landkreis Schwandorf."
+  },
+  "heading": "Kostenloses Erstgespräch vereinbaren",
+  "sections": [
+    { "id": "navbar", "variant": "floating" },
+    {
+      "id": "contactCards",
+      "variant": "default",
+      "data": {
+        "id": "kontakt",
+        "tone": "page",
+        "eyebrow": "Kontakt",
+        "title": "Kostenloses Erstgespräch vereinbaren",
+        "description": "Sie machen sich Gedanken um die Entwicklung oder das Lernen Ihres Kindes? Rufen Sie mich an oder schreiben Sie mir. Im kostenlosen telefonischen Erstgespräch klären wir gemeinsam, welche Unterstützung sinnvoll ist.",
+        "cards": [
+          {
+            "icon": "phone",
+            "title": "Anrufen",
+            "value": "0151 23410823",
+            "href": "tel:+4915123410823",
+            "buttonLabel": "Jetzt anrufen",
+            "note": "Falls ich gerade in einer Therapiestunde bin, rufe ich Sie gern zurück."
+          },
+          {
+            "icon": "envelope-simple",
+            "title": "E-Mail schreiben",
+            "value": "info@heilpaedagogische-lerntherapie.de",
+            "href": "mailto:info@heilpaedagogische-lerntherapie.de?subject=Anfrage%20Erstgespr%C3%A4ch",
+            "buttonLabel": "E-Mail schreiben"
+          }
+        ]
+      }
+    },
+    {
+      "id": "cardGrid",
+      "variant": "default",
+      "data": {
+        "id": "infos",
+        "tone": "base",
+        "columns": 3,
+        "items": [
+          {
+            "icon": "clock",
+            "title": "Therapiezeiten",
+            "text": "Dienstag bis Freitag, nachmittags, nach Vereinbarung"
+          },
+          {
+            "icon": "car",
+            "title": "Wo?",
+            "text": "Mobil bei Ihnen zu Hause im Landkreis Regensburg und im südlichen Landkreis Schwandorf, oder in meinem Therapieraum in Zeitlarn."
+          },
+          {
+            "icon": "instagram-logo",
+            "title": "Instagram",
+            "link": { "label": "@heilpaedagogische_lerntherapie", "href": "https://www.instagram.com/heilpaedagogische_lerntherapie/", "external": true }
+          }
+        ]
+      }
+    },
+    {
+      "id": "richText",
+      "variant": "default",
+      "data": {
+        "id": "erstgespraech",
+        "tone": "page",
+        "eyebrow": "Erstgespräch",
+        "title": "Gut vorbereitet ins Erstgespräch",
+        "paragraphs": [
+          "Für das Erstgespräch brauchen Sie nichts vorzubereiten. Hilfreich ist, wenn Sie kurz überlegen:"
+        ],
+        "list": [
+          "Was beobachten Sie bei Ihrem Kind, und seit wann?",
+          "Gibt es bereits Diagnosen oder Berichte (z. B. von Kinderarzt, Schule oder Kita)?",
+          "Welche Unterstützung wünschen Sie sich?"
+        ],
+        "note": {
+          "icon": "shield-check",
+          "text": "Bitte senden Sie mir Diagnosen oder Befunde nicht per E-Mail, sondern bringen Sie diese zu unserem ersten persönlichen Termin mit."
+        }
+      }
+    },
+    { "id": "footer", "variant": "nova" }
+  ]
+}

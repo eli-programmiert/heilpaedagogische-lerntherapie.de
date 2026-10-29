@@ -6,8 +6,8 @@ export const GET: APIRoute = ({ site }) => {
   const robotsTxt = [
     'User-agent: *',
     'Allow: /',
-    // Tool pages: component gallery (dev) and fixture QA.
-    // Sitemap also filters them, but Disallow closes the topic when crawling.
+    // Werkzeugseiten (Komponenten-Galerie, QA) sind nur lokal vorhanden;
+    // Disallow schützt sie zusätzlich, falls sie doch im Build landen.
     'Disallow: /dev/',
     'Disallow: /qa/',
     '',

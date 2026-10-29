@@ -49,6 +49,7 @@ describe('developer catalog metadata', () => {
       'marquee',
       'trustBar',
       'logoGrid',
+      'iflwSeal',
     ]);
     expect(catalog.find((item) => item.sectionId === 'hero' && item.variantId === 'nova')?.variantLabel).toBe('Hero fotograficzny');
     expect(catalog.find((item) => item.sectionId === 'portfolio' && item.variantId === 'nova')?.variantLabel).toBe('Realizacje z kartami projektów');

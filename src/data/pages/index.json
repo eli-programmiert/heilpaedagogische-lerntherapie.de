@@ -1,17 +1,229 @@
 {
   "seo": {
-    "title": "Nova, strony internetowe dla ambitnych marek",
-    "description": "Tworzymy nowoczesne strony internetowe, które wzmacniają wizerunek, przyciągają klientów i wspierają rozwój biznesu."
+    "title": "Heilpädagogik & Lerntherapie in Zeitlarn und Landkreis Regensburg",
+    "description": "Mobile heilpädagogische und lerntherapeutische Fachpraxis für Kinder bei LRS, Dyskalkulie, ADHS und Entwicklungsverzögerungen. Vom Jugendamt anerkannt, Kostenübernahme für Lerntherapie nach § 35a SGB VIII möglich."
   },
-  "heading": "Nowe możliwości dla ambitnych marek",
+  "heading": "Lernen darf wieder leichter werden.",
   "sections": [
     { "id": "navbar", "variant": "floating" },
-    { "id": "hero", "variant": "nova" },
-    { "id": "portfolio", "variant": "nova" },
-    { "id": "novaServices", "variant": "default" },
-    { "id": "novaTeam", "variant": "default" },
-    { "id": "faq3", "variant": "default" },
-    { "id": "testimonials", "variant": "v2" },
+    {
+      "id": "praxisHero",
+      "variant": "default",
+      "data": {
+        "eyebrow": "Mobile Fachpraxis · Landkreis Regensburg",
+        "title": "Lernen darf wieder leichter werden.",
+        "description": "Heilpädagogische Förderung und integrative Lerntherapie für Kinder im Vorschul- und Schulalter, bei Ihnen zu Hause oder in meinem ruhigen Therapieraum in Zeitlarn.",
+        "primaryCta": { "label": "Kostenloses Erstgespräch", "href": "/kontakt/" },
+        "secondaryCta": { "label": "Mein Angebot", "href": "/angebot/" },
+        "trustItems": [
+          "Vom Jugendamt Landkreis Regensburg anerkannt",
+          "Kostenübernahme für Lerntherapie nach § 35a SGB VIII möglich",
+          "Mobil im Landkreis Regensburg und südlichen Landkreis Schwandorf"
+        ],
+        "image": {
+          "src": "/assets/images/praxis/elisabeth-eggersdorfer-portrait.webp",
+          "alt": "Elisabeth Eggersdorfer, Heilpädagogin und Lerntherapeutin",
+          "position": "50% 25%"
+        },
+        "imageMobile": {
+          "src": "/assets/images/praxis/elisabeth-eggersdorfer-quadrat.webp",
+          "alt": "Elisabeth Eggersdorfer, Heilpädagogin und Lerntherapeutin"
+        }
+      }
+    },
+    {
+      "id": "callout",
+      "variant": "default",
+      "data": {
+        "id": "anerkennung",
+        "tone": "base",
+        "compact": true,
+        "icon": "seal-check",
+        "title": "Anerkennung & Kostenübernahme",
+        "text": "Meine Praxis ist vom **Jugendamt des Landkreises Regensburg anerkannt**. Für **Lerntherapie** ist eine Kostenübernahme im Rahmen der Eingliederungshilfe nach **§ 35a SGB VIII** möglich, wenn eine medizinische Diagnose vorliegt. [Mehr zu Preisen & Kostenübernahme →](/preise/)"
+      }
+    },
+    {
+      "id": "richText",
+      "variant": "default",
+      "data": {
+        "id": "willkommen",
+        "tone": "page",
+        "eyebrow": "Willkommen",
+        "title": "Herzlich willkommen!",
+        "paragraphs": [
+          "Ich heiße Elisabeth Eggersdorfer und starte meine freiberufliche Nebentätigkeit mit einer mobilen heilpädagogischen und lerntherapeutischen Fachpraxis. Ich begleite Familien, Kinder und Jugendliche, die Unterstützung im Alltag oder beim Lernen suchen.",
+          "Mein Einzugsgebiet umfasst den Landkreis Regensburg sowie den südlichen Teil des Landkreises Schwandorf. Die Therapiezeiten liegen **dienstags bis freitags am Nachmittag**."
+        ]
+      }
+    },
+    {
+      "id": "topicTiles",
+      "variant": "default",
+      "data": {
+        "tone": "base",
+        "eyebrow": "Für wen?",
+        "title": "Für wen ist meine Praxis da?",
+        "description": "Ich begleite Kinder im Vorschul- und Schulalter, sowohl mit diagnostizierten Störungen als auch präventiv, wenn sich erste Schwierigkeiten zeigen.",
+        "items": [
+          { "title": "ADHS", "icon": "lightning" },
+          { "title": "Dyskalkulie / Rechenschwäche", "icon": "calculator" },
+          { "title": "Legasthenie / LRS", "icon": "book-open-text" },
+          { "title": "Lernschwierigkeiten & Lernblockaden", "icon": "puzzle-piece" },
+          { "title": "Entwicklungsverzögerungen", "icon": "plant" },
+          { "title": "Wahrnehmungsbesonderheiten", "icon": "eye" },
+          { "title": "Konzentrationsprobleme", "icon": "target" },
+          { "title": "Schulängste", "icon": "backpack" },
+          { "title": "Sozial-emotionale Herausforderungen", "icon": "heart" },
+          { "title": "Heilpädagogischer Förderbedarf in allen Entwicklungsbereichen", "icon": "hand-heart" }
+        ]
+      }
+    },
+    {
+      "id": "offerCards",
+      "variant": "default",
+      "data": {
+        "id": "mein-angebot",
+        "tone": "page",
+        "eyebrow": "Mein Angebot",
+        "title": "Unterstützung, die zu Ihrem Kind passt",
+        "layout": "featured",
+        "items": [
+          {
+            "title": "Heilpädagogische Förderung",
+            "description": "Zielgerichtete Förderung und Unterstützung bei Behinderung, Entwicklungsverzögerungen und sozial-emotionalem Förderbedarf.",
+            "href": "/angebot/#heilpaedagogische-foerderung",
+            "linkLabel": "Mehr erfahren",
+            "image": { "src": "/assets/images/praxis/foerderung-bausteine-spiel.webp", "alt": "Kind baut einen Turm aus bunten Holzbausteinen" }
+          },
+          {
+            "title": "Lerntherapie",
+            "description": "Gezielte Hilfe bei Lernschwierigkeiten wie Lese-Rechtschreib-Schwäche (LRS) oder Dyskalkulie.",
+            "href": "/angebot/#integrative-lerntherapie",
+            "linkLabel": "Mehr erfahren",
+            "image": { "src": "/assets/images/praxis/lrs-anlautkarten-buzzer.webp", "alt": "Anlautkarten mit Buchstaben und ein blauer Buzzer" }
+          },
+          {
+            "title": "Präventive Lerntherapie",
+            "description": "Spielerische Förderung der Vorläuferfähigkeiten in Deutsch und Mathe, schon im Vorschulalter oder bei ersten Schwierigkeiten in der Grundschule. Besonders geeignet bei Konzentrationsproblemen, Unsicherheit mit Mengen und Zahlen oder Förderbedarf in der phonologischen Bewusstheit.",
+            "href": "/angebot/#praevention",
+            "linkLabel": "Mehr erfahren",
+            "image": { "src": "/assets/images/praxis/material-buntstifte-buecher.webp", "alt": "Becher mit Buntstiften, Bilderbuch und Fädelperlen", "position": "50% 60%" }
+          },
+          {
+            "title": "Begleitung bei ADHS",
+            "description": "Stärkung und Beratung für den Familienalltag mit ADHS sowie heilpädagogische Förderung in Verbindung mit Lerntherapie.",
+            "href": "/angebot/#adhs",
+            "linkLabel": "Mehr erfahren",
+            "image": { "src": "/assets/images/praxis/foerderung-tablet-kastanien-malen.webp", "alt": "Tablet mit Bildsymbolen, Farben und mit Kastanien bemaltes Papier" }
+          },
+          {
+            "title": "Pädagogische Beratung",
+            "description": "Ein offenes Ohr und fachliche Impulse für Eltern und Bezugspersonen.",
+            "href": "/kontakt/",
+            "linkLabel": "Gespräch vereinbaren",
+            "icon": "chats-circle"
+          }
+        ],
+        "note": {
+          "icon": "info",
+          "text": "**Wichtiger Hinweis:** Mein Angebot versteht sich als pädagogisch-therapeutische Unterstützung und Begleitung. Es handelt sich ausdrücklich nicht um eine medizinische Heilbehandlung."
+        }
+      }
+    },
+    {
+      "id": "profile",
+      "variant": "default",
+      "data": {
+        "id": "ueber-mich",
+        "tone": "base",
+        "size": "teaser",
+        "eyebrow": "Über mich",
+        "title": "Elisabeth Eggersdorfer",
+        "role": "Staatlich anerkannte Heilpädagogin · Heilpädagogische Förderlehrerin · Integrative Lerntherapeutin (IFLW)",
+        "paragraphs": [
+          "Ich arbeite als heilpädagogische Förderlehrerin an einem sonderpädagogischen Förderzentrum. In meiner Praxis verbinde ich Heilpädagogik und Lerntherapie: mit Geduld, Feinfühligkeit und viel Wertschätzung für jedes Kind."
+        ],
+        "checks": [
+          "Staatlich anerkannte Heilpädagogin und heilpädagogische Förderlehrerin",
+          "Vertiefung in Diagnostik (u. a. Teilleistungsstörungen)",
+          "Integrative Lerntherapeutin (IFLW)"
+        ],
+        "tags": ["LRS", "Dyskalkulie", "ADHS", "Psychomotorik", "Spieltherapie"],
+        "link": { "label": "Mehr über mich", "href": "/ueber-mich/" },
+        "image": {
+          "src": "/assets/images/praxis/elisabeth-eggersdorfer-portrait.webp",
+          "alt": "Porträt von Elisabeth Eggersdorfer",
+          "position": "50% 25%"
+        }
+      }
+    },
+    {
+      "id": "mediaSplit",
+      "variant": "default",
+      "data": {
+        "id": "frieda",
+        "tone": "page",
+        "imagePosition": "left",
+        "eyebrow": "Tiergestützte Leseförderung",
+        "title": "Lesen mit Frieda",
+        "paragraphs": [
+          "Meine Zwergpudel-Hündin Frieda ist über den Verein für helfende Hunde e. V. ausgebildet. Mit ihr erleben Kinder eine wertfreie, entspannte Lernumgebung."
+        ],
+        "link": { "label": "Frieda kennenlernen", "href": "/ueber-mich/#frieda" },
+        "image": {
+          "src": "/assets/images/praxis/frieda-buchstabenkarte.webp",
+          "alt": "Zwergpudel Frieda hält eine Buchstabenkarte mit dem Buchstaben A im Maul",
+          "position": "50% 30%"
+        }
+      }
+    },
+    {
+      "id": "steps",
+      "variant": "default",
+      "data": {
+        "id": "so-starten-wir",
+        "tone": "base",
+        "eyebrow": "Der erste Schritt",
+        "title": "So starten wir gemeinsam",
+        "steps": [
+          { "title": "Kontakt aufnehmen", "description": "Sie rufen mich an oder schreiben mir eine E-Mail und schildern kurz Ihr Anliegen." },
+          { "title": "Kostenloses Erstgespräch", "description": "In einem telefonischen Erstgespräch lernen wir uns kennen und klären, welche Unterstützung für Ihr Kind sinnvoll ist." },
+          { "title": "Diagnostik & Förderplan", "description": "Durch spielbasierte Beobachtung und Diagnostik ermittle ich Stärken und Unterstützungsbedarfe und erstelle einen individuellen Förderplan." },
+          { "title": "Förderung & Austausch", "description": "Ihr Kind wird regelmäßig gefördert, zu Hause oder im Therapieraum, und wir bleiben im engen Austausch." }
+        ]
+      }
+    },
+    {
+      "id": "praxisFaq",
+      "variant": "default",
+      "data": {
+        "id": "fragen",
+        "tone": "page",
+        "eyebrow": "FAQ",
+        "title": "Häufige Fragen",
+        "items": [
+          { "q": "Was kostet das Erstgespräch?", "a": "Nichts. Das Erstgespräch findet telefonisch statt und ist kostenlos. Wir lernen uns kennen und klären gemeinsam, welche Unterstützung für Ihr Kind sinnvoll ist." },
+          { "q": "Übernimmt das Jugendamt die Kosten?", "a": "Meine Praxis ist vom Jugendamt des Landkreises Regensburg anerkannt. Für Lerntherapie ist eine Kostenübernahme im Rahmen der Eingliederungshilfe nach § 35a SGB VIII möglich, wenn eine medizinische Diagnose vorliegt. Gern berate ich Sie zum Vorgehen." },
+          { "q": "Brauchen wir eine Diagnose?", "a": "Nein. Mein Angebot richtet sich sowohl an Kinder mit diagnostizierten Störungen als auch an Kinder, die präventiv Unterstützung benötigen. Für eine Kostenübernahme durch das Jugendamt ist eine medizinische Diagnose allerdings Voraussetzung." },
+          { "q": "Kommen Sie zu uns nach Hause?", "a": "Ja. Meine Praxis ist mobil: Ihr Kind kann in seiner vertrauten Umgebung gefördert werden oder in meinem ruhigen, strukturierten Therapieraum in Zeitlarn, je nach Bedarf und familiärer Situation. Für Hausbesuche berechne ich eine Kilometerpauschale." },
+          { "q": "Wann finden die Termine statt?", "a": "Die Therapiezeiten liegen dienstags bis freitags am Nachmittag." },
+          { "q": "In welchem Gebiet sind Sie unterwegs?", "a": "Im Landkreis Regensburg und im südlichen Teil des Landkreises Schwandorf." },
+          { "q": "Ist Lerntherapie Nachhilfe?", "a": "Nein. Lerntherapie setzt nicht am aktuellen Schulstoff an, sondern an den Ursachen der Lernschwierigkeiten, z. B. an fehlenden Grundlagen im Lesen, Schreiben oder Rechnen, an der Konzentration oder am Selbstvertrauen." },
+          { "q": "Ist das eine medizinische Behandlung?", "a": "Nein. Mein Angebot ist pädagogisch-therapeutische Unterstützung und Begleitung und ersetzt keine ärztliche oder psychotherapeutische Behandlung." }
+        ]
+      }
+    },
+    {
+      "id": "ctaBand",
+      "variant": "default",
+      "data": {
+        "title": "Ihr Kind braucht Unterstützung?",
+        "text": "Lassen Sie uns in einem kostenlosen telefonischen Erstgespräch herausfinden, was Ihrem Kind guttut.",
+        "primary": { "label": "Kostenloses Erstgespräch", "href": "/kontakt/" },
+        "secondary": { "label": "0151 23410823", "href": "tel:+4915123410823" }
+      }
+    },
     { "id": "footer", "variant": "nova" }
   ]
 }

@@ -1,0 +1,54 @@
+---
+import Section from "@components/ui/layout/Section.astro";
+import Container from "@components/ui/layout/Container.astro";
+import Heading from "@components/ui/atoms/Heading.astro";
+import Text from "@components/ui/atoms/Text.astro";
+import SectionIntro from "@components/ui/molecules/SectionIntro.astro";
+
+// Why: short numbered sequences (first contact, therapy course). Four steps
+// side by side on desktop with a thin connecting line, stacked on phones.
+interface Props {
+  id?: string;
+  tone?: "page" | "base";
+  eyebrow?: string;
+  title: string;
+  description?: string;
+  steps: { title: string; description: string }[];
+  headingTag?: string;
+}
+
+const { id, tone = "page", eyebrow, title, description, steps, headingTag = "h2" } = Astro.props as Props;
+---
+
+<Section id={id} tone={tone}>
+  <Container>
+    <SectionIntro eyebrow={eyebrow} title={title} description={description} headingTag={headingTag} />
+
+    <ol class:list={["praxis-steps mt-10 grid gap-8 sm:grid-cols-2 lg:mt-14 lg:gap-6", steps.length >= 4 ? "lg:grid-cols-4" : "lg:grid-cols-3"]}>
+      {steps.map((step, index) => (
+        <li class="praxis-steps__item relative flex flex-col gap-3">
+          <span class="praxis-steps__num relative z-10 flex size-14 items-center justify-center rounded-full border-2 border-brand-accent bg-white font-heading text-xl font-semibold text-brand-primary" aria-hidden="true">
+            {String(index + 1).padStart(2, "0")}
+          </span>
+          <Heading tag="h3" variant="feature-title" class="text-brand-primary">{step.title}</Heading>
+          <Text variant="feature-body-sm" class="text-brand-dark/80">{step.description}</Text>
+        </li>
+      ))}
+    </ol>
+  </Container>
+</Section>
+
+<style>
+  /* Thin line connecting the step numbers on desktop. */
+  @media (min-width: 1024px) {
+    .praxis-steps__item:not(:last-child)::before {
+      content: "";
+      position: absolute;
+      top: 1.75rem;
+      left: 3.5rem;
+      right: -1.5rem;
+      height: 1px;
+      background: color-mix(in oklab, var(--color-brand-accent) 45%, transparent);
+    }
+  }
+</style>

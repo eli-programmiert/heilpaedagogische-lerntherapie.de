@@ -16,8 +16,6 @@ const STANDARD_STEPS: QaStep[] = [
   { name: 'npm run check:motion', command: 'npm run check:motion', description: 'Brak wycofanych tokenów animacji' },
   { name: 'npm run check:icons', command: 'npm run check:icons', description: 'Spójność używanych ikon' },
   { name: 'npm run check:data', command: 'npm run check:data', description: 'Kontrakty danych sekcji i stron' },
-  { name: 'npm run check:form', command: 'npm run check:form', description: 'Konfiguracja formularza i podstawowe zabezpieczenia' },
-  { name: 'npm run test:form', command: 'npm run test:form', description: 'Test endpointu PHP z pominięciem, gdy PHP nie jest dostępne' },
   { name: 'npm run test:mobile', command: 'npm run test:mobile', description: 'Testy reguł audytu mobilnego' },
   { name: 'npm run check:mobile', command: 'npm run check:mobile', description: 'Audyt mobilny bez nowych naruszeń' },
   { name: 'npm run build', command: 'npm run build', description: 'Build produkcyjny' },
@@ -48,7 +46,6 @@ const MODES: Record<string, { name: string; steps: QaStep[] }> = {
       { name: 'npm run check:content', command: 'npm run check:content', description: 'Walidacja świadomych placeholderów startera' },
       { name: 'npm run build:prod', command: 'npm run build:prod', description: 'Build z blokada na placeholdery i czyszczeniem studia' },
       { name: 'npm run check:seo:client', command: 'npm run check:seo:client', description: 'Walidacja indeksowalnego SEO projektu klienta' },
-      { name: 'npm run check:form:client', command: 'npm run check:form:client', description: 'Walidacja konfiguracji formularza klienta' },
     ],
   },
 };

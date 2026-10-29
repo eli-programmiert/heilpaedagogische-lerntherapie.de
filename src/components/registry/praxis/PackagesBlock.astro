@@ -1,0 +1,60 @@
+---
+import Section from "@components/ui/layout/Section.astro";
+import Container from "@components/ui/layout/Container.astro";
+import Heading from "@components/ui/atoms/Heading.astro";
+import Text from "@components/ui/atoms/Text.astro";
+import Button from "@components/ui/atoms/Button.astro";
+import Icon from "@components/ui/atoms/Icon.astro";
+import SectionIntro from "@components/ui/molecules/SectionIntro.astro";
+
+// Why: fixed-price packages side by side (no "popular" badge, both equal).
+interface Props {
+  id?: string;
+  tone?: "page" | "base";
+  eyebrow?: string;
+  title: string;
+  description?: string;
+  items: {
+    title: string;
+    price: string;
+    note?: string;
+    features: string[];
+    cta: { label: string; href: string };
+    more?: { label: string; href: string };
+  }[];
+  headingTag?: string;
+}
+
+const { id = "pakete", tone = "page", eyebrow, title, description, items, headingTag = "h2" } = Astro.props as Props;
+---
+
+<Section id={id} tone={tone}>
+  <Container>
+    <SectionIntro eyebrow={eyebrow} title={title} description={description} headingTag={headingTag} />
+    <ul class="mt-10 grid gap-6 md:grid-cols-2 lg:mt-14">
+      {items.map((item) => (
+        <li class="flex flex-col gap-6 rounded-[1.75rem] border border-brand-dark/10 ui-bg-base p-6 sm:p-8">
+          <div class="flex flex-col gap-4">
+            <Heading tag="h3" variant="feature-title" class="text-brand-primary">{item.title}</Heading>
+            <div class="flex items-baseline gap-3">
+              <Text tag="span" class="whitespace-nowrap font-heading text-4xl font-semibold text-brand-primary tabular-nums">{item.price}</Text>
+              {item.note && <Text tag="span" variant="feature-body-sm" class="font-semibold text-brand-dark/70">{item.note}</Text>}
+            </div>
+          </div>
+          <ul class="flex flex-col gap-2.5 border-t border-brand-dark/10 pt-6">
+            {item.features.map((feature) => (
+              <li class="flex items-start gap-2.5">
+                <Icon name="check-circle" class="mt-0.5 shrink-0 text-lg text-brand-accent" />
+                <Text tag="span" variant="feature-body-sm" class="text-brand-dark/85">{feature}</Text>
+              </li>
+            ))}
+          </ul>
+          <div class="mt-auto flex flex-col gap-3 pt-2 sm:flex-row sm:items-center sm:gap-5">
+            <Button href={item.cta.href} variant="primary">{item.cta.label}</Button>
+            {item.more && <a href={item.more.href} class="praxis-link">{item.more.label}</a>}
+          </div>
+        </li>
+      ))}
+    </ul>
+  </Container>
+</Section>

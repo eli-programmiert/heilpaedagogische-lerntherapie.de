@@ -15,6 +15,8 @@ export function auditRenderedImages(html: string, file: string): ImageIssue[] {
   $('img').each((_, element) => {
     const image = $(element);
     if (image.attr('id') === 'ui-lightbox-img') return;
+    // Third-party snippets that must stay unchanged (e.g. the IFLW seal).
+    if (image.closest('[data-audit-ignore]').length > 0) return;
 
     const alt = image.attr('alt')?.trim();
     const decorative = image.attr('aria-hidden') === 'true';

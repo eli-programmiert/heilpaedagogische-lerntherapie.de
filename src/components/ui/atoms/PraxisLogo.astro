@@ -1,0 +1,99 @@
+---
+// Why: the client's logo exists only as an opaque PNG (white box on cream).
+// Until the vector logo arrives, the mark is the SVG redraw from the brief and
+// the wordmark is live text in Jost: sharp, responsive and token-coloured.
+interface Props {
+  /** `compact` for the navbar, `default` for the footer. */
+  size?: "compact" | "default";
+  /** Hides the wordmark (icon only). */
+  markOnly?: boolean;
+  class?: string;
+}
+
+const { size = "default", markOnly = false, class: className = "" } = Astro.props;
+---
+
+<span class:list={["praxis-logo", `praxis-logo--${size}`, className]}>
+  <svg class="praxis-logo__mark" viewBox="0 0 96 124" fill="none" stroke-linecap="round" aria-hidden="true">
+    <path d="M4.1 70.6 A42.5 42.5 0 0 1 44.5 35.5" class="praxis-logo__soft" stroke-width="3" />
+    <path d="M27.2 42.7 A40 40 0 0 1 85.8 73.8" class="praxis-logo__strong" stroke-width="4.5" />
+    <path d="M85.9 80.8 A40 40 0 1 1 6.9 69.7" class="praxis-logo__strong" stroke-width="4.5" />
+    <circle cx="58" cy="25" r="11.5" class="praxis-logo__soft" stroke-width="3.5" />
+  </svg>
+  {!markOnly && (
+    <span class="praxis-logo__word">
+      <span class="praxis-logo__line praxis-logo__line--light">Fachpraxis für</span>
+      <span class="praxis-logo__line praxis-logo__line--strong">Heilpädagogik &amp;</span>
+      <span class="praxis-logo__line praxis-logo__line--band">integrative Lerntherapie</span>
+    </span>
+  )}
+</span>
+
+<style>
+  .praxis-logo {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-family: var(--font-heading);
+    hyphens: manual;
+  }
+
+  .praxis-logo__mark {
+    flex-shrink: 0;
+    height: 3.25rem;
+    width: auto;
+  }
+
+  .praxis-logo--compact .praxis-logo__mark {
+    height: 2.6rem;
+  }
+
+  .praxis-logo__soft {
+    stroke: var(--color-tertiary);
+  }
+
+  .praxis-logo__strong {
+    stroke: var(--color-brand-primary);
+  }
+
+  .praxis-logo__word {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.05;
+    white-space: nowrap;
+  }
+
+  .praxis-logo__line--light {
+    color: var(--color-brand-accent);
+    font-size: 0.9rem;
+    font-weight: 500;
+  }
+
+  .praxis-logo__line--strong {
+    color: var(--color-brand-primary);
+    font-size: 1.15rem;
+    font-weight: 600;
+  }
+
+  .praxis-logo__line--band {
+    margin-top: 0.15rem;
+    padding: 0.05rem 0.3rem 0.1rem;
+    background: var(--praxis-logo-band, var(--color-brand-cream));
+    color: var(--color-brand-accent);
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+  }
+
+  .praxis-logo--compact .praxis-logo__line--light {
+    font-size: 0.78rem;
+  }
+
+  .praxis-logo--compact .praxis-logo__line--strong {
+    font-size: 1rem;
+  }
+
+  .praxis-logo--compact .praxis-logo__line--band {
+    font-size: 0.68rem;
+  }
+</style>

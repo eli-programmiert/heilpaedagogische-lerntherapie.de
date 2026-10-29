@@ -5,7 +5,15 @@ const projectRoot = process.cwd();
 const distDir = path.join(projectRoot, 'dist');
 const CHECK_ONLY = process.argv.includes('--check');
 const WEIGHT_CLASSES = new Set(['bold', 'duotone', 'fill', 'light', 'thin']);
-const ICON_RULE_RE = /\.ph\.ph-([a-z0-9-]+):before\s*\{[^}]*?content\s*:\s*["'][^"']+["'];?[^}]*?\}/gi;
+// The minifier merges aliases that share a glyph into one selector list, e.g.
+// `.ph.ph-seal-check:before,.ph.ph-circle-wavy-check:before{content:"…"}`, so a
+// rule is matched with its whole selector list, not only the last selector.
+const ICON_RULE_RE = /((?:\.ph\.ph-[a-z0-9-]+:before\s*,\s*)*\.ph\.ph-[a-z0-9-]+:before)\s*\{([^}]*?content\s*:\s*["'][^"']+["'];?[^}]*?)\}/gi;
+const ICON_SELECTOR_RE = /\.ph\.ph-([a-z0-9-]+):before/gi;
+
+function iconNamesOf(selectorList) {
+  return [...selectorList.matchAll(ICON_SELECTOR_RE)].map((match) => match[1].toLowerCase());
+}
 
 function collectFiles(dir, extension) {
   if (!fs.existsSync(dir)) return [];
@@ -37,7 +45,9 @@ function collectUsedIcons() {
 
 function findIconSelectors(css) {
   const selectors = new Set();
-  for (const match of css.matchAll(ICON_RULE_RE)) selectors.add(match[1].toLowerCase());
+  for (const match of css.matchAll(ICON_RULE_RE)) {
+    for (const iconName of iconNamesOf(match[1])) selectors.add(iconName);
+  }
   return selectors;
 }
 
@@ -56,10 +66,13 @@ for (const file of collectFiles(distDir, '.css')) {
   cssFiles += 1;
   const optimizedCss = CHECK_ONLY
     ? originalCss
-    : originalCss.replace(ICON_RULE_RE, (rule, iconName) => {
-      if (usedIcons.has(iconName.toLowerCase())) return rule;
-      removedRules += 1;
-      return '';
+    : originalCss.replace(ICON_RULE_RE, (rule, selectorList, body) => {
+      const names = iconNamesOf(selectorList);
+      const kept = names.filter((iconName) => usedIcons.has(iconName));
+      removedRules += names.length - kept.length;
+      if (kept.length === 0) return '';
+      if (kept.length === names.length) return rule;
+      return `${kept.map((iconName) => `.ph.ph-${iconName}:before`).join(',')}{${body}}`;
     });
 
   if (!CHECK_ONLY && optimizedCss !== originalCss) fs.writeFileSync(file, optimizedCss, 'utf8');

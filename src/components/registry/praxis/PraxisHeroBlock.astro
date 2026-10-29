@@ -1,0 +1,98 @@
+---
+import Section from "@components/ui/layout/Section.astro";
+import Container from "@components/ui/layout/Container.astro";
+import Heading from "@components/ui/atoms/Heading.astro";
+import Text from "@components/ui/atoms/Text.astro";
+import Button from "@components/ui/atoms/Button.astro";
+import Icon from "@components/ui/atoms/Icon.astro";
+import PraxisImage from "@components/ui/atoms/PraxisImage.astro";
+import LogoRings from "@components/decorations/LogoRings.astro";
+import RichText from "@components/ui/molecules/RichText.astro";
+
+// Why: text 7/12 + portrait 5/12 with the ring motif. Nova's HeroSplitBlock is
+// a full-bleed background photo, which does not fit a portrait of the therapist.
+type Cta = { label: string; href: string };
+type Img = { src: string; alt: string; position?: string };
+
+interface Props {
+  id?: string;
+  tone?: "page" | "base";
+  eyebrow?: string;
+  title: string;
+  description?: string;
+  primaryCta?: Cta;
+  secondaryCta?: Cta;
+  trustItems?: string[];
+  image?: Img;
+  /** Square crop shown above the text on phones. */
+  imageMobile?: Img;
+  headingTag?: string;
+}
+
+const {
+  id = "start",
+  tone = "page",
+  eyebrow,
+  title,
+  description,
+  primaryCta,
+  secondaryCta,
+  trustItems = [],
+  image,
+  imageMobile,
+  headingTag = "h1",
+} = Astro.props as Props;
+---
+
+<Section id={id} tone={tone} class="relative overflow-hidden">
+  <Container>
+    <div class="grid items-center gap-10 lg:grid-cols-12 lg:gap-12">
+      {imageMobile && (
+        <div class="relative mx-auto w-full max-w-[18rem] sm:max-w-xs lg:hidden">
+          <LogoRings class="absolute -right-10 -top-8 w-40" />
+          <PraxisImage src={imageMobile.src} alt={imageMobile.alt} sizes="20rem" loading="eager" fetchpriority="high" class="relative aspect-square w-full rounded-full object-cover" position={imageMobile.position} />
+        </div>
+      )}
+
+      <div class="flex flex-col gap-6 lg:col-span-7">
+        {eyebrow && <Text tag="p" variant="accent-label" class="praxis-eyebrow">{eyebrow}</Text>}
+        <Heading tag={headingTag} variant="hero" class="praxis-hero-title">{title}</Heading>
+        {description && <RichText text={description} variant="lead" class="max-w-xl text-brand-dark/80" />}
+
+        {(primaryCta || secondaryCta) && (
+          <div class="flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+            {primaryCta && <Button href={primaryCta.href} variant="primary" size="lg">{primaryCta.label}</Button>}
+            {secondaryCta && <Button href={secondaryCta.href} variant="outline" size="lg">{secondaryCta.label}</Button>}
+          </div>
+        )}
+
+        {trustItems.length > 0 && (
+          <ul class="mt-2 flex flex-col gap-2.5 border-t border-brand-dark/10 pt-6">
+            {trustItems.map((item) => (
+              <li class="flex items-start gap-2.5 text-brand-dark/85">
+                <Icon name="seal-check" class="mt-0.5 shrink-0 text-xl text-brand-accent" />
+                <Text tag="span" variant="feature-body-sm" class="font-medium">{item}</Text>
+              </li>
+            ))}
+          </ul>
+        )}
+      </div>
+
+      {image && (
+        <div class="relative hidden lg:col-span-5 lg:block">
+          <LogoRings class="absolute -right-16 -top-16 w-72" />
+          <LogoRings class="absolute -bottom-20 -left-20 w-56 rotate-180" />
+          <div class="relative overflow-hidden rounded-[2.5rem] rounded-tr-[8rem] ui-bg-base">
+            <PraxisImage src={image.src} alt={image.alt} sizes="(min-width: 1280px) 34rem, 40vw" loading="eager" fetchpriority="high" class="aspect-[4/5] w-full object-cover" position={image.position} />
+          </div>
+        </div>
+      )}
+    </div>
+  </Container>
+</Section>
+
+<style>
+  .praxis-hero-title {
+    font-size: clamp(2.25rem, calc(1.4rem + 3.4vw), 4rem);
+  }
+</style>

@@ -11,6 +11,7 @@ import { processSections } from './section-registry/process';
 import { servicesSections } from './section-registry/services';
 import { shellSections } from './section-registry/shell';
 import { socialSections } from './section-registry/social';
+import { praxisSections } from './section-registry/praxis';
 
 const domainRegistries = [
   shellSections,
@@ -24,6 +25,7 @@ const domainRegistries = [
   contactSections,
   ctaSections,
   contentSections,
+  praxisSections,
 ];
 
 describe('section registry domains', () => {

@@ -1,6 +1,9 @@
 export interface PageSection {
   id: string;
   variant: string;
+  /** Per-page section content. Overrides the block's shared JSON data, so two
+   *  pages can use the same block with different copy. */
+  data?: Record<string, unknown>;
 }
 
 export interface PageSeo {
@@ -72,9 +75,13 @@ export interface CompanyConfig {
   zipCode: string;
   city: string;
   phone: string;
+  /** Phone number as shown to visitors, e.g. "0151 23410823". */
+  phoneDisplay?: string;
   email: string;
-  nip: string;
-  krs: string;
+  owner?: string;
+  areaServed?: string[];
+  nip?: string;
+  krs?: string;
   hours: string;
   siteUrl: string;
   priceRange?: string;

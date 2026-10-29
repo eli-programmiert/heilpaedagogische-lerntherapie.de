@@ -1,0 +1,22 @@
+---
+import Text from "@components/ui/atoms/Text.astro";
+import { renderInline } from "@utils/inline-markup";
+
+// Why: editorial copy in the page JSON uses **bold** and [label](href).
+// RichText turns it into safe HTML and still renders through the Text atom.
+interface Props {
+  /** One string or a list of paragraphs. */
+  text?: string | string[];
+  variant?: "body" | "lead" | "feature-body-sm";
+  class?: string;
+}
+
+const { text, variant = "body", class: className = "" } = Astro.props;
+const paragraphs = (Array.isArray(text) ? text : text ? [text] : []).filter(Boolean);
+---
+
+{paragraphs.map((paragraph) => (
+  <Text variant={variant} class={className}>
+    <Fragment set:html={renderInline(paragraph)} />
+  </Text>
+))}

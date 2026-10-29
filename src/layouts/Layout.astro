@@ -9,7 +9,6 @@ import company from '@data/global/company.json';
 import customCode from '@data/global/custom-code.json';
 import Schema from '@components/ui/atoms/Schema.astro';
 import Toast from '@components/ui/atoms/Toast.astro';
-import FloatingBar from '@components/ui/molecules/FloatingBar.astro';
 import CookieConsent from '@/components/ui/molecules/CookieConsent.astro';
 import ImageLightbox from '@/components/ui/molecules/ImageLightbox.astro';
 import MobileDrawer from '@components/ui/molecules/Navbar/shared/MobileDrawer.astro';
@@ -21,7 +20,6 @@ import FooterColumnsBlock from '@components/registry/shell/FooterColumnsBlock.as
 import FooterMinimalBlock from '@components/registry/shell/FooterMinimalBlock.astro';
 import FooterPromoBlock from '@components/registry/shell/FooterPromoBlock.astro';
 import NovaFooterBlock from '@components/registry/shell/NovaFooterBlock.astro';
-import NovaDemoBanner from '@components/ui/molecules/NovaDemoBanner.astro';
 import type { NovaLocale } from '@utils/nova-i18n';
 
 
@@ -71,7 +69,7 @@ const {
 	ogImage = seo.defaultOgImage,
 	noIndex = isStaging || !seo.index,
 	lang = SITE_LOCALE,
-	locale = SITE_LOCALE === 'en' ? 'en' : 'pl',
+	locale = SITE_LOCALE as NovaLocale,
 	theme: themeProp,
 	sectionPattern = 'off',
 	schemaTemplate = 'default',
@@ -197,13 +195,11 @@ const mainPaddingStyle = fullBleedTop
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		{theme === 'nova' && (
 			<>
-				<!-- Nova uses these local fonts above the fold; preload prevents fallback text from changing the layout. -->
-				<link rel="preload" as="font" type="font/woff2" href={publicAsset('/fonts/QGYvz_MVcBeNP4NJuktqQ4E.woff2')} crossorigin />
-				<link rel="preload" as="font" type="font/woff2" href={publicAsset('/fonts/QGYvz_MVcBeNP4NJtEtq.woff2')} crossorigin />
+				<!-- Local fonts above the fold; preload prevents fallback text from changing the layout. -->
+				<!-- Jost (latin subset, headings) and Satoshi (body) are used above the fold; preload prevents layout shifts. -->
+				<link rel="preload" as="font" type="font/woff2" href={publicAsset('/fonts/92zatBhPNqw73oTd4g.woff2')} crossorigin />
 				<link rel="preload" as="font" type="font/woff2" href={publicAsset('/fonts/satoshi-400.woff2')} crossorigin />
-				<link rel="preload" as="font" type="font/woff2" href={publicAsset('/fonts/satoshi-500.woff2')} crossorigin />
 				<link rel="preload" as="font" type="font/woff2" href={publicAsset('/fonts/satoshi-700.woff2')} crossorigin />
-				<link rel="preload" as="font" type="font/woff2" href={publicAsset('/fonts/satoshi-900.woff2')} crossorigin />
 			</>
 		)}
 		{import.meta.env.DEV && (
@@ -273,12 +269,12 @@ const mainPaddingStyle = fullBleedTop
 		<!-- Content Security Policy -->
 		<meta http-equiv="Content-Security-Policy" content="
 			default-src 'self';
-			script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://www.google-analytics.com https://connect.facebook.net https://unpkg.com https://www.clarity.ms https://scripts.clarity.ms https://static.cloudflareinsights.com http://localhost:8400;
-			style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://unpkg.com;
-			font-src 'self' data: https://fonts.gstatic.com https://unpkg.com;
-			img-src 'self' data: blob: https://www.google-analytics.com https://www.google.pl https://www.facebook.com https://images.unsplash.com https://i.pravatar.cc;
-			connect-src 'self' https://www.google-analytics.com https://region1.analytics.google.com https://www.googletagmanager.com https://www.clarity.ms https://*.clarity.ms http://localhost:8400;
-			frame-src 'self' https://open.spotify.com https://www.youtube.com https://www.google.com https://maps.google.com https://www.openstreetmap.org;
+			script-src 'self' 'unsafe-inline';
+			style-src 'self' 'unsafe-inline';
+			font-src 'self' data:;
+			img-src 'self' data: blob: https://www.iflw.de;
+			connect-src 'self';
+			frame-src 'none';
 			form-action 'self';
 			base-uri 'self';
 		" />
@@ -319,7 +315,6 @@ const mainPaddingStyle = fullBleedTop
 		data-review-project={reviewProject || undefined}
 	>
 		{clientRuntime && <MobileDrawer locale={locale} />}
-		{showShell && theme === 'nova' && <NovaDemoBanner locale={locale} />}
 		{showShell && navbarResolved && (
 			<div class:list={theme === 'nova' ? ['relative'] : []}>
 				<navbarResolved.component layout={navbarResolved.layout} theme={navbarTheme} locale={locale} />
@@ -358,13 +353,12 @@ const mainPaddingStyle = fullBleedTop
 		{clientRuntime && enableLenis && <script is:inline src="/js/lenis-lib.min.js" defer></script>}
 		{clientRuntime && enableLenis && <script is:inline src="/js/lenis.js" defer></script>}
 
-		{clientRuntime && <script is:inline data-astro-rerun define:vars={{ analyticsConfig }}>window.__ANALYTICS__ = analyticsConfig;</script>}
-		<!-- Analytics must not delay first render, defer keeps cookie consent compatibility. -->
-		{clientRuntime && <script is:inline data-astro-rerun src="/js/analytics.js" defer></script>}
+		{clientRuntime && hasOptionalTracking && <script is:inline data-astro-rerun define:vars={{ analyticsConfig }}>window.__ANALYTICS__ = analyticsConfig;</script>}
+		<!-- Analytics only load when an ID is configured (the practice site has none). -->
+		{clientRuntime && hasOptionalTracking && <script is:inline data-astro-rerun src="/js/analytics.js" defer></script>}
 		{clientRuntime && <script is:inline data-astro-rerun src="/js/theme-switcher.js" defer></script>}
 		{clientRuntime && hasOptionalTracking && <CookieConsent />}
 	        {clientRuntime && <Toast />}
-	        {clientRuntime && <FloatingBar />}
 	        {clientRuntime && <ImageLightbox />}
 	{
 		// Custom code from client at page end (chat widgets, scripts loaded at end).

@@ -1,0 +1,41 @@
+---
+import Section from "@components/ui/layout/Section.astro";
+import Container from "@components/ui/layout/Container.astro";
+import Icon from "@components/ui/atoms/Icon.astro";
+import Text from "@components/ui/atoms/Text.astro";
+import SectionIntro from "@components/ui/molecules/SectionIntro.astro";
+
+// Why: "Für wen?" split 5/7 – text left, static tiles right (no links, so no
+// hover motion). Two columns on phones keep the ten topics scannable.
+interface Props {
+  id?: string;
+  tone?: "page" | "base";
+  eyebrow?: string;
+  title: string;
+  description?: string;
+  items: { title: string; icon?: string }[];
+  headingTag?: string;
+}
+
+const { id = "fuer-wen", tone = "page", eyebrow, title, description, items, headingTag = "h2" } = Astro.props as Props;
+---
+
+<Section id={id} tone={tone}>
+  <Container>
+    <div class="grid gap-10 lg:grid-cols-12 lg:gap-14">
+      <SectionIntro eyebrow={eyebrow} title={title} description={description} headingTag={headingTag} class="lg:col-span-5 lg:sticky lg:top-32 lg:self-start" />
+      <ul class="grid grid-cols-2 gap-3 sm:gap-4 lg:col-span-7 xl:grid-cols-3">
+        {items.map((item) => (
+          <li class="flex flex-col gap-3 rounded-xl border border-brand-dark/10 bg-white p-4 sm:p-5">
+            {item.icon && (
+              <span class="flex size-10 items-center justify-center rounded-full ui-bg-base text-xl text-brand-primary" aria-hidden="true">
+                <Icon name={item.icon} />
+              </span>
+            )}
+            <Text tag="span" variant="feature-body-sm" class="font-semibold leading-snug text-brand-dark">{item.title}</Text>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </Container>
+</Section>

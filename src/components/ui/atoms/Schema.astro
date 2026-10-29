@@ -28,39 +28,28 @@ const affiliateWebsiteSchema = {
 		'Aktualne promocje bankowe, bonusy powitalne i oferty partnerskie w jednym miejscu.',
 };
 
+// Why: ProfessionalService is the closest schema.org subtype of LocalBusiness
+// for a therapy practice. No openingHours: only "Di–Fr nachmittags" is known.
 const schema = {
 	'@context': 'https://schema.org',
-	'@type': 'LocalBusiness',
+	'@type': 'ProfessionalService',
 	name: company.fullName || company.name,
 	description: company.description || seo.defaultDescription,
 	image: `${siteBase}/og-image.png`,
-	'@id': siteBase,
-	url: siteBase,
+	logo: `${siteBase}/apple-touch-icon.png`,
+	'@id': `${siteBase}/#praxis`,
+	url: `${siteBase}/`,
+	founder: company.owner ? { '@type': 'Person', name: company.owner } : undefined,
 	telephone: company.phone,
 	email: company.email,
-	priceRange: company.priceRange || '$$',
 	address: {
 		'@type': 'PostalAddress',
 		streetAddress: company.address,
 		addressLocality: company.city,
 		postalCode: company.zipCode,
-		addressCountry: 'PL',
+		addressCountry: 'DE',
 	},
-	geo: {
-		'@type': 'GeoCoordinates',
-		latitude: company.geo?.lat || 52.4064,
-		longitude: company.geo?.lng || 16.9252,
-	},
-	openingHoursSpecification: [
-		{
-			'@type': 'OpeningHoursSpecification',
-			dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
-			// Optional chaining: hours may be empty/missing in company.json,
-			// then schema falls back to default hours instead of throwing TypeError.
-			opens: company.hours?.split(' - ')?.[0]?.split(': ')?.pop() ?? '08:00',
-			closes: company.hours?.split(' - ')?.[1] ?? '16:00',
-		},
-	],
+	areaServed: (company.areaServed ?? []).map((name) => ({ '@type': 'AdministrativeArea', name })),
 	sameAs: getSocialUrls(company),
 };
 
@@ -68,7 +57,8 @@ const websiteSchema = {
 	'@context': 'https://schema.org',
 	'@type': 'WebSite',
 	name: seo.defaultTitle,
-	url: siteBase,
+	url: `${siteBase}/`,
+	inLanguage: 'de-DE',
 };
 ---
 

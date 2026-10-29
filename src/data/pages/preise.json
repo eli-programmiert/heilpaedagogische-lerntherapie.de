@@ -1,0 +1,117 @@
+{
+  "seo": {
+    "title": "Preise & Kostenübernahme durch das Jugendamt (§ 35a SGB VIII)",
+    "description": "Transparente Preise für Heilpädagogik, Lerntherapie, Beratung und Förderpakete. Kostenübernahme für Lerntherapie durch das Jugendamt Landkreis Regensburg möglich."
+  },
+  "heading": "Preise & Kostenübernahme",
+  "sections": [
+    { "id": "navbar", "variant": "floating" },
+    {
+      "id": "pageIntro",
+      "variant": "default",
+      "data": {
+        "eyebrow": "Preise",
+        "description": "Transparente Preise, die sich an den Empfehlungen des Berufsverbands für Heilpädagogik und des Bundesverbands Legasthenie und Dyskalkulie e. V. orientieren."
+      }
+    },
+    {
+      "id": "priceList",
+      "variant": "default",
+      "data": {
+        "id": "einzelleistungen",
+        "tone": "base",
+        "eyebrow": "Preise",
+        "title": "Einzelleistungen",
+        "caption": "Preise der Einzelleistungen mit Dauer",
+        "rows": [
+          { "service": "Telefonisches Erstgespräch", "price": "kostenlos" },
+          { "service": "Heilpädagogische Förderung", "duration": "45 Min.", "price": "60 €" },
+          { "service": "Lerntherapie", "duration": "60 Min.", "price": "70 €" },
+          { "service": "Pädagogische Beratung", "price": "ab 16 € / 70 €" },
+          { "service": "Kilometerpauschale für Hausbesuche (ab Zeitlarn)", "price": "5–10 €" }
+        ],
+        "footnote": "Gemäß § 19 UStG wird keine Umsatzsteuer berechnet (Kleinunternehmerregelung)."
+      }
+    },
+    {
+      "id": "packages",
+      "variant": "default",
+      "data": {
+        "id": "pakete",
+        "tone": "page",
+        "eyebrow": "Festpreise",
+        "title": "Pakete",
+        "items": [
+          {
+            "title": "Präventionspaket LRS / Dyskalkulie",
+            "price": "560 €",
+            "note": "10 Einheiten",
+            "features": [
+              "Spielerische Förderung der Vorläuferfähigkeiten",
+              "Phonologische Bewusstheit, Mengen & Zahlen",
+              "Für Vorschul- und Grundschulkinder"
+            ],
+            "cta": { "label": "Paket anfragen", "href": "/kontakt/" },
+            "more": { "label": "Mehr zur Prävention", "href": "/angebot/#praevention" }
+          },
+          {
+            "title": "„Fokus & Familie“ – ADHS-Kompaktprogramm",
+            "price": "990 €",
+            "note": "12 Wochen",
+            "features": [
+              "Anamnese, Diagnostik & Förderplan",
+              "10 heilpädagogische Einzeleinheiten",
+              "2 Eltern-Coachings à 60 Min.",
+              "Wöchentliche telefonische Updates",
+              "Abschlussgespräch mit Entwicklungsbericht"
+            ],
+            "cta": { "label": "Programm anfragen", "href": "/kontakt/" },
+            "more": { "label": "Mehr zum Programm", "href": "/angebot/#adhs" }
+          }
+        ]
+      }
+    },
+    {
+      "id": "callout",
+      "variant": "default",
+      "data": {
+        "id": "kostenuebernahme",
+        "tone": "base",
+        "size": "large",
+        "icon": "seal-check",
+        "title": "Kostenübernahme für Lerntherapie",
+        "text": [
+          "Meine Praxis ist vom Jugendamt des Landkreises Regensburg anerkannt. Für **Lerntherapie** ist eine Kostenübernahme im Rahmen der **Eingliederungshilfe nach § 35a SGB VIII** durch das Jugendamt des Landkreises Regensburg möglich, wenn eine medizinische Diagnose vorliegt.",
+          "Gern berate ich Sie im kostenlosen Erstgespräch zum Vorgehen."
+        ]
+      }
+    },
+    {
+      "id": "praxisFaq",
+      "variant": "default",
+      "data": {
+        "id": "fragen-kosten",
+        "tone": "page",
+        "eyebrow": "FAQ",
+        "title": "Fragen zu den Kosten",
+        "items": [
+          { "q": "Was kostet das Erstgespräch?", "a": "Nichts. Das telefonische Erstgespräch ist kostenlos." },
+          { "q": "Für welche Leistungen übernimmt das Jugendamt die Kosten?", "a": "Für Lerntherapie, im Rahmen der Eingliederungshilfe nach § 35a SGB VIII, wenn eine medizinische Diagnose vorliegt." },
+          { "q": "Übernimmt die Krankenkasse die Kosten?", "a": "Nein. Heilpädagogische Förderung und Lerntherapie sind keine Leistungen der gesetzlichen Krankenkassen." },
+          { "q": "Was kostet ein Hausbesuch zusätzlich?", "a": "Für Hausbesuche berechne ich eine Kilometerpauschale von 5–10 €, ausgehend von Zeitlarn." }
+        ]
+      }
+    },
+    {
+      "id": "ctaBand",
+      "variant": "default",
+      "data": {
+        "title": "Fragen zu Kosten oder Kostenübernahme?",
+        "text": "Rufen Sie mich an oder schreiben Sie mir. Das Erstgespräch ist kostenlos.",
+        "primary": { "label": "Kontakt aufnehmen", "href": "/kontakt/" },
+        "secondary": { "label": "0151 23410823", "href": "tel:+4915123410823" }
+      }
+    },
+    { "id": "footer", "variant": "nova" }
+  ]
+}

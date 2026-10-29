@@ -1,9 +1,7 @@
 ---
-import Logo from "@components/ui/atoms/Logo.astro";
+import PraxisLogo from "@components/ui/atoms/PraxisLogo.astro";
 import MenuToggle from "@components/ui/molecules/Navbar/shared/MenuToggle.astro";
-import LanguageSwitch from "@components/ui/molecules/Navbar/shared/LanguageSwitch.astro";
 import type { NavTheme } from "@components/ui/molecules/Navbar/shared/nav-theme-classes";
-import { formatInternalLink } from "@utils/url";
 import { getNovaCopy, getNovaNavigationPath, type NovaLocale } from "@utils/nova-i18n";
 
 export interface Props {
@@ -11,122 +9,98 @@ export interface Props {
 	locale?: NovaLocale;
 }
 
-const { theme = "light", locale = "pl" } = Astro.props;
+const { locale = "de" } = Astro.props;
 const headerData = getNovaCopy(locale).navigation;
 
-// Why: floating navbar has two visual states. It's at the top of the page
-// with a transparent overlay embedded in the hero (absolute), and it goes on the scroll
-// fixed bar with background and blur. Colors depend on theme: light (light theme,
-// dark text) and dark/transparent (dark hero, white text).
-const isDark = theme === "dark" || theme === "transparent";
+type MenuItem = {
+	label: string;
+	href: string;
+	children?: { label: string; href: string }[];
+};
 
-// Why: there can be no floating on subpages without a hero at the top
-// transparent overlay, because the text would be lost against the background of the section. Theme "dark"
-// it immediately renders a fixed bar (like on a homepage after a scroll) and skips it
-// second header so that there is no duplicate navigation.
-const isSolid = theme === "dark";
+const menu = headerData.menu as MenuItem[];
+const currentPath = Astro.url.pathname;
+const isCurrent = (href: string) => href !== "/" && currentPath.startsWith(href.replace(/#.*$/, ""));
 
-// Static classes (overlay on hero) depending on the theme
-const staticTextClass = isDark ? "text-white" : "text-brand-dark";
-// Fixed classes (after scrolling) depending on the theme
-const fixedShellClass = isDark
-	? "border-white/10 bg-brand-dark/95 text-white shadow-lg shadow-black/20"
-	: "border-brand-dark/10 bg-[var(--ui-bg-page)]/95 text-brand-dark shadow-lg shadow-black/5";
+// Why: the floating navbar has two states. The static bar sits at the top of
+// the page; after scrolling, a fixed copy slides in. Both share this markup,
+// so it is rendered from one template below.
+const bars: { attr: Record<string, string>; fixed: boolean }[] = [
+	{ attr: { "data-site-header": "", "data-site-header-static": "" }, fixed: false },
+	{ attr: { "data-site-header-fixed": "", "aria-hidden": "true" }, fixed: true },
+];
 ---
 
-<!-- Dlaczego: pierwsza nawigacja jest przezroczystym overlayem na hero (absolute),
-     so hero starts at the very top of the page and the navbar looks like part of it.
-     The second one (fixed) appears only after scrolling and enters from the top, thanks to which
-     permanent access to the menu does not take up space on the first screen.
-     W trybie solid (theme=dark, podstrony bez hero) pierwszy header jest od razu
-     fixed and dark, and the second one is not rendered at all (isSolid).-->
-<header
-	data-site-header
-	data-site-header-static
-	transition:animate="none"
-	class:list={[
-		"left-0 top-0 w-full",
-		isSolid
-			? `fixed z-[1000] border-b ${fixedShellClass}`
-			: `absolute z-[100] bg-transparent ${staticTextClass}`,
-	]}
->
-	<div class="ui-container">
-		<div class="flex items-center justify-between gap-2 py-3 sm:gap-4 sm:py-4 lg:gap-6 lg:py-5" data-nav-inner>
-			<a href={getNovaNavigationPath("/", locale)} class="nova-site-logo relative z-[1010] flex min-w-0 shrink-0 items-center">
-				<Logo variant={isDark ? "light" : "dark"} density="compact" />
-			</a>
-
-			<nav class="hidden min-w-0 flex-1 items-center justify-center gap-5 lg:flex xl:gap-8">
-				{headerData.menu.map((item) => (
-					<a href={getNovaNavigationPath(item.href, locale)} class="ui-nav-bar-link shrink-0 opacity-75 transition-opacity hover:opacity-100">
-						{item.label}
-					</a>
-				))}
-			</nav>
-
-			<div class="relative z-[1010] flex shrink-0 items-center gap-2 sm:gap-3">
-				<LanguageSwitch locale={locale} />
-				<!-- Dlaczego: globalny wzorzec przycisku (ui-button ui-button-primary ui-nav-cta)
-         instead of raw classes. Gives consistent hover (text swap + color slide) and dimensions
-				     z core.css. Wzorzec z NavbarMainCentered (layout Centered). -->
-				<a href={formatInternalLink(headerData.cta.href)} class="ui-button ui-button-primary ui-nav-cta hidden sm:flex">
-					<span class="ui-button-text-wrap">
-						<span class="ui-button-text-default">{headerData.cta.label}</span>
-						<span class="ui-button-text-hover">{headerData.cta.hoverLabel}</span>
-					</span>
+{bars.map(({ attr, fixed }) => (
+	<header
+		{...attr}
+		transition:animate="none"
+		class:list={[
+			"praxis-header left-0 top-0 w-full",
+			fixed
+				? "pointer-events-none fixed z-[1000] -translate-y-full opacity-0 shadow-lg backdrop-blur-md will-change-transform"
+				: "absolute z-[100]",
+		]}
+	>
+		<div class="ui-container">
+			<div class="flex items-center justify-between gap-3 py-3 lg:gap-6" data-nav-inner>
+				<a href={getNovaNavigationPath("/", locale)} class="relative z-[1010] flex min-w-0 shrink-0 items-center" aria-label={headerData.aria.home} tabindex={fixed ? -1 : undefined}>
+					<PraxisLogo size="compact" />
 				</a>
-				<MenuToggle locale={locale} />
+
+				<nav class="hidden min-w-0 flex-1 items-center justify-center gap-6 xl:flex" aria-label={headerData.aria.navMain}>
+					{menu.map((item) => item.children?.length ? (
+						<div class="praxis-nav-dropdown relative">
+							<a href={getNovaNavigationPath(item.href, locale)} class:list={["ui-nav-bar-link praxis-nav-link", isCurrent(item.href) && "is-current"]} aria-haspopup="true" tabindex={fixed ? -1 : undefined}>
+								{item.label}
+								<i class="ph ph-caret-down ml-1 text-xs" aria-hidden="true"></i>
+							</a>
+							<div class="praxis-nav-dropdown__panel">
+								<ul class="flex flex-col gap-1">
+									{item.children.map((child) => (
+										<li>
+											<a href={getNovaNavigationPath(child.href, locale)} class="praxis-nav-dropdown__link" tabindex={fixed ? -1 : undefined}>{child.label}</a>
+										</li>
+									))}
+								</ul>
+							</div>
+						</div>
+					) : (
+						<a href={getNovaNavigationPath(item.href, locale)} class:list={["ui-nav-bar-link praxis-nav-link", isCurrent(item.href) && "is-current"]} aria-current={isCurrent(item.href) ? "page" : undefined} tabindex={fixed ? -1 : undefined}>
+							{item.label}
+						</a>
+					))}
+				</nav>
+
+				<div class="relative z-[1010] flex shrink-0 items-center gap-3">
+					<a href={headerData.phone.href} class="praxis-nav-phone hidden items-center gap-1.5 lg:inline-flex" tabindex={fixed ? -1 : undefined}>
+						<i class="ph ph-phone" aria-hidden="true"></i>
+						<span class="sr-only">{headerData.aria.phone}:</span>
+						{headerData.phone.label}
+					</a>
+					<a href={getNovaNavigationPath(headerData.cta.href, locale)} class="ui-button ui-button-primary ui-nav-cta hidden sm:flex" tabindex={fixed ? -1 : undefined}>
+						<span class="ui-button-text-wrap">
+							<span class="ui-button-text-default ui-type-cta-label">{headerData.cta.label}</span>
+							<span class="ui-button-text-hover ui-type-cta-label" aria-hidden="true">{headerData.cta.hoverLabel}</span>
+						</span>
+					</a>
+					<MenuToggle locale={locale} mobileOnly={false} class="xl:hidden" />
+				</div>
 			</div>
 		</div>
-	</div>
-</header>
-
-{!isSolid && (
-<header
-	data-site-header-fixed
-	transition:animate="none"
-	aria-hidden="true"
-	class:list={[
-		"pointer-events-none fixed top-0 left-0 z-[1000] w-full -translate-y-full opacity-0 shadow-lg backdrop-blur-md will-change-transform border-b",
-		fixedShellClass,
-	]}
->
-	<div class="ui-container">
-		<div class="flex items-center justify-between gap-2 py-2.5 sm:gap-4 sm:py-3 lg:gap-6 lg:py-3.5" data-nav-inner>
-			<a href={getNovaNavigationPath("/", locale)} class="nova-site-logo relative z-[1010] flex min-w-0 shrink-0 items-center">
-				<Logo variant={isDark ? "light" : "dark"} density="compact" />
-			</a>
-
-			<nav class="hidden min-w-0 flex-1 items-center justify-center gap-5 lg:flex xl:gap-8">
-				{headerData.menu.map((item) => (
-					<a href={getNovaNavigationPath(item.href, locale)} class="ui-nav-bar-link shrink-0 opacity-75 transition-opacity hover:opacity-100">
-						{item.label}
-					</a>
-				))}
-			</nav>
-
-			<div class="relative z-[1010] flex shrink-0 items-center gap-2 sm:gap-3">
-				<LanguageSwitch locale={locale} />
-				<a href={formatInternalLink(headerData.cta.href)} class="ui-button ui-button-primary ui-nav-cta hidden sm:flex">
-					<span class="ui-button-text-wrap">
-						<span class="ui-button-text-default">{headerData.cta.label}</span>
-						<span class="ui-button-text-hover">{headerData.cta.hoverLabel}</span>
-					</span>
-				</a>
-				<MenuToggle locale={locale} />
-			</div>
-		</div>
-	</div>
-</header>
-)}
+	</header>
+))}
 
 <style>
-	/* Why: without an explicit transition, the bar would jump out instead
-    drive in. We animate translate (entering from the top) and opacity (appearing),
-    using the translate property from Tailwind v4 instead of transform to
-    matched the -translate-y-full class.*/
+	.praxis-header {
+		border-bottom: 1px solid transparent;
+		background: var(--color-surface);
+		color: var(--color-on-surface);
+	}
+
 	[data-site-header-fixed] {
+		border-bottom-color: var(--color-outline-variant);
+		background: color-mix(in oklab, var(--color-surface) 94%, transparent);
 		transition:
 			translate 0.35s cubic-bezier(0.22, 1, 0.36, 1),
 			opacity 0.35s ease-out;
@@ -138,73 +112,95 @@ const fixedShellClass = isDark
 		translate: 0 0;
 	}
 
-	:global(html[data-theme="nova"] header[data-site-header-static]),
-	:global(html[data-theme="nova"] header[data-site-header-fixed]) {
-		left: 50%;
-		width: min(calc(100% - 2rem), 90rem);
-		transform: translateX(-50%);
-		border-color: transparent;
-		background: var(--color-surface);
-		color: var(--color-on-surface);
-		box-shadow: none;
+	.praxis-header .ui-container {
+		max-width: 90rem;
 	}
 
-	:global(html[data-theme="nova"] header[data-site-header-static]) {
-		border-radius: var(--ui-radius-xl) var(--ui-radius-xl) 0 0;
-	}
-
-	:global(html[data-theme="nova"] header[data-site-header-fixed]) {
-		top: 2.75rem;
-	}
-
-	:global(html[data-theme="nova"] header[data-site-header-static] [data-nav-inner]),
-	:global(html[data-theme="nova"] header[data-site-header-fixed] [data-nav-inner]) {
-		padding-top: 0.8rem;
-		padding-bottom: 0.8rem;
-	}
-
-	:global(html[data-theme="nova"] header[data-site-header-static] .ui-container),
-	:global(html[data-theme="nova"] header[data-site-header-fixed] .ui-container) {
-		max-width: none;
-		padding-inline: clamp(1.5rem, 5vw, 5rem);
-	}
-
-	:global(html[data-theme="nova"] header[data-site-header-static]),
-	:global(html[data-theme="nova"] header[data-site-header-fixed]) {
-		left: 0;
-		width: 100%;
-		transform: none;
-	}
-
-	:global(html[data-theme="nova"] header[data-site-header-static] nav),
-	:global(html[data-theme="nova"] header[data-site-header-fixed] nav) {
-		gap: clamp(1rem, 2vw, 2.25rem);
-	}
-
-	:global(html[data-theme="nova"] header[data-site-header-static] .ui-nav-bar-link),
-	:global(html[data-theme="nova"] header[data-site-header-fixed] .ui-nav-bar-link) {
+	.praxis-nav-link {
+		color: var(--color-brand-dark);
 		font-family: var(--font-sans);
 		font-size: 1rem;
 		font-weight: 600;
-		letter-spacing: 0.01em;
-		opacity: 0.72;
+		opacity: 0.85;
 	}
 
-	@media (min-width: 1280px) {
-		:global(html[data-theme="nova"] header[data-site-header-static] .ui-nav-bar-link),
-		:global(html[data-theme="nova"] header[data-site-header-fixed] .ui-nav-bar-link) {
-			font-size: 1.0625rem;
-		}
+	.praxis-nav-link:hover,
+	.praxis-nav-link.is-current {
+		color: var(--color-brand-primary);
+		opacity: 1;
 	}
 
-	:global(html[data-theme="nova"] header[data-site-header-static] .ui-nav-cta),
-	:global(html[data-theme="nova"] header[data-site-header-fixed] .ui-nav-cta) {
+	.praxis-nav-link.is-current::after {
+		left: 0;
+		width: 100%;
+	}
+
+	.praxis-nav-dropdown__panel {
+		position: absolute;
+		top: 100%;
+		left: 50%;
+		z-index: 20;
+		min-width: 16rem;
+		padding-top: 0.75rem;
+		opacity: 0;
+		pointer-events: none;
+		transform: translate(-50%, 0.25rem);
+		transition: opacity 200ms ease, transform 200ms ease;
+	}
+
+	.praxis-nav-dropdown__panel ul {
+		padding: 0.5rem;
+		border: 1px solid var(--color-outline-variant);
+		border-radius: var(--ui-radius-md);
+		background: var(--color-surface);
+		box-shadow: var(--ui-elevation-soft);
+	}
+
+	.praxis-nav-dropdown:hover .praxis-nav-dropdown__panel,
+	.praxis-nav-dropdown:focus-within .praxis-nav-dropdown__panel {
+		opacity: 1;
+		pointer-events: auto;
+		transform: translate(-50%, 0);
+	}
+
+	.praxis-nav-dropdown__link {
+		display: block;
+		padding: 0.55rem 0.85rem;
+		border-radius: var(--ui-radius-sm);
+		color: var(--color-brand-dark);
+		font-size: 0.95rem;
+		font-weight: 500;
+		white-space: nowrap;
+	}
+
+	.praxis-nav-dropdown__link:hover,
+	.praxis-nav-dropdown__link:focus-visible {
+		background: var(--color-brand-cream);
+		color: var(--color-brand-primary);
+	}
+
+	.praxis-nav-phone {
+		color: var(--color-brand-primary);
+		font-size: 0.95rem;
+		font-weight: 600;
+		white-space: nowrap;
+	}
+
+	.praxis-nav-phone:hover {
+		text-decoration: underline;
+		text-underline-offset: 0.2em;
+	}
+
+	.praxis-header .ui-nav-cta {
 		border-radius: 9999px;
-		padding: 0.7rem 1.2rem;
-		background: var(--color-brand-dark);
-		color: var(--color-brand-light);
 		font-family: var(--font-sans);
-		font-size: 0.875rem;
 		letter-spacing: 0.02em;
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		[data-site-header-fixed],
+		.praxis-nav-dropdown__panel {
+			transition: none;
+		}
 	}
 </style>

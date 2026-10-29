@@ -5,8 +5,7 @@ import { HERO_SECTION_IDS } from "@config/hero-ids";
 import companyData from "@data/global/company.json";
 import type { PageSection } from "@/types/config";
 import { createSectionDataCache, type SectionJsonModule } from "@utils/section-data";
-import { getNovaSectionCopy, type NovaLocale } from "@utils/nova-i18n";
-import { ACTIVE_TEMPLATE } from "@/config/template";
+import type { NovaLocale } from "@utils/nova-i18n";
 
 // Why: PageBuilder renders pages from JSON configs (data-driven).
 // The component never hardcodes the content, only dynamically resolves sections from the config.
@@ -23,7 +22,7 @@ const dataModules = import.meta.glob<SectionJsonModule>("/src/data/sections/**/*
 // Why: one helper applies to both the page renderer and the Studio directory.
 const sectionDataCache = createSectionDataCache(dataModules);
 
-const { heading, sections, locale = "pl" } = Astro.props;
+const { heading, sections, locale = "de" } = Astro.props;
 
 const hasHeroSection = sections.some((s) => (HERO_SECTION_IDS as readonly string[]).includes(s.id));
 
@@ -62,13 +61,9 @@ function resolveSection(section: PageSection): Resolved | null {
     if (data) props = { ...props, ...data };
   }
 
-  // Dlaczego: Nova ma jedną strukturę homepage'u, a copy dla PL i EN jest
-  // wybierane tutaj, zanim props trafią do konkretnego bloku.
-  if (ACTIVE_TEMPLATE === "nova") {
-    const localized = getNovaSectionCopy(locale, variant.dataKey);
-    if (localized) props = { ...props, ...localized };
-    if (section.id === "novaServices" && !props.id) props.id = locale === "pl" ? "uslugi" : "services";
-  }
+  // Why: per-page content from the page JSON wins over the shared section
+  // file, so several pages can reuse one block with their own copy.
+  if (section.data) props = { ...props, ...section.data };
 
   return { component: Component, props };
 }

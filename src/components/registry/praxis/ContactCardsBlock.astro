@@ -1,0 +1,58 @@
+---
+import Section from "@components/ui/layout/Section.astro";
+import Container from "@components/ui/layout/Container.astro";
+import Heading from "@components/ui/atoms/Heading.astro";
+import Icon from "@components/ui/atoms/Icon.astro";
+import Text from "@components/ui/atoms/Text.astro";
+import SectionIntro from "@components/ui/molecules/SectionIntro.astro";
+import LogoRings from "@components/decorations/LogoRings.astro";
+
+// Why: GitHub Pages is static, so version 1 has no form. Phone and e-mail are
+// large cards, each one link (ui-card-interactive), with a visible button label.
+interface Props {
+  id?: string;
+  tone?: "page" | "base";
+  eyebrow?: string;
+  title: string;
+  description?: string;
+  cards: { icon: string; title: string; value: string; href: string; buttonLabel: string; note?: string }[];
+  headingTag?: string;
+}
+
+const { id = "kontakt", tone = "page", eyebrow, title, description, cards, headingTag = "h2" } = Astro.props as Props;
+---
+
+<Section id={id} tone={tone} class="relative overflow-hidden">
+  <LogoRings class="absolute -right-24 top-8 hidden w-96 lg:block" />
+  <Container>
+    <SectionIntro eyebrow={eyebrow} title={title} description={description} headingTag={headingTag} size="hero" class="relative" />
+
+    <ul class="relative mt-10 grid gap-5 md:grid-cols-2 lg:mt-14 lg:gap-6">
+      {cards.map((card) => (
+        <li class="flex">
+          <a href={card.href} class="ui-card-interactive group flex w-full flex-col gap-4 rounded-[1.75rem] border border-brand-dark/10 ui-bg-base p-6 sm:p-10">
+            <span class="flex size-14 items-center justify-center rounded-full bg-brand-primary text-2xl text-white" aria-hidden="true">
+              <Icon name={card.icon} />
+            </span>
+            <Heading tag="h2" variant="feature-title" class="text-brand-dark/75">{card.title}</Heading>
+            <Text tag="span" class="break-words font-heading text-xl font-semibold text-brand-primary sm:text-2xl">{card.value}</Text>
+            {card.note && <Text variant="feature-body-sm" class="text-brand-dark/70">{card.note}</Text>}
+            <span class="ui-button ui-button-primary ui-type-cta-label mt-auto h-11 w-fit px-6 text-sm sm:text-base" aria-hidden="true">
+              <span class="ui-button-text-wrap">
+                <span class="ui-button-text-default">{card.buttonLabel}</span>
+                <span class="ui-button-text-hover">{card.buttonLabel}</span>
+              </span>
+            </span>
+          </a>
+        </li>
+      ))}
+    </ul>
+  </Container>
+</Section>
+
+<style>
+  /* The whole card is the link, so the inner button reacts to card hover. */
+  a:hover :global(.ui-button)::after {
+    --tw-translate-y: 0;
+  }
+</style>

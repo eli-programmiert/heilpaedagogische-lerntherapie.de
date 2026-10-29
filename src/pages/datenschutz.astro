@@ -1,0 +1,16 @@
+---
+import { getEntry, render } from "astro:content";
+import LegalLayout from "@layouts/LegalLayout.astro";
+
+// Text lives in src/content/legal/datenschutz.md (replace with the final text).
+const entry = await getEntry("legal", "datenschutz");
+if (!entry) throw new Error("src/content/legal/datenschutz.md is missing.");
+if (entry.data.draft && import.meta.env.PROD) {
+  console.warn("[legal] Datenschutzerklärung is still a placeholder (draft: true). Go-live blocker.");
+}
+const { Content } = await render(entry);
+---
+
+<LegalLayout title={entry.data.title} description={entry.data.description}>
+  <Content />
+</LegalLayout>

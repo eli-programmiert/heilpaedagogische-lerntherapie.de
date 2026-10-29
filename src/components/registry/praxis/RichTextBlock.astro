@@ -1,0 +1,48 @@
+---
+import Section from "@components/ui/layout/Section.astro";
+import Container from "@components/ui/layout/Container.astro";
+import Icon from "@components/ui/atoms/Icon.astro";
+import Text from "@components/ui/atoms/Text.astro";
+import SectionIntro from "@components/ui/molecules/SectionIntro.astro";
+import RichText from "@components/ui/molecules/RichText.astro";
+import Callout from "@components/ui/molecules/Callout.astro";
+import { renderInline } from "@utils/inline-markup";
+
+// Why: narrow reading column for prose sections (welcome text, preparation
+// notes). Optional checklist and notice keep it flexible without new blocks.
+interface Props {
+  id?: string;
+  tone?: "page" | "base";
+  eyebrow?: string;
+  title?: string;
+  paragraphs?: string[];
+  list?: string[];
+  /** Text after the list. */
+  outro?: string[];
+  note?: { icon?: string; title?: string; text: string };
+  headingTag?: string;
+}
+
+const { id, tone = "page", eyebrow, title, paragraphs = [], list = [], outro = [], note, headingTag = "h2" } = Astro.props as Props;
+---
+
+<Section id={id} tone={tone}>
+  <Container>
+    <div class="mx-auto flex max-w-3xl flex-col gap-6">
+      <SectionIntro eyebrow={eyebrow} title={title} headingTag={headingTag} />
+      <RichText text={paragraphs} variant="body" class="text-brand-dark/85" />
+      {list.length > 0 && (
+        <ul class="flex flex-col gap-3">
+          {list.map((item) => (
+            <li class="flex items-start gap-3">
+              <Icon name="check-circle" class="mt-1 shrink-0 text-xl text-brand-accent" />
+              <Text tag="span" variant="body" class="text-brand-dark/85"><Fragment set:html={renderInline(item)} /></Text>
+            </li>
+          ))}
+        </ul>
+      )}
+      <RichText text={outro} variant="body" class="text-brand-dark/85" />
+      {note && <Callout icon={note.icon} title={note.title} text={note.text} class="mt-2" />}
+    </div>
+  </Container>
+</Section>

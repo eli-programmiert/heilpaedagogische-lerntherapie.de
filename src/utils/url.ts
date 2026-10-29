@@ -1,16 +1,16 @@
 /**
- * Narzedzia do obslugi adresow URL w Astro zgodnie ze standardami projektu.
+ * URL helpers for Astro following the project conventions.
  */
 
 /**
- * Formatuje link wewnetrzny tak, aby zawsze konczyl sie slashem (SEO)
- * i byl poprawnie sformatowany (brak podwojnych slashy).
- * Pomija linki zewnetrzne, mailto:, tel: oraz kotwice bez sciezki.
+ * Formats an internal link so it always ends with a slash (SEO)
+ * and is well formed (no double slashes).
+ * Skips external links, mailto:, tel: and anchors without a path.
  */
 export function formatInternalLink(href: string | null | undefined): string {
   if (!href) return '/';
   
-  // Ignoruj linki zewnetrzne i specjalne
+  // Ignore external and special links
   if (
     href.startsWith('http') || 
     href.startsWith('mailto:') || 
@@ -20,16 +20,16 @@ export function formatInternalLink(href: string | null | undefined): string {
     return href;
   }
 
-  // Obsluga samej kotwicy
+  // Anchor only
   if (href.startsWith('#')) {
     return href;
   }
 
-  // Rozdzielenie sciezki od kotwicy i parametrow
+  // Split the path from the anchor and query parameters
   const [base, ...rest] = href.split(/([#?])/);
   const suffix = rest.join('');
 
-  // Czyszczenie bazy (usuwanie wielu slashy na poczatku i koncu)
+  // Clean the base (collapse repeated slashes)
   let formattedBase = base.replace(/\/+/g, '/');
   
   if (!formattedBase.startsWith('/')) {
@@ -40,14 +40,14 @@ export function formatInternalLink(href: string | null | undefined): string {
     formattedBase = formattedBase + '/';
   }
 
-  // Obsluga strony glownej (zeby nie bylo //)
+  // Home page (avoid //)
   if (formattedBase === '//') formattedBase = '/';
 
   return formattedBase + suffix;
 }
 
 /**
- * Sprawdza czy dany link jest linkiem zewnetrznym
+ * Checks whether a link is external
  */
 export function isExternal(href: string): boolean {
   return href.startsWith('http') || href.startsWith('//');

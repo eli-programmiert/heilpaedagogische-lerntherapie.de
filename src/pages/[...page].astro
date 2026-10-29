@@ -8,11 +8,10 @@ import { isPageAllowed, getFullBleedTop } from "@utils/page-scope";
 import type { NovaLocale } from "@utils/nova-i18n";
 
 export async function getStaticPaths() {
-  // Scope: w buildzie generuj tylko aktywne strony zgodne z BUILD_SCOPE.pages.
-  // Development sites remain available locally but do not go into production.
-  // isPageAllowed helper extended to @utils/page-scope (testable).
-  // In getStaticPaths we use the inline wrapper isAllowed because Astro 7 cuts it
-  // functions not exported from the module prerender (bug: isPageAllowed is not defined).
+  // Scope: only build the pages listed in BUILD_SCOPE.pages.
+  // The isPageAllowed helper lives in @utils/page-scope (testable).
+  // getStaticPaths uses the inline wrapper isAllowed because Astro 7 strips
+  // functions that are not exported from the prerender module (bug: isPageAllowed is not defined).
   const isAllowed = (slug: string): boolean => isPageAllowed(slug, BUILD_SCOPE.pages as string[]);
   return Object.entries(pageModules)
     .map(([path, module]) => ({
@@ -49,8 +48,8 @@ const resolvedHeading = config.heading;
 // (@types/config error) and the sections are validated by check-page-registry.
 const sections = config.sections ?? [];
 
-// Why: navbar/footer renders Layout globally, so page only
-// wybiera wariant (fallback: defaultVariant z rejestru, czyli floating).
+// Why: Layout renders the navbar/footer globally, so the page only picks
+// the variant (fallback: the registry defaultVariant, i.e. floating).
 // Floating is like on a homepage: transparent overlay (static) at the top,
 // and after scrolling, a fixed bar with background and blur appears. When a page has a hero,
 // section starts from the very top (fullBleedTop = no compensation);
@@ -66,7 +65,6 @@ const footerVariant = footerSection?.variant;
   title={resolvedTitle}
   description={resolvedDescription}
   theme={layoutConfig?.theme}
-  sectionPattern={layoutConfig?.sectionPattern}
   navbarVariant={navbarVariant}
   footerVariant={footerVariant}
   fullBleedTop={fullBleedTop}

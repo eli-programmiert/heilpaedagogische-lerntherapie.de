@@ -35,7 +35,7 @@ describe('Semantic design tokens', () => {
 
     for (const block of themeBlocks) {
       for (const color of requiredColors) {
-        expect(block, `Brak tokenu --color-${color} w jednym z motywów`).toContain(
+        expect(block, `Token --color-${color} is missing in one of the themes`).toContain(
           `--color-${color}:`,
         );
       }

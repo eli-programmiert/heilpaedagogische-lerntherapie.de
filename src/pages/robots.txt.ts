@@ -6,10 +6,6 @@ export const GET: APIRoute = ({ site }) => {
   const robotsTxt = [
     'User-agent: *',
     'Allow: /',
-    // Werkzeugseiten (Komponenten-Galerie, QA) sind nur lokal vorhanden;
-    // Disallow schützt sie zusätzlich, falls sie doch im Build landen.
-    'Disallow: /dev/',
-    'Disallow: /qa/',
     '',
     `Sitemap: ${sitemapUrl}`
   ].join('\n');

@@ -12,12 +12,12 @@ const outputDir = path.join(projectRoot, 'audit-reports');
 const lighthouseVersion = '13.4.1';
 
 if (requestedUrl?.startsWith('--')) {
-  console.error('Nieprawidłowy argument --url. Podaj pełny adres URL.');
+  console.error('Invalid --url argument. Pass a full URL.');
   process.exit(1);
 }
 
 if (requestedUrl && /https?:\/\/(localhost|127\.0\.0\.1)(:\d+)?/i.test(requestedUrl)) {
-  console.error('Lokalny Lighthouse musi używać astro preview. Uruchom komendę bez --url albo wskaż opublikowany adres.');
+  console.error('A local Lighthouse run must use astro preview. Run the command without --url or pass a published URL.');
   process.exit(1);
 }
 
@@ -55,12 +55,12 @@ function runAudit(url, label, profileArgs) {
     stdio: 'inherit',
     shell: process.platform === 'win32',
   });
-  console.log(`Lighthouse ${label}: ${outputBase}.report.json oraz .report.html`);
+  console.log(`Lighthouse ${label}: ${outputBase}.report.json and .report.html`);
 }
 
 async function waitForPreview(url, timeoutMs = 30_000) {
   const startedAt = Date.now();
-  let lastError = 'brak odpowiedzi';
+  let lastError = 'no response';
 
   while (Date.now() - startedAt < timeoutMs) {
     try {
@@ -74,7 +74,7 @@ async function waitForPreview(url, timeoutMs = 30_000) {
     await new Promise((resolve) => setTimeout(resolve, 250));
   }
 
-  throw new Error(`Serwer preview nie wystartował w czasie ${timeoutMs} ms: ${lastError}`);
+  throw new Error(`Preview server did not start within ${timeoutMs} ms: ${lastError}`);
 }
 
 function startPreview() {
@@ -117,7 +117,7 @@ let auditUrl = requestedUrl;
 try {
   if (!auditUrl) {
     if (!skipBuild) {
-      console.log('Buduję projekt przed audytem Lighthouse.');
+      console.log('Building the project before the Lighthouse audit.');
       const npmCommand = process.platform === 'win32' ? 'npm.cmd' : 'npm';
       execFileSync(npmCommand, ['run', 'build'], {
         cwd: projectRoot,
@@ -127,12 +127,12 @@ try {
     }
 
     auditUrl = `http://127.0.0.1:${previewPort}/`;
-    console.log(`Uruchamiam astro preview dla zbudowanego dist: ${auditUrl}`);
+    console.log(`Starting astro preview for the built dist: ${auditUrl}`);
     previewProcess = startPreview();
     await waitForPreview(auditUrl);
   }
 
-  console.log(`Uruchamiam Lighthouse CLI dla ${auditUrl}`);
+  console.log(`Running Lighthouse CLI for ${auditUrl}`);
   runAudit(auditUrl, 'mobile', [
     '--form-factor',
     'mobile',

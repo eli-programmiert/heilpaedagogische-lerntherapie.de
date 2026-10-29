@@ -267,7 +267,7 @@ function checkLayoutOnAtoms(filePath: string, content: string): void {
   }
 }
 
-// ── Check 5: CSS animation-fill-mode blokuje transition ──
+// ── Check 5: CSS animation-fill-mode blocks transitions ──
 
 function checkCssAnimationConflict(filePath: string, content: string): void {
   const relPath = relative(join(ROOT, '..'), filePath);
@@ -276,12 +276,12 @@ function checkCssAnimationConflict(filePath: string, content: string): void {
   for (let i = 0; i < lines.length; i++) {
     const line = lines[i];
 
-    // animation-fill-mode: both lub forwards blokuje transition
+    // animation-fill-mode: both or forwards blocks transitions
     if (line.match(/animation-fill-mode\s*:\s*(both|forwards)/)) {
       violations.push({
         file: relPath,
         type: 'animation-fill-mode',
-        detail: 'animation-fill-mode: ' + line.match(/animation-fill-mode\s*:\s*(both|forwards)/)![1] + ' blokuje CSS Transition — uzyj transition zamiast @keyframes lub dodaj data-animation-once do elementu',
+        detail: 'animation-fill-mode: ' + line.match(/animation-fill-mode\s*:\s*(both|forwards)/)![1] + ' blocks CSS transitions — use a transition instead of @keyframes or add data-animation-once to the element',
         line: line.trim().slice(0, 120),
       });
     }
@@ -317,7 +317,7 @@ console.log('\n=== Atomic Design Compliance Check ===\n');
 
 const dirs = [ATOMS_DIR, MOLECULES_DIR, LAYOUT_DIR, REGISTRY_DIR, BLOCKS_DIR];
 
-// obsluga --scan-dirs dla dodatkowych katalogow (np. src/components/mariston)
+// --scan-dirs adds extra directories to scan (e.g. src/components/praxis)
 const scanDirsIndex = process.argv.indexOf('--scan-dirs');
 if (scanDirsIndex !== -1 && process.argv[scanDirsIndex + 1]) {
   const extraDirs = process.argv[scanDirsIndex + 1].split(',').map(function(d) { return resolve(d.trim()); });

@@ -1,7 +1,6 @@
 // Removes media and fonts from dist/ that are not used by the generated pages.
-// The sources in public/ remain untouched, so the Starter Kit still has the full library
-// assets during development. The cleanup only applies to the final build.
-// Executed PO clean-dist.mjs to ignore dev-only pages.
+// The sources in public/ remain untouched; the cleanup only applies to the
+// final build.
 import fs from 'node:fs';
 import path from 'node:path';
 import { BUILD_SCOPE } from '../../site.config.mjs';
@@ -15,7 +14,6 @@ const PRUNABLE_DIRS = [
   'assets/images-webp',
   'assets/videos',
   'assets/image-derivatives',
-  'assets/upload-derivatives',
   'assets/placeholders',
   'fonts',
 ];
@@ -26,12 +24,12 @@ const MEDIA_EXTENSIONS = new Set([
 const FONT_EXTENSIONS = new Set(['.otf', '.ttf', '.woff', '.woff2']);
 
 if (!fs.existsSync(dist)) {
-  console.log('prune-assets: brak dist/, nic do zrobienia');
+  console.log('prune-assets: no dist/, nothing to do');
   process.exit(0);
 }
 
 if (BUILD_SCOPE.images === false) {
-  console.log('prune-assets: wyłączone (BUILD_SCOPE.images = false)');
+  console.log('prune-assets: disabled (BUILD_SCOPE.images = false)');
   process.exit(0);
 }
 
@@ -117,6 +115,6 @@ for (const dir of PRUNABLE_DIRS) {
 
 const formatMiB = (bytes) => `${(bytes / 1024 / 1024).toFixed(2)} MiB`;
 console.log(
-  `prune-assets: zostawiono ${keptCount} plików (${formatMiB(keptBytes)}), ` +
-  `usunięto ${removedCount} nieużywanych (${formatMiB(removedBytes)}) z dist/`,
+  `prune-assets: kept ${keptCount} files (${formatMiB(keptBytes)}), ` +
+  `removed ${removedCount} unused (${formatMiB(removedBytes)}) from dist/`,
 );

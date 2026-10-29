@@ -24,7 +24,7 @@ describe('mobile layout audit', () => {
   });
 
   it('rejects raw semantic markup that bypasses the atomic system', () => {
-    const issues = auditMobileSource('<section><h2>Tytul</h2><p>Opis</p></section>');
+    const issues = auditMobileSource('<section><h2>Titel</h2><p>Text</p></section>');
     expect(issues.filter((issue) => issue.rule === 'atomic-markup')).toHaveLength(3);
   });
 

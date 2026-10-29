@@ -42,7 +42,7 @@ const KNOWN_NON_REGISTRY = ["Navbar"];
 
 const manifestEntries = Object.entries(COMPONENT_MANIFEST);
 const manifestNames = new Set(manifestEntries.map(([name]) => name));
-// Po podziale na podkatalogi manifest bez explicit path jest resolvowany po nazwie pliku,
+// Since the split into subdirectories, a manifest entry without an explicit path is resolved by file name,
 // so we compare by name, not by full path, to avoid false errors.
 const manifestNamesByPath = new Map<string, string>();
 for (const [name, entry] of manifestEntries) {
@@ -56,11 +56,11 @@ for (const path of publicRegistryFiles) {
   const name = path.split("/").pop()?.replace(/\.astro$/, "") ?? "";
   const hasManifest = manifestNames.has(name) || manifestNamesByPath.has(path);
   if (!hasManifest) {
-    console.error(`  BRAK wpisu manifestu dla publicznego pliku: ${path}`);
+    console.error(`  MISSING manifest entry for public file: ${path}`);
     errors++;
   }
   if (!referencedComponents.includes(name)) {
-    console.error(`  OSIEROCONY plik (brak odwołania w section-registry): ${name}.astro`);
+    console.error(`  ORPHANED file (not referenced in section-registry): ${name}.astro`);
     errors++;
   }
 }
@@ -72,13 +72,13 @@ for (const [name, entry] of manifestEntries) {
     const path = getComponentPath(name, entry);
     const absolutePath = join(ROOT, path.replace(/^\//, "").replaceAll("/", "\\"));
     if (!existsSync(absolutePath)) {
-      console.error(`  BRAK pliku wskazanego przez manifest: ${name} -> ${path}`);
+      console.error(`  MISSING file referenced by the manifest: ${name} -> ${path}`);
       errors++;
     }
   } else {
     const found = publicRegistryFiles.some((p) => p.endsWith(`/${name}.astro`));
     if (!found) {
-      console.error(`  BRAK pliku dla wpisu manifestu: ${name} (szukano */${name}.astro)`);
+      console.error(`  MISSING file for manifest entry: ${name} (looked for */${name}.astro)`);
       errors++;
     }
   }
@@ -88,13 +88,13 @@ for (const [name, entry] of manifestEntries) {
 for (const name of [...new Set(referencedComponents)]) {
   if (manifestNames.has(name)) continue;
   if (KNOWN_NON_REGISTRY.includes(name)) continue;
-  console.error(`  BRAK wpisu manifestu dla komponentu: ${name}`);
+  console.error(`  MISSING manifest entry for component: ${name}`);
   errors++;
 }
 
 if (errors > 0) {
-  console.error(`\nBłędów: ${errors}. Sprawdź src/config/section-registry.ts i pliki w src/components/registry/`);
+  console.error(`\nErrors: ${errors}. Check src/config/section-registry.ts and the files in src/components/registry/`);
   process.exit(1);
 } else {
-  console.log("Wszystkie komponenty registry są poprawnie zarejestrowane.");
+  console.log("All registry components are registered correctly.");
 }

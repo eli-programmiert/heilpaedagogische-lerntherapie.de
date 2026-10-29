@@ -96,9 +96,18 @@
         "title": "Fragen zu den Kosten",
         "items": [
           { "q": "Was kostet das Erstgespräch?", "a": "Nichts. Das telefonische Erstgespräch ist kostenlos." },
-          { "q": "Für welche Leistungen übernimmt das Jugendamt die Kosten?", "a": "Für Lerntherapie, im Rahmen der Eingliederungshilfe nach § 35a SGB VIII, wenn eine medizinische Diagnose vorliegt." },
-          { "q": "Übernimmt die Krankenkasse die Kosten?", "a": "Nein. Heilpädagogische Förderung und Lerntherapie sind keine Leistungen der gesetzlichen Krankenkassen." },
-          { "q": "Was kostet ein Hausbesuch zusätzlich?", "a": "Für Hausbesuche berechne ich eine Kilometerpauschale von 5–10 €, ausgehend von Zeitlarn." }
+          {
+            "q": "Für welche Leistungen übernimmt das Jugendamt die Kosten?",
+            "a": "Für Lerntherapie, im Rahmen der Eingliederungshilfe nach § 35a SGB VIII, wenn eine medizinische Diagnose vorliegt."
+          },
+          {
+            "q": "Übernimmt die Krankenkasse die Kosten?",
+            "a": "Nein. Heilpädagogische Förderung und Lerntherapie sind keine Leistungen der gesetzlichen Krankenkassen."
+          },
+          {
+            "q": "Was kostet ein Hausbesuch zusätzlich?",
+            "a": "Für Hausbesuche berechne ich eine Kilometerpauschale von 5–10 €, ausgehend von Zeitlarn."
+          }
         ]
       }
     },
@@ -109,7 +118,7 @@
         "title": "Fragen zu Kosten oder Kostenübernahme?",
         "text": "Rufen Sie mich an oder schreiben Sie mir. Das Erstgespräch ist kostenlos.",
         "primary": { "label": "Kontakt aufnehmen", "href": "/kontakt/" },
-        "secondary": { "label": "0151 23410823", "href": "tel:+4915123410823" }
+        "secondary": { "label": "folgt-bald", "href": "" }
       }
     },
     { "id": "footer", "variant": "nova" }

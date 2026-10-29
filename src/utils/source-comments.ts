@@ -1,6 +1,6 @@
 /**
- * Ukrywa tresc komentarzy, zachowujac konce linii oraz literaly tekstowe.
- * Dzieki temu audyty zachowuja numery linii i nie traktuja dokumentacji jak kodu.
+ * Masks comment content while keeping line breaks and string literals.
+ * This way audits keep line numbers and do not treat documentation as code.
  */
 export function maskSourceComments(source: string): string {
   let result = '';

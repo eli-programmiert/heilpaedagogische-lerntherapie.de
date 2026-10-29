@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { auditRenderedImages, auditSmartImageFallback } from '@utils/image-audit';
+import { auditRenderedImages } from '@utils/image-audit';
 
 describe('image audit', () => {
   it('accepts accessible images with dimensions and loading strategy', () => {
@@ -20,21 +20,10 @@ describe('image audit', () => {
     ]);
   });
 
-  it('ignores the empty image reserved for the lightbox overlay', () => {
-    expect(auditRenderedImages('<img id="ui-lightbox-img" src="" alt="Enlarged view">', 'dist/index.html')).toEqual([]);
-  });
-
   it('accepts decorative images with an empty alt attribute', () => {
     expect(auditRenderedImages(
       '<img src="/texture.svg" alt="" aria-hidden="true" width="1600" height="900" loading="lazy">',
       'dist/index.html',
-    )).toEqual([]);
-  });
-
-  it('requires SmartImage to keep a visible placeholder fallback', () => {
-    expect(auditSmartImageFallback(
-      'const showPlaceholder = placeholder || !src; const isResolved = !!resolvedImage; aspect-video',
-      'SmartImage.astro',
     )).toEqual([]);
   });
 });

@@ -6,7 +6,7 @@ import { auditPageConfig, auditRegistryDefaults, getSectionDataKeys } from '@uti
 const projectRoot = path.resolve(import.meta.dirname, '../..');
 const pagesDir = path.join(projectRoot, 'src', 'data', 'pages');
 
-// Dlaczego: component-map jest teraz automatyczny (import.meta.glob nad
+// Why: component-map is automatic now (import.meta.glob over
 // src/components/registry/**/*.astro), so we do not parse the component names
 // from file - we take them from real files in the registry directory (recursively).
 // Navbar is the only component outside the registry (ui/molecules), we add it manually.

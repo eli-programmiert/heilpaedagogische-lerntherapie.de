@@ -28,10 +28,6 @@
   src: url(/fonts/satoshi-900.woff2) format('woff2');
 }
 
-/* Gambarino (Fontshare) — font heading (themes.css). Fontshare oferuje
-   only weight 400, so we only declare this file.*/
-
-
 /* cyrillic */
 @font-face {
   font-family: 'Jost';

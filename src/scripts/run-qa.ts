@@ -7,27 +7,27 @@ interface QaStep {
 }
 
 const STANDARD_STEPS: QaStep[] = [
-  { name: 'npm run test', command: 'npm run test -- --run', description: 'Wszystkie testy jednostkowe i kontraktowe' },
-  { name: 'npm run check:types', command: 'npm run check:types', description: 'Diagnostyka TypeScript i komponentów Astro' },
-  { name: 'npm run check:hardcoded', command: 'npm run check:hardcoded', description: 'Brak treści klienta zaszytej w komponentach' },
-  { name: 'npm run check:imports', command: 'npm run check:imports', description: 'Importy między katalogami używają aliasów' },
-  { name: 'npm run check:registrations', command: 'npm run check:registrations', description: 'Spójność manifestu, rejestru i plików komponentów' },
-  { name: 'npm run check:atomic', command: 'npm run check:atomic', description: 'Blokujące reguły Atomic Design' },
-  { name: 'npm run check:motion', command: 'npm run check:motion', description: 'Brak wycofanych tokenów animacji' },
-  { name: 'npm run check:icons', command: 'npm run check:icons', description: 'Spójność używanych ikon' },
-  { name: 'npm run check:data', command: 'npm run check:data', description: 'Kontrakty danych sekcji i stron' },
-  { name: 'npm run test:mobile', command: 'npm run test:mobile', description: 'Testy reguł audytu mobilnego' },
-  { name: 'npm run check:mobile', command: 'npm run check:mobile', description: 'Audyt mobilny bez nowych naruszeń' },
-  { name: 'npm run build', command: 'npm run build', description: 'Build produkcyjny' },
-  { name: 'npm run check:links', command: 'npm run check:links', description: 'Linki, trasy, nagłówki i akcje formularzy' },
-  { name: 'npm run check:page-registry', command: 'npm run check:page-registry', description: 'Konfiguracje stron i warianty rejestru' },
-  { name: 'npm run check:images', command: 'npm run check:images', description: 'Obrazy i fallback SmartImage' },
-  { name: 'npm run check:seo', command: 'npm run check:seo', description: 'Bezpieczne SEO bazowego Starter Kita' },
+  { name: 'npm run test', command: 'npm run test -- --run', description: 'All unit and contract tests' },
+  { name: 'npm run check:types', command: 'npm run check:types', description: 'TypeScript and Astro component diagnostics' },
+  { name: 'npm run check:hardcoded', command: 'npm run check:hardcoded', description: 'No site copy hard-coded in components' },
+  { name: 'npm run check:imports', command: 'npm run check:imports', description: 'Cross-directory imports use aliases' },
+  { name: 'npm run check:registrations', command: 'npm run check:registrations', description: 'Manifest, registry and component files agree' },
+  { name: 'npm run check:atomic', command: 'npm run check:atomic', description: 'Blocking Atomic Design rules' },
+  { name: 'npm run check:motion', command: 'npm run check:motion', description: 'No retired animation tokens' },
+  { name: 'npm run check:icons', command: 'npm run check:icons', description: 'Used icons are consistent' },
+  { name: 'npm run check:data', command: 'npm run check:data', description: 'Page data contracts' },
+  { name: 'npm run test:mobile', command: 'npm run test:mobile', description: 'Mobile audit rule tests' },
+  { name: 'npm run check:mobile', command: 'npm run check:mobile', description: 'Mobile audit without new violations' },
+  { name: 'npm run build', command: 'npm run build', description: 'Production build' },
+  { name: 'npm run check:links', command: 'npm run check:links', description: 'Links, routes, headings and form actions' },
+  { name: 'npm run check:page-registry', command: 'npm run check:page-registry', description: 'Page configs and registry variants' },
+  { name: 'npm run check:images', command: 'npm run check:images', description: 'Rendered images' },
+  { name: 'npm run check:seo', command: 'npm run check:seo', description: 'Basic SEO checks' },
 ];
 
 const STRICT_STEPS = STANDARD_STEPS.map((step) =>
   step.name === 'npm run check:mobile'
-    ? { ...step, name: 'npm run check:mobile -- --strict', command: 'npm run check:mobile -- --strict', description: 'Audyt mobilny bez wyjątków legacy' }
+    ? { ...step, name: 'npm run check:mobile -- --strict', command: 'npm run check:mobile -- --strict', description: 'Mobile audit without legacy exceptions' }
     : step,
 );
 
@@ -43,9 +43,9 @@ const MODES: Record<string, { name: string; steps: QaStep[] }> = {
   client: {
     name: 'Client Production Gate',
     steps: [
-      { name: 'npm run check:content', command: 'npm run check:content', description: 'Walidacja świadomych placeholderów startera' },
-      { name: 'npm run build:prod', command: 'npm run build:prod', description: 'Build z blokada na placeholdery i czyszczeniem studia' },
-      { name: 'npm run check:seo:client', command: 'npm run check:seo:client', description: 'Walidacja indeksowalnego SEO projektu klienta' },
+      { name: 'npm run check:content', command: 'npm run check:content', description: 'No placeholder content left' },
+      { name: 'npm run build:prod', command: 'npm run build:prod', description: 'Production build' },
+      { name: 'npm run check:seo:client', command: 'npm run check:seo:client', description: 'SEO checks for the indexable live site' },
     ],
   },
 };
@@ -53,8 +53,8 @@ const MODES: Record<string, { name: string; steps: QaStep[] }> = {
 function runStep(step: QaStep): boolean {
   const separator = '\n' + '='.repeat(72) + '\n';
   console.log(separator);
-  console.log(`  KROK: ${step.name}`);
-  console.log(`  CEL:  ${step.description}`);
+  console.log(`  STEP: ${step.name}`);
+  console.log(`  GOAL: ${step.description}`);
   console.log(separator);
 
   try {
@@ -63,11 +63,11 @@ function runStep(step: QaStep): boolean {
       cwd: process.cwd(),
       timeout: 120_000,
     });
-    console.log(`\n  [OK] ${step.name} — zakonczone kodem 0\n`);
+    console.log(`\n  [OK] ${step.name} — exited with code 0\n`);
     return true;
   } catch (err: unknown) {
     const status = (err as { status?: number }).status;
-    console.log(`\n  [FAIL] ${step.name} — zakonczone kodem ${status ?? 'unknown'}\n`);
+    console.log(`\n  [FAIL] ${step.name} — exited with code ${status ?? 'unknown'}\n`);
     return false;
   }
 }
@@ -76,39 +76,28 @@ function showHelp(): void {
   const lines = [
     '',
     '  ============================================================',
-    '  ˚  Starter Kit — System uruchamiania QA',
+    '  QA runner',
     '  ============================================================',
     '',
-    '  DOSTEPNE KOMENDY:',
+    '  COMMANDS:',
     '',
-    `  npm run qa          Standardowy gate: testy + checki + build (${STANDARD_STEPS.length} kroków)`,
-    '  npm run qa:strict   Jak qa, ale check:mobile w trybie strict',
-    '  npm run qa:client   Bramka produkcyjna klienta: check:content + build:prod',
-    '  npm run qa:help     Ta pomoc',
+    `  npm run qa          Standard gate: tests + checks + build (${STANDARD_STEPS.length} steps)`,
+    '  npm run qa:strict   Like qa, but check:mobile in strict mode',
+    '  npm run qa:client   Production gate: check:content + build:prod + check:seo:client',
+    '  npm run qa:help     This help',
     '',
-    '  PROFIL ZALECEN:',
+    '  WHEN TO USE WHICH:',
     '',
-    '  qa         — po kazdej zmianie UI (najczestszy wybor)',
-    '  qa:strict  — przed mergem do mastera, wymaga 0 known legacy',
-    '  qa:client  — przed oddaniem strony klientowi',
+    '  qa         — after every UI change (the usual choice)',
+    '  qa:strict  — before merging to main, requires 0 known legacy issues',
+    '  qa:client  — before publishing the site',
     '',
-    '  WAZNE:',
+    '  MANUAL CHECKS THE RUNNER DOES NOT COVER:',
     '',
-    '  - Starter kit zawiera swiadome placeholdery (example.com,',
-    '    Nazwa strony, +48 123 456 789 itd.). Sa one wykrywane przez',
-    '    check:content i powoduja oczekiwany blad. Przed oddaniem',
-    '    projektu klienta nalezy je zastapic prawdziwymi danymi.',
-    '  - Fixture QA: /qa/mobile-fixture/',
-    '  - Po kazdej zmianie UI uruchom npm run qa.',
-    '  - Nie uznawaj zadania za zakonczone bez wyniku npm run qa.',
-    '  - Zrodlo zadan: .docs/QA-TASKS.md',
-    '',
-    '  RECZNE TESTY POZA AUTOMATEM:',
-    '',
-    '  - Focus trap draweru (Tab, Shift+Tab, Escape)',
-    '  - Lenis po przejsciu miedzy stronami',
-    '  - Overflow przy 320px, 375px, 390px, 414px',
-    '  - Dzialanie kotwic (#contact)',
+    '  - Drawer focus trap (Tab, Shift+Tab, Escape)',
+    '  - Smooth scrolling after page transitions',
+    '  - Overflow at 320px, 375px, 390px, 414px',
+    '  - In-page anchors (e.g. /angebot/#adhs)',
     '',
     '  ============================================================',
     '',
@@ -129,13 +118,13 @@ function main(): void {
   const mode = MODES[modeArg];
 
   if (!mode) {
-    console.error(`Nieznany profil QA: "${modeArg}". Dostepne: ${Object.keys(MODES).join(', ')}`);
+    console.error(`Unknown QA profile: "${modeArg}". Available: ${Object.keys(MODES).join(', ')}`);
     process.exit(1);
   }
 
   const startTime = Date.now();
 
-  console.log(`\n  >>> Rozpoczynam: ${mode.name} <<<\n`);
+  console.log(`\n  >>> Starting: ${mode.name} <<<\n`);
 
   let passed = 0;
   let failed = 0;
@@ -153,23 +142,16 @@ function main(): void {
   const total = mode.steps.length;
 
   console.log('='.repeat(72));
-  console.log(`  PODSUMOWANIE: ${mode.name}`);
+  console.log(`  SUMMARY: ${mode.name}`);
   console.log('='.repeat(72));
-  console.log(`  Zakonczone: ${passed}/${total}  Bledy: ${failed}  Czas: ${elapsed}s`);
+  console.log(`  Passed: ${passed}/${total}  Failed: ${failed}  Time: ${elapsed}s`);
 
-  if (modeArg === 'client') {
-    if (failed > 0) {
-      console.log(`  UWAGA: Starter kit ma świadome placeholdery.`);
-      console.log(`  To jest oczekiwane. qa:client przechodzi dopiero po`);
-      console.log(`  zastapieniu ich danymi klienta.`);
-    }
-  }
 
   if (failed > 0) {
-    console.log(`\n  >>> NIE ZALICZONE <<<\n`);
+    console.log(`\n  >>> FAILED <<<\n`);
     process.exit(1);
   } else {
-    console.log(`\n  >>> ZALICZONE <<<\n`);
+    console.log(`\n  >>> PASSED <<<\n`);
     process.exit(0);
   }
 }

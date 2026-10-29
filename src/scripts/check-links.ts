@@ -13,8 +13,6 @@ const scanPatterns = [
 
 const excludePatterns = [
   '**/node_modules/**',
-  'src/data/qa/**',
-  'src/pages/qa/**',
   '.audit-baseline.json',
 ];
 
@@ -25,7 +23,7 @@ let targets: string[] = scanPatterns.flatMap((pattern) =>
 const routes = buildRouteMap();
 const distDir = path.resolve('dist');
 if (fs.existsSync(distDir)) {
-  const distHtml = fg.sync('**/*.html', { cwd: distDir, ignore: ['**/qa/**'] });
+  const distHtml = fg.sync('**/*.html', { cwd: distDir });
   targets = targets.concat(distHtml.map((f) => `dist/${f}`));
 
   // Static Astro output is the authoritative route list for generated pages,

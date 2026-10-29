@@ -1,8 +1,8 @@
-# Normalizacja końców linii: wszystkie pliki tekstowe w LF (konwencja Windows→git).
-# Chroni przed commitami typu "EOL change" (np. CtaBlock w mklegal, 8daf039).
+# Normalise line endings: all text files use LF (also on Windows).
+# Prevents commits that only change line endings.
 * text=auto eol=lf
 
-# Pliki binarne bez konwersji
+# Binary files, no conversion
 *.png binary
 *.jpg binary
 *.jpeg binary
@@ -15,12 +15,3 @@
 *.otf binary
 *.zip binary
 *.pdf binary
-
-# Pliki wewnętrzne repozytorium, które nie należą do paczki marketplace.
-AGENTS.md export-ignore
-TEMPLATE.md export-ignore
-.marketplaceignore export-ignore
-.github/ export-ignore
-release/ export-ignore
-audit-reports/ export-ignore
-archive/ export-ignore

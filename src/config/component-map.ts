@@ -11,7 +11,7 @@ import Navbar from "@components/ui/molecules/Navbar.astro";
 
 const registryModules = import.meta.glob("/src/components/registry/**/*.astro", { eager: true });
 
-// Dlaczego: kluczem jest nazwa pliku bez rozszerzenia (np. "HeroBlock"),
+// Why: the key is the file name without extension (e.g. "OfferCardsBlock"),
 // because section-registry refers to components by filename.
 // Supports both flat and subdirectories: searches for file name by suffix.
 const registryMap: Record<string, any> = Object.fromEntries(

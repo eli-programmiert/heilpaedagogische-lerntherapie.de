@@ -1,13 +1,13 @@
 /* Common navigation, mobile drawer and menu states.
    Drawer animations: "kinetic deck" - layers slide in like a deck of cards,
    links break up with stagger, hamburger morphs into X.
-   System: czysty CSS transitions + klasy is-open (bez GSAP). */
+   System: plain CSS transitions + is-open classes (no GSAP). */
 
 @layer components {
   :root {
     --ui-nav-anim-dur: 460ms;
     --ui-nav-anim-dur-fast: 240ms;
-    /* Easing z referencyjnej animacji (Gsap "main" 0.65, 0.01, 0.05, 0.99):
+    /* Easing from the reference animation (GSAP "main" 0.65, 0.01, 0.05, 0.99):
        a decisive start and a long deceleration, the nature of a deck of cards*/
     --ui-nav-anim-ease: cubic-bezier(0.65, 0.01, 0.05, 0.99);
     /* Deck Layers (Curtain) Delays*/
@@ -23,9 +23,9 @@
   .ui-nav-drawer-root {
     position: fixed;
     inset: 0;
-    /* Dlaczego width: 100vw: inset:0 daje szerokosc clientWidth (394 - pasek
-       przewijania), pozostawialo za drawerem 15px golej strony przy desktop;
-       100vw obejmuje rowniez pasek, wiec pokrycie jest calkowite */
+    /* Why width: 100vw: inset: 0 gives the clientWidth (minus the scrollbar),
+       which left 15px of bare page behind the drawer on desktop; 100vw also
+       covers the scrollbar, so the coverage is complete. */
     width: 100vw;
     z-index: var(--ui-nav-drawer-root-z);
     visibility: hidden;
@@ -81,8 +81,8 @@
 
   /* Why: movement decoration without content, pointer-events none and aria-hidden.
      The curtains are opaque (thinner variants of the drawer background) and slide in
-     z prawej (translateX 102% -> 0) ze staggerem 90ms: najpierw ta z
-     primary tint (the darkest), then white, finally the base tint.
+     from the right (translateX 102% -> 0) with a 90ms stagger: first the one
+     with the primary tint (the darkest), then white, finally the base tint.
      The "deck of cards" effect can be seen in motion (front edges) and at rest
      everything is covered by the top layer and the appearance is uniform.*/
   .ui-nav-drawer__deck {
@@ -181,11 +181,11 @@
     box-shadow: 0 0 0 2px var(--color-brand-primary);
   }
 
-  /* Paski: w spoczynku poziome (hamburger), przy is-open morf do X.
-     Dlaczego opoznienia 340ms w stanie zamknietym: przy kliknieciu X nie
-     widaC "odbijania" ikony z powrotem w hamburgera - przycisk najpierw
-     zanika (opacity 160ms), a paski cofaja sie dopiero gdy jest niewidoczny
-     (opoznienie domyka sie przed ukryciem drzewa po 460ms). */
+  /* Bars: horizontal at rest (hamburger), morph into an X when is-open.
+     Why the 340ms delays in the closed state: clicking the X should not show
+     the icon "bouncing" back into a hamburger. The button fades first
+     (opacity 160ms) and the bars only move back once it is invisible
+     (the delay ends before the tree is hidden after 460ms). */
   .ui-nav-drawer__close-bar {
     display: block;
     width: 1.375rem;
@@ -198,9 +198,7 @@
       opacity 180ms linear 340ms;
   }
 
-  /* Morph doesn't move on opening until the whole thing is is-open -
-     hence transition on changes after base declarations*/
-  /* Morf do X przy otwarciu: natychmiast (bez opoznien z base) */
+  /* Morph into an X on opening: immediately (without the base delays). */
   .ui-nav-drawer-root.is-open .ui-nav-drawer__close-bar {
     transition:
       transform 340ms var(--ui-nav-anim-ease) 0s,
@@ -235,17 +233,16 @@
     gap: 2rem;
   }
 
-  /* Dlaczego margin-block: auto na nav zamiast justify-content: center
-     on scroller: with content higher than the flex center viewport
-     cuts off the beginning of the list (you can't scroll to the top), and auto
-     the margins at the elevation turn into 0 and the list is there
-     przewijalna normalnie */
+  /* Why margin-block: auto on the nav instead of justify-content: center on
+     the scroller: when the content is taller than the viewport, flex centring
+     cuts off the start of the list (you can't scroll to the top). Auto
+     margins collapse to 0 in that case and the list scrolls normally. */
   .ui-nav-drawer__nav {
     margin-block: auto;
   }
 
-  /* Subjective scrollbar for larger sublists: thin, barely
-     widoczny, bez natywnego paska w stylu Windows */
+  /* Subtle scrollbar for longer sublists: thin and barely visible,
+     without the native Windows-style bar. */
   .ui-nav-drawer__scroller::-webkit-scrollbar {
     width: 5px;
   }
@@ -345,7 +342,7 @@
     box-shadow: 0 0 0 2px var(--color-brand-primary);
   }
 
-  /* ─── Wiersz linku z rozwijaniem podstron ────────────────────────── */
+  /* ─── Link row with expandable subpages ──────────────────────────── */
 
   /* Why: chevron is positioned absolutely at the right end of the line,
      thanks to which the link remains centered identically to the others
@@ -378,8 +375,8 @@
     color: var(--ui-nav-drawer-muted);
     cursor: pointer;
     opacity: 0;
-    /* Why without background hover: brightening the ball behind the chevron looks
-       jak artefakt; hover to sama zmiana koloru, jak przy linkach */
+    /* Why no background on hover: brightening the circle behind the chevron
+       looks like an artefact; hover only changes the colour, like links. */
     transition:
       translate var(--ui-nav-anim-dur-fast) var(--ui-nav-anim-ease),
       opacity 160ms linear,
@@ -561,7 +558,7 @@
     }
   }
 
-  /* Bars: morph do X po otwarciu draweru (klasa is-open dodawana z JS) */
+  /* Bars: morph into an X when the drawer opens (is-open class added by JS) */
   .ui-nav-menu-toggle__bar {
     display: block;
     width: 1.375rem;

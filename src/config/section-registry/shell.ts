@@ -4,27 +4,21 @@ const icon = '<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 
 
 export const shellSections: Record<string, SectionEntry> = {
   theme: {
-    id: 'theme', label: 'Theme', groupId: 'theme', hint: 'Globalny motyw kolorystyczny', icon,
+    id: 'theme', label: 'Theme', groupId: 'theme', hint: 'Global colour theme', icon,
     defaultVariant: 'default',
     variants: { default: { component: null } },
   },
   navbar: {
-    id: 'navbar', label: 'Navbar', groupId: 'navbar', hint: 'Układ menu głównego', icon,
+    id: 'navbar', label: 'Navbar', groupId: 'navbar', hint: 'Main menu layout', icon,
     defaultVariant: 'floating',
     variants: {
-      centered: { component: 'Navbar', props: { layout: 'centered' } },
       floating: { component: 'Navbar', props: { layout: 'floating' } },
-      local: { component: 'Navbar', props: { layout: 'local' } },
-      plain: { component: 'Navbar', props: { layout: 'plain' } },
     },
   },
   footer: {
-    id: 'footer', label: 'Footer', groupId: 'footer', hint: 'Wariant stopki', icon,
+    id: 'footer', label: 'Footer', groupId: 'footer', hint: 'Footer variant', icon,
     defaultVariant: 'nova',
     variants: {
-      columns: { component: 'FooterColumnsBlock' },
-      minimal: { component: 'FooterMinimalBlock' },
-      promo: { component: 'FooterPromoBlock' },
       nova: { component: 'NovaFooterBlock' },
     },
   },

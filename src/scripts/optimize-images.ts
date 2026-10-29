@@ -2,9 +2,8 @@ import sharp from 'sharp';
 import fs from 'fs';
 import path from 'path';
 
-// The pipeline includes project source images and optional uploaded media.
-// Originals stay in public/assets/uploads so existing URLs keep working after
-// derivatives are generated.
+// Originals live in src/assets/raw/; the AVIF/WebP variants are written to
+// public/assets/images/ (ignored by git, recreated on every build).
 const PROJECT_ROOT = process.cwd();
 const SOURCES = [
   {
@@ -12,21 +11,16 @@ const SOURCES = [
     inputDir: path.join(PROJECT_ROOT, 'src/assets/raw'),
     outputDir: path.join(PROJECT_ROOT, 'public/assets/images'),
   },
-  {
-    id: 'uploads',
-    inputDir: path.join(PROJECT_ROOT, 'public/assets/uploads'),
-    outputDir: path.join(PROJECT_ROOT, 'public/assets/upload-derivatives'),
-  },
 ] as const;
 
 // WebP is a slight fallback, and AVIF usually gives the smallest file for photos.
-// These values ​​are a compromise of quality and size intended for photography.
+// These values are a compromise between quality and size for photos.
 const WEBP_QUALITY = 80;
 const AVIF_QUALITY = 50;
 
-// A denser list of widths allows the browser to select a file closer to the real one
-// slot size. No suffix means the base variant is 800 px for existing ones
-// danych JSON, dlatego nie zmieniamy tego kontraktu na `@800`.
+// A denser list of widths lets the browser pick a file closer to the real
+// slot size. No suffix means the 800 px base variant, which the page JSON
+// files reference, so this contract does not change to `@800`.
 const SIZES = [
   { name: '@220', width: 220, desc: 'thumbnail' },
   { name: '@480', width: 480, desc: 'small' },
@@ -63,8 +57,8 @@ function saveManifest(manifest: Record<string, number>): void {
 
 function slugify(text: string): string {
   const chars: Record<string, string> = {
-    ą: 'a', ć: 'c', ę: 'e', ł: 'l', ń: 'n', ó: 'o', ś: 's', ź: 'z', ż: 'z',
-    Ą: 'a', Ć: 'c', Ę: 'e', Ł: 'l', Ń: 'n', Ó: 'o', Ś: 's', Ź: 'z', Ż: 'z',
+    ä: 'ae', ö: 'oe', ü: 'ue', ß: 'ss',
+    Ä: 'ae', Ö: 'oe', Ü: 'ue',
   };
 
   return text
@@ -131,8 +125,8 @@ async function processDirectory(
       filePath: getOutputPath(source, size, format.extension, relativePath, baseName),
     })));
 
-    // We only remove old derivatives of the same source. Original upload files
-    // they are in a different directory and never go to this cleanup branch.
+    // We only remove old derivatives of the same source; the originals live
+    // in a different directory and never reach this cleanup branch.
     const expectedPaths = new Set(allTargets.map((target) => target.filePath));
     for (const staleTarget of SIZES.flatMap((size) => FORMATS.map((format) => ({
       ...size,
@@ -176,11 +170,11 @@ async function processDirectory(
   }
 }
 
-console.log('🚀 Start smart optymalizacji zdjęć...');
+console.log('🚀 Optimising images...');
 for (const source of SOURCES) {
   if (!fs.existsSync(source.inputDir)) {
     fs.mkdirSync(source.inputDir, { recursive: true });
-    console.log(`ℹ️ Utworzono pusty katalog źródłowy: ${source.inputDir}`);
+    console.log(`ℹ️ Created empty source directory: ${source.inputDir}`);
   }
 }
 
@@ -191,8 +185,8 @@ const manifest = loadManifest();
     await processDirectory(source, source.inputDir, manifest);
   }
   saveManifest(manifest);
-  console.log('\n✨ Wszystkie zdjęcia zoptymalizowane!');
+  console.log('\n✨ All images optimised.');
 })().catch((error) => {
-  console.error('\n💥 Błąd:', error);
+  console.error('\n💥 Error:', error);
   process.exitCode = 1;
 });

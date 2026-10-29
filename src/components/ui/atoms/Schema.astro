@@ -5,13 +5,6 @@ import type { CompanyConfig } from '@/types/config';
 import { getSocialUrls } from '@utils/socials';
 import { SITE_URL } from '../../../../site.config.mjs';
 
-interface Props {
-	/** `affiliate` — tylko lekki WebSite (strona afiliacyjna), bez LocalBusiness z danych globalnych. */
-	template?: 'default' | 'affiliate';
-}
-
-const { template = 'default' } = Astro.props;
-
 // Why: JSON.stringify does not escape '<', which inside set:html
 // could be interpreted as an HTML tag opening (XSS vector via
 // JSON data). Escaping to \u003c neutralizes it, and JSON-LD parses identically.
@@ -19,15 +12,6 @@ const jsonLd = (data: object): string => JSON.stringify(data).replace(/</g, '\\u
 
 const company = companyRaw as CompanyConfig;
 const siteBase = SITE_URL.replace(/\/$/, '');
-const affiliateWebsiteSchema = {
-	'@context': 'https://schema.org',
-	'@type': 'WebSite',
-	name: 'Affiliate',
-	url: `${siteBase}/affiliate/`,
-	description:
-		'Aktualne promocje bankowe, bonusy powitalne i oferty partnerskie w jednym miejscu.',
-};
-
 // Why: ProfessionalService is the closest schema.org subtype of LocalBusiness
 // for a therapy practice. No openingHours: only "Di–Fr nachmittags" is known.
 const schema = {
@@ -62,13 +46,5 @@ const websiteSchema = {
 };
 ---
 
-{
-	template === 'affiliate' ? (
-		<script type="application/ld+json" set:html={jsonLd(affiliateWebsiteSchema)} />
-	) : (
-		<>
-			<script type="application/ld+json" set:html={jsonLd(schema)} />
-			<script type="application/ld+json" set:html={jsonLd(websiteSchema)} />
-		</>
-	)
-}
+<script type="application/ld+json" set:html={jsonLd(schema)} />
+<script type="application/ld+json" set:html={jsonLd(websiteSchema)} />

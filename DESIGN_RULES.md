@@ -39,7 +39,7 @@ GOOD: Always use tokens. `var(--color-brand-primary)`, `text-brand-dark/70`, `bo
 
 ### 🚫 Direct layout classes on atoms
 BAD: `<Heading tag="h2" class="mt-10 mb-20" />`
-GOOD: Let the parent control spacing through `SectionHeader`, `ButtonGroup` or a container div.
+GOOD: Let the parent control spacing through `SectionIntro` or a container div.
 
 ### 🚫 Raw HTML instead of atoms
 BAD: `<section class="py-16"><h2 class="text-3xl">Title</h2><p class="text-lg">Description</p></section>`

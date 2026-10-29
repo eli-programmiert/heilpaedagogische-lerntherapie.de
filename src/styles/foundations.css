@@ -97,7 +97,7 @@ button {
 }
 
 /* Global pointer cursor for all interactive elements
-   (przyciski bez klasy ui-button, akordeony, ikony +/- w koszyku itd.) */
+   (buttons without the ui-button class, accordions, +/- icons, etc.) */
 button:not(:disabled),
 [role='button']:not(:disabled),
 summary,
@@ -139,10 +139,6 @@ dialog[open] {
     display: none !important;
   }
 
-  /* Studio: scroll targets - scroll-margin + natywny scroll (scroll-behavior w Layout) */
-  .ui-studio-scroll-target {
-    scroll-margin-top: calc(var(--site-header-height) + 0.75rem);
-  }
   * {
     @apply border-border outline-ring/50;
   }

@@ -24,8 +24,8 @@ function runQuick(mode: string, timeoutMs = 15_000): { code: number; output: str
   }
 }
 
-describe('run-qa orkiestrator', () => {
-  it('buduje dist przed audytem linkow rendered HTML', () => {
+describe('run-qa orchestrator', () => {
+  it('builds dist before auditing links in the rendered HTML', () => {
     const source = fs.readFileSync(path.resolve(projectDir, 'src/scripts/run-qa.ts'), 'utf8');
     const buildIndex = source.indexOf("command: 'npm run build'");
     const linksIndex = source.indexOf("command: 'npm run check:links'");
@@ -36,30 +36,21 @@ describe('run-qa orkiestrator', () => {
   });
 
   describe('qa:help', () => {
-    it('wyswietla pomoc i zwraca kod 0', { timeout: 20_000 }, () => {
+    it('prints the help and exits with code 0', { timeout: 20_000 }, () => {
       const { code, output } = runQuick('help');
       expect(code).toBe(0);
-      expect(output).toContain('Starter Kit');
+      expect(output).toContain('QA runner');
       expect(output).toContain('npm run qa');
       expect(output).toContain('npm run qa:strict');
       expect(output).toContain('npm run qa:client');
     });
   });
 
-  describe('nieznany tryb', () => {
-    it('zwraca kod 1 z komunikatem', { timeout: 20_000 }, () => {
+  describe('unknown mode', () => {
+    it('exits with code 1 and a message', { timeout: 20_000 }, () => {
       const { code, output } = runQuick('nonexistent');
       expect(code).toBe(1);
-      expect(output).toContain('Nieznany profil');
-    });
-  });
-
-  describe('qa:client', () => {
-    it('wykrywa placeholdery i zatrzymuje sie', { timeout: 90_000 }, () => {
-      const { code, output } = runQuick('client', 60_000);
-      expect(code).toBe(1);
-      expect(output).toContain('placeholder');
-      expect(output).toContain('NIE ZALICZONE');
+      expect(output).toContain('Unknown QA profile');
     });
   });
 });

@@ -115,8 +115,8 @@
     toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
   });
 
-  // ─── Pozycjonowanie chevrona przy etykiecie ────────────────────────
-  // Why: chevron should sit right behind the text ("Uslug i ^"), not at
+  // ─── Chevron position next to the label ───────────────────────────
+  // Why: the chevron should sit right after the text ("Angebot ^"), not at the
   // row edge. Label width is known only after render, so we measure
   // span.ui-nav-drawer__label and set offset from the center.
   function placeSubCarets() {
@@ -124,7 +124,7 @@
       var label = row.querySelector('.ui-nav-drawer__label');
       var expand = row.querySelector('.ui-nav-drawer__expand');
       if (!label || !expand) return;
-      var offset = label.getBoundingClientRect().width / 2 + 10; // za tekstem + oddech
+      var offset = label.getBoundingClientRect().width / 2 + 10; // after the text, plus some breathing room
       expand.style.right = 'auto';
       expand.style.left = 'calc(50% + ' + offset + 'px)';
     });

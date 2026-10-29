@@ -84,4 +84,4 @@ if (findings.length > 0) {
   process.exit(1);
 }
 
-console.log('OK: brak starych tokenów animacji w kodzie produkcyjnym.');
+console.log('OK: no retired animation tokens in production code.');

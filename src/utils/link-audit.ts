@@ -51,8 +51,7 @@ export function buildRouteMap(): RouteMap {
   }
 
   const jsonPaths = [
-    'src/data/navigation/header.json',
-    'src/data/navigation/footer.json',
+    'src/data/i18n/nova.json',
     'src/data/pages/index.json',
   ];
 
@@ -150,20 +149,12 @@ export function extractLinks(source: string): ExtractedLink[] {
 }
 
 const EXCLUDED_PATHS = [
-  'src/data/qa/',
-  'src/pages/qa/',
-  'src/components/dev/',
   '.audit-baseline.json',
-  '.docs/',
 ];
 
 function isExcluded(filePath: string): boolean {
   const normalized = filePath.replace(/\\/g, '/');
   return EXCLUDED_PATHS.some((p) => normalized.startsWith(p));
-}
-
-function isSectionFixture(filePath: string): boolean {
-  return filePath.replace(/\\/g, '/').startsWith('src/data/sections/');
 }
 
 export function auditLinks(
@@ -185,13 +176,12 @@ export function auditLinks(
 
   const normalizedFilePath = filePath.replace(/\\/g, '/');
   const isPage = normalizedFilePath.startsWith('src/pages/')
-    && !normalizedFilePath.startsWith('src/pages/dev/')
     && filePath.endsWith('.astro');
-  // Dlaczego: rzeczywisty nagłówek stron z PageBuilderem powstaje dopiero po
-  // renderowaniu sekcji, dlatego jego obecność sprawdzamy w wygenerowanym HTML.
+  // Why: the real heading of PageBuilder pages only exists after the sections
+  // are rendered, so we check for it in the generated HTML.
   const usesPageBuilder = /<PageBuilder\b/.test(auditedSource);
   if ((isPage && !usesPageBuilder) || (filePath.startsWith('dist/') && filePath.endsWith('.html'))) {
-    if (filePath.includes('qa/') || filePath.includes('404') || filePath.includes('[...page]')) return issues;
+    if (filePath.includes('404') || filePath.includes('[...page]')) return issues;
 
     const explicitH1 = (auditedSource.match(/<h1\b[^>]*>/gi) || []).length;
     const componentH1 = (auditedSource.match(/Heading[^>]*level\s*=\s*\{?\s*1\s*\}?/gi) || []).length;
@@ -253,8 +243,7 @@ export function auditLinks(
     if (isAsset) continue;
 
     if (h.startsWith('/')) {
-      const validateRoute = !isSectionFixture(filePath);
-      if (validateRoute && h !== '/' && !h.endsWith('/') && !h.includes('?') && !h.includes('#')) {
+      if (h !== '/' && !h.endsWith('/') && !h.includes('?') && !h.includes('#')) {
         issues.push({
           file: filePath,
           line: link.line,
@@ -265,7 +254,7 @@ export function auditLinks(
       }
 
       const routeOnly = normalizePath(h.split('#')[0].split('?')[0]);
-      if (validateRoute && routeOnly !== '/' && !routes.validRoutes.has(routeOnly)) {
+      if (routeOnly !== '/' && !routes.validRoutes.has(routeOnly)) {
         issues.push({
           file: filePath,
           line: link.line,

@@ -1,7 +1,7 @@
 /**
- * Sprawdza czy importy uzywaja aliasow zamiast relatywnych sciezek.
- * Aliasy (`@components/`, `@utils/`) sa preferowane nad `../`.
- * Importy w obrebie tego samego katalogu (`./`) sa OK.
+ * Checks that imports use aliases instead of relative paths.
+ * Aliases (`@components/`, `@utils/`) are preferred over `../`.
+ * Imports within the same directory (`./`) are fine.
  *
  * Usage: npx tsx src/scripts/check-import-paths.ts
  */
@@ -65,7 +65,7 @@ console.log('\n=== Import Path Check: Aliasy vs Relatywne ===\n');
 scanDir(SRC_DIR);
 
 if (violations.length === 0) {
-  console.log('✅ Wszystkie importy uzywaja aliasow lub sa w obrebie katalogu.\n');
+  console.log('✅ All imports use aliases or stay within their directory.\n');
   process.exit(0);
 }
 

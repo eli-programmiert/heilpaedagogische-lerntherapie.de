@@ -14,7 +14,6 @@ export function auditRenderedImages(html: string, file: string): ImageIssue[] {
 
   $('img').each((_, element) => {
     const image = $(element);
-    if (image.attr('id') === 'ui-lightbox-img') return;
     // Third-party snippets that must stay unchanged (e.g. the IFLW seal).
     if (image.closest('[data-audit-ignore]').length > 0) return;
 
@@ -42,15 +41,4 @@ export function auditRenderedImages(html: string, file: string): ImageIssue[] {
   });
 
   return issues;
-}
-
-export function auditSmartImageFallback(source: string, file: string): ImageIssue[] {
-  const requiredMarkers = ['showPlaceholder', '!src', 'isResolved', 'aspect-video'];
-  return requiredMarkers
-    .filter((marker) => !source.includes(marker))
-    .map((marker) => ({
-      file,
-      rule: 'image-fallback',
-      message: `SmartImage fallback is missing marker "${marker}".`,
-    }));
 }

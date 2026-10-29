@@ -28,4 +28,4 @@ for (const file of files) {
   removedComments += comments.length;
 }
 
-console.log(`✅ Usunięto komentarze HTML: ${removedComments} w ${files.length} plikach.`);
+console.log(`✅ Removed HTML comments: ${removedComments} in ${files.length} files.`);

@@ -9,22 +9,22 @@ const COMPANY_JSON = path.join(process.cwd(), 'src/data/global/company.json');
 const DEFAULT_ICON_PATH = 'M12,3L2,12h3v8h14v-8h3L12,3z M17,18h-2v-4h-2v4H7v-7.8l5-4.5l5,4.5V18z';
 
 async function generateFavicons() {
-  // Jesli wszystkie favikony juz istnieja - pomijamy (przyspiesza build w CI).
-  // Favikony zmieniaja sie tylko przy zmianie public/icon.svg.
+  // If all favicons already exist, we skip (speeds up the CI build).
+  // Favicons only change when public/icon.svg changes.
   const existing = ['favicon-32x32.png', 'apple-touch-icon.png', 'favicon.ico', 'logo.svg']
     .map((f) => path.join(PUBLIC_DIR, f))
     .filter((f) => fs.existsSync(f) && fs.statSync(f).size > 0);
   if (existing.length === 4) {
-    console.log('OK Favikony i logo.svg juz istnieja, pomijam generowanie.');
+    console.log('OK Favicons and logo.svg already exist, skipping generation.');
     return;
   }
-  console.log('🎨 Generowanie zestawu favikon...');
+  console.log('🎨 Generating favicons...');
 
   let company;
   try {
     company = JSON.parse(fs.readFileSync(COMPANY_JSON, 'utf8'));
   } catch (e) {
-    console.error('Błąd odczytu company.json');
+    console.error('Could not read company.json');
     return;
   }
 
@@ -33,10 +33,10 @@ async function generateFavicons() {
   const customIconPath = path.join(PUBLIC_DIR, 'icon.svg');
   
   if (fs.existsSync(customIconPath)) {
-    console.log('✅ Używam własnego pliku public/icon.svg');
+    console.log('✅ Using public/icon.svg');
     svgContent = fs.readFileSync(customIconPath, 'utf8');
   } else {
-    console.log('ℹ️ Nie znaleziono public/icon.svg, używam ikony domyślnej (Dom).');
+    console.log('ℹ️ public/icon.svg not found, using the default house icon.');
     // Simple clean SVG house icon without background
     svgContent = `
       <svg width="512" height="512" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -65,9 +65,7 @@ async function generateFavicons() {
       .toFormat('png')
       .toFile(path.join(PUBLIC_DIR, 'favicon.ico')); // Simple ico fallback
 
-    // 4. logo.svg (logo fallback in the menu and footer when the client did not upload his own)
-    // Why: Logo.astro uses company.branding.logoImage || '/logo.svg',
-    // so the file must exist in public/ so that the page does not show a broken image.
+    // 4. logo.svg (fallback logo file in public/)
     const logoColor = (company?.branding?.logoColor) || '#2a438c';
     const logoFallback = fs.existsSync(customIconPath)
       ? svgContent
@@ -79,9 +77,9 @@ async function generateFavicons() {
     `;
     fs.writeFileSync(path.join(PUBLIC_DIR, 'logo.svg'), logoFallback.trim(), 'utf8');
 
-    console.log('✅ Favikony i logo.svg wygenerowane pomyślnie w folderze public/');
+    console.log('✅ Favicons and logo.svg generated in public/');
   } catch (err) {
-    console.error('❌ Błąd podczas generowania favikon:', err);
+    console.error('❌ Error while generating favicons:', err);
   }
 }
 

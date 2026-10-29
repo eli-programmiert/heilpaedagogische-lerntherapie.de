@@ -5,11 +5,11 @@ describe('URL Utilities', () => {
   describe('formatInternalLink', () => {
     it('should append trailing slash to internal links', () => {
       expect(formatInternalLink('kontakt')).toBe('/kontakt/');
-      expect(formatInternalLink('/uslugi')).toBe('/uslugi/');
+      expect(formatInternalLink('/angebot')).toBe('/angebot/');
     });
 
     it('should not duplicate trailing slash if already exists', () => {
-      expect(formatInternalLink('/realizacje/')).toBe('/realizacje/');
+      expect(formatInternalLink('/preise/')).toBe('/preise/');
     });
 
     it('should handle home page correctly', () => {
@@ -18,8 +18,8 @@ describe('URL Utilities', () => {
     });
 
     it('should preserve anchors with trailing slash on base path', () => {
-      expect(formatInternalLink('uslugi#kontakt')).toBe('/uslugi/#kontakt');
-      expect(formatInternalLink('/o-nas/#zespol')).toBe('/o-nas/#zespol');
+      expect(formatInternalLink('angebot#adhs')).toBe('/angebot/#adhs');
+      expect(formatInternalLink('/ueber-mich/#profil')).toBe('/ueber-mich/#profil');
     });
 
     it('should preserve query parameters', () => {
@@ -33,11 +33,11 @@ describe('URL Utilities', () => {
     });
 
     it('should handle standalone anchors', () => {
-      expect(formatInternalLink('#sekcja')).toBe('#sekcja');
+      expect(formatInternalLink('#section')).toBe('#section');
     });
 
     it('should fix multiple slashes', () => {
-      expect(formatInternalLink('///uslugi//')).toBe('/uslugi/');
+      expect(formatInternalLink('///angebot//')).toBe('/angebot/');
     });
   });
 

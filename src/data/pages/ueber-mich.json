@@ -135,7 +135,7 @@
         "title": "Lernen wir uns kennen",
         "text": "Im kostenlosen telefonischen Erstgespräch nehme ich mir Zeit für Ihre Fragen.",
         "primary": { "label": "Kontakt aufnehmen", "href": "/kontakt/" },
-        "secondary": { "label": "0151 23410823", "href": "tel:+4915123410823" }
+        "secondary": { "label": "folgt-bald", "href": "" }
       }
     },
     { "id": "footer", "variant": "nova" }

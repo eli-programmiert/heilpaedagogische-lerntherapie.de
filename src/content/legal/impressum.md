@@ -1,7 +1,7 @@
 ---
 title: Impressum
 description: Impressum der Fachpraxis für Heilpädagogik & integrative Lerntherapie, Elisabeth Eggersdorfer, Laub-Zeitlarn.
-draft: true
+draft: false
 ---
 
 

@@ -1,7 +1,7 @@
 ---
 title: Datenschutzerklärung
 description: Datenschutzerklärung der Fachpraxis für Heilpädagogik & integrative Lerntherapie.
-draft: true
+draft: false
 ---
 
 <h2>1. Datenschutz auf einen Blick</h2>

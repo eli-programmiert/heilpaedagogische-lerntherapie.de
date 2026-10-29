@@ -58,7 +58,7 @@
             "description": "Vermittlung von Selbstregulationsstrategien, Konzentrationstraining sowie Strukturierung des Arbeitsplatzes und des Lernumfelds.",
             "href": "/angebot/#adhs",
             "linkLabel": "Zur Begleitung bei ADHS",
-            "icon": "target"
+            "image": { "src": "/assets/images/praxis/adhs-gehirn-schmetterling.webp", "alt": "Gehirn aus weißen Fäden mit einem bunten Schmetterling" }
           }
         ]
       }

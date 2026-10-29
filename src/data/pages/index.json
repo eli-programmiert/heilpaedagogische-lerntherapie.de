@@ -122,7 +122,7 @@
             "description": "Ein offenes Ohr und fachliche Impulse für Eltern und Bezugspersonen.",
             "href": "/kontakt/",
             "linkLabel": "Gespräch vereinbaren",
-            "icon": "chats-circle"
+            "image": { "src": "/assets/images/praxis/beratung-holzfiguren-familie.webp", "alt": "Fünf Holzfiguren unterschiedlicher Größe nebeneinander, wie eine Familie" }
           }
         ],
         "note": {

@@ -7,12 +7,12 @@ draft: false
 
 
 <p>Elisabeth Eggersdorfer<br />
-Lerntherapeutin<br />
+Staatlich anerkannte Heilpädagogin<br />
 Pappelweg 8A<br />
 93197 Laub-Zeitlarn</p>
 
 <h2>Kontakt</h2>
-<p>Telefon: folgt-bald <br/> E-Mail: info@heilpaedagoische-lerntherapie.de</p>
+<p>Telefon: folgt-bald <br/> E-Mail: info@heilpaedagogische-lerntherapie.de</p>
 
 <h2>Verbraucher&shy;streit&shy;beilegung/Universal&shy;schlichtungs&shy;stelle</h2>
 <p>Wir sind nicht bereit oder verpflichtet, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen.</p>

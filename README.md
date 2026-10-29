@@ -1,55 +1,7 @@
-# heilpaedagogische-lerntherapie.de
+# Hallo! 👋
 
-Website der **Fachpraxis für Heilpädagogik & integrative Lerntherapie** (Elisabeth Eggersdorfer, Laub-Zeitlarn).
-Static Astro 7 site based on the Nova theme (Tailwind 4), German only, hosted on GitHub Pages with the custom domain `heilpaedagogische-lerntherapie.de`.
+**👉 Hier geht's zur Website: [heilpaedagogische-lerntherapie.de](https://heilpaedagogische-lerntherapie.de)**
+Dort finden Sie alles über meine Fachpraxis für Heilpädagogik & integrative Lerntherapie, meine Angebote und wie Sie mich erreichen.
 
-The content brief (copy, sitemap, design decisions) lives in `docs/website-brief/` (entry point: `docs/website-brief/README.md`).
-
-## Getting started
-
-Node.js 22 or newer.
-
-```bash
-npm ci
-npm run dev        # http://localhost:4321
-npm run build      # full chain: favicons, fonts, responsive images, scope pruning
-npm run ai:check   # types, data contracts, imports, registrations, tests
-```
-
-## Where to edit what
-
-| Task | File |
-| --- | --- |
-| Page copy and section order (one file per page) | `src/data/pages/<slug>.json` (`index.json` = Startseite) |
-| Navigation, footer, UI labels | `src/data/i18n/nova.json` |
-| Practice data (address, phone, e-mail, Instagram) | `src/data/global/company.json` |
-| Default SEO, indexing | `src/data/global/seo.json` |
-| Impressum / Datenschutz | `src/content/legal/impressum.md`, `src/content/legal/datenschutz.md` |
-| IFLW seal (personal snippet, never edit) | `src/data/global/iflw-seal.json` |
-| Colours, fonts, radii | `design/nova.md` → `npm run design:sync` |
-| Photos | originals in `src/assets/raw/praxis/` → `npm run assets:img` writes AVIF/WebP variants to `public/assets/images/praxis/` |
-
-Each entry in `sections` of a page JSON names a block (`id` + `variant`) and carries its content in `data`.
-The practice blocks live in `src/components/registry/praxis/` and are registered in `src/config/section-registry/praxis.ts`.
-Copy supports `**bold**` and `[Linktext](/pfad/)`.
-
-## Deployment (GitHub Pages)
-
-`.github/workflows/deploy.yml` builds with `npm run build` and deploys `dist/` on every push to `main`.
-
-One-time setup:
-
-1. GitHub → Settings → Pages → Source: **GitHub Actions**.
-2. Settings → Pages → Custom domain: `heilpaedagogische-lerntherapie.de` (also in `public/CNAME`), then enable **Enforce HTTPS**.
-3. DNS at IONOS:
-   - `@` A records: `185.199.108.153`, `185.199.109.153`, `185.199.110.153`, `185.199.111.153`
-   - optional `@` AAAA records: `2606:50c0:8000::153`, `2606:50c0:8001::153`, `2606:50c0:8002::153`, `2606:50c0:8003::153`
-   - `www` CNAME → `<github-user>.github.io`
-
-## Open points
-
-- The privacy policy should mention the IFLW seal image, which is loaded from `www.iflw.de` on Über mich and Lerntherapie.
-
-## Template
-
-The site is built on the Nova template. `DESIGN_RULES.md` describes the rules the UI components follow; `LICENSE.md` and `ASSETS-LICENSES.md` are the template's licence terms.
+Herzliche Grüße,
+Elisabeth Eggersdorfer

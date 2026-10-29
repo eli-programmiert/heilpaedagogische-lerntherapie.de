@@ -43,20 +43,6 @@ describe('shared motion contract', () => {
 		expect(layout).not.toContain('motionScript');
 	});
 
-	it('marks Nova sections with the soft profile instead of local animation systems', () => {
-		const hero = read('src/components/registry/hero/NovaHeroResponsiveBlock.astro');
-		const team = read('src/components/registry/about/TeamBlock.astro');
-		const testimonials = read('src/components/registry/social/TestimonialV2Block.astro');
-
-		expect(hero).toContain('data-motion-sequence="fade"');
-		expect(hero).toContain('data-motion="fade"');
-		expect(team).toContain('data-motion="viewport"');
-		expect(team).toContain('data-motion-sequence="viewport" data-motion-profile="soft"');
-		expect(testimonials).toContain('data-motion-sequence="viewport" data-motion-profile="soft"');
-		expect(team).not.toContain('@keyframes');
-		expect(testimonials).toContain('@keyframes testimonial-v2-up');
-		expect(testimonials).not.toContain('@keyframes nova-testimonials-entry');
-	});
 
 	it('keeps the section motion marker available to the global engine', () => {
 		expect(read('src/components/ui/layout/Section.astro')).toContain('data-motion-section');

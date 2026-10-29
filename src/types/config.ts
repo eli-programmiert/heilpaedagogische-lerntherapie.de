@@ -15,7 +15,6 @@ export interface PageSeo {
 
 export interface PageLayout {
   theme?: string;
-  sectionPattern?: 'off' | 'repeat' | 'mesh' | 'noise';
 }
 
 export interface PageConfig {
@@ -75,7 +74,7 @@ export interface CompanyConfig {
   zipCode: string;
   city: string;
   phone: string;
-  /** Phone number as shown to visitors, e.g. "0151 23410823". */
+  /** Phone number as shown to visitors, e.g. "folgt-bald". */
   phoneDisplay?: string;
   email: string;
   owner?: string;

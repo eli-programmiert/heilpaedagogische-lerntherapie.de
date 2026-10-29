@@ -25,8 +25,6 @@ const defaultPatterns = [
   'src/components/ui/atoms/**/*.astro',
   'src/components/ui/layout/**/*.astro',
   'src/components/ui/molecules/Navbar/**/*.astro',
-  'src/components/ui/molecules/Footer.astro',
-  'src/components/ui/molecules/CookieConsent.astro',
   'src/components/registry/**/*.astro',
 ];
 

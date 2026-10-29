@@ -9,7 +9,6 @@ const patterns = [
   'src/data/global/seo.json',
   'src/data/navigation/**/*.json',
   'src/data/pages/**/*.json',
-  'src/data/sections/**/*.json',
   'src/content/**/*.md',
   'src/content/**/*.mdoc',
   'src/config/site.ts',
@@ -19,7 +18,6 @@ const patterns = [
 
 const excludePatterns = [
   '**/node_modules/**',
-  'src/pages/qa/**',
 ];
 
 const targets = patterns.flatMap((pattern) =>
@@ -40,21 +38,13 @@ for (const relativePath of targets) {
 
   for (const issue of issues) {
     totalIssues += 1;
-    const message = issue.rule === 'polish-diacritics'
-      ? 'Polish text likely misses required diacritics'
-      : 'Found placeholder';
-    console.error(`${issue.file}:${issue.line} [${issue.rule}] ${message}: "${issue.value}"`);
+    console.error(`${issue.file}:${issue.line} [${issue.rule}] Found placeholder: "${issue.value}"`);
   }
 }
 
 if (totalIssues > 0) {
   console.error(`\ncheck:content: ${totalIssues} content issue(s) detected in production data.`);
-  console.error('Replace placeholders and correct Polish diacritics before building for production.');
-  console.error('');
-  console.error('  ❗❗ POLSKIE ZNAKI SĄ OBOWIĄZKOWE ❗❗');
-  console.error('  Każdy polski tekst na stronie MUSI mieć poprawne znaki diakrytyczne');
-  console.error('  (ąćęłńóśźż). Tekst bez polskich znaków to KRYTYCZNY błąd jakości.');
-  console.error('  Sprawdź powyższe linie i dodaj brakujące ogonki.');
+  console.error('Replace the placeholders before building for production.');
   process.exitCode = 1;
 } else {
   console.log(`check:content: OK — ${targets.length} files scanned, no issues.`);

@@ -21,18 +21,18 @@ export type SectionGroup = {
 };
 
 export const SECTION_GROUPS: SectionGroup[] = [
-  { id: 'theme', label: 'Motyw' },
+  { id: 'theme', label: 'Theme' },
   { id: 'navbar', label: 'Menu' },
   { id: 'footer', label: 'Footer' },
   { id: 'hero', label: 'Hero' },
-  { id: 'about', label: 'O nas' },
-  { id: 'trust', label: 'Zaufanie' },
-  { id: 'services', label: 'Usługi' },
-  { id: 'portfolio', label: 'Realizacje' },
-  { id: 'process', label: 'Proces' },
-  { id: 'social', label: 'Opinie' },
+  { id: 'about', label: 'About' },
+  { id: 'trust', label: 'Trust' },
+  { id: 'services', label: 'Services' },
+  { id: 'portfolio', label: 'Portfolio' },
+  { id: 'process', label: 'Process' },
+  { id: 'social', label: 'Testimonials' },
   { id: 'faq', label: 'FAQ' },
-  { id: 'contact', label: 'Kontakt' },
+  { id: 'contact', label: 'Contact' },
   { id: 'cta', label: 'CTA' },
-  { id: 'content', label: 'Treść' },
+  { id: 'content', label: 'Content' },
 ];

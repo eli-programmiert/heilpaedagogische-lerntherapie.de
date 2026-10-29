@@ -4,7 +4,6 @@ import { fileURLToPath, URL } from 'node:url';
 import { SITE_URL } from './site.config.mjs';
 
 import tailwindcss from '@tailwindcss/vite';
-import react from '@astrojs/react';
 import sitemap from '@astrojs/sitemap';
 
 // https://astro.build/config
@@ -23,14 +22,10 @@ export default defineConfig({
     assets: '_assets',
     inlineStylesheets: 'never',
   },
-  // Sitemap: filter cuts utility pages (component gallery /dev/ and
-  // fixture QA /qa/) that have a meta noindex - they went into it without it
-  // sitemap-index.xml and sent Google a contradictory signal (as for webscale).
-  // serialize adds lastmod (build date), because the integration does not add it itself.
+  // Sitemap: serialize adds lastmod (build date), because the integration
+  // does not add it itself.
   integrations: [
-    react(),
     sitemap({
-      filter: (page) => !page.includes('/dev/') && !page.includes('/qa/'),
       serialize(item) {
         return { ...item, lastmod: new Date().toISOString() };
       },
@@ -45,11 +40,10 @@ export default defineConfig({
     // stabilityThreshold ms (stable write) before reloading the module.
     server: {
       watch: {
-        // Dlaczego usePolling: na Windows chokidar gubi zdarzenia "create" dla
-        // nowych plikow (agenci zapisuja szybko partie plikow), przez co Astro
-        // nie rejestruje nowych routow (np. /dev/components/*) i zwraca 404
-        // dopoki jakikolwiek inny plik nie wymusi pelnego rescannu.
-        // Polling gwarantuje wykrycie kazdej zmiany/utworzenia niezawodnie.
+        // Why usePolling: on Windows/WSL chokidar misses "create" events for
+        // new files written in quick batches, so Astro does not register new
+        // routes and returns 404 until another change forces a full rescan.
+        // Polling reliably detects every change and new file.
         usePolling: true,
         interval: 300,
         awaitWriteFinish: {
@@ -84,13 +78,13 @@ export default defineConfig({
         '@config': fileURLToPath(new URL('./src/config', import.meta.url)),
       }
     },
-    // Dlaczego noDiscovery: false: Astro (do 7.0.9) w client environment nie
-    // scans .astro files in optimizeDeps.entries (bug withastro/astro#16630),
+    // Why noDiscovery: false: Astro (up to 7.0.9) in the client environment does
+    // not scan .astro files in optimizeDeps.entries (bug withastro/astro#16630),
     // therefore deps imported by <script> in .astro components are
     // only discovered when the page is loaded. Every "new" discovery forces
     // re-optimization and invalidates the entire cache, and modules without ?v= (including
     // dev-toolbar: /@id/astro/runtime/client/dev-toolbar/entrypoint.js)
-    // they get 504 "Outdated Optimize Dep". noDiscovery: false activates the branch
+    // get 504 "Outdated Optimize Dep". noDiscovery: false activates the branch
     // Astro with entries containing .astro, so the scanner sees everything at once.
     optimizeDeps: {
       noDiscovery: false,

@@ -1,11 +1,11 @@
 import type { CompanyConfig } from '@/types/config';
 
 /**
- * Helper do social mediow.
- * Dlaczego: company.json trzyma social media jako prosty obiekt
- * { facebook: "https://...", instagram: "", ... } - samo linki, bez
- * przelacznikow. Komponent pokazuje tylko profile z podanym linkiem
- * (niepustym i roznym od "#"), reszta sie nie renderuje.
+ * Social media helper.
+ * Why: company.json keeps social media as a plain object
+ * { facebook: "https://...", instagram: "", ... } with links only, no
+ * toggles. Components show only profiles with a link (not empty and not
+ * "#"); the rest are not rendered.
  */
 
 export type SocialEntry = {
@@ -22,7 +22,7 @@ export const SOCIAL_META: Record<string, { label: string; icon: string }> = {
   twitter: { label: 'X (Twitter)', icon: 'ph-x-logo' },
 };
 
-/** Zwraca social media z podanym linkiem (pomija puste i "#"). */
+/** Returns the social media entries that have a link (skips empty and "#"). */
 export function getEnabledSocialLinks(company: CompanyConfig | Record<string, unknown>): SocialEntry[] {
   const socials = (company as any)?.socials;
   if (!socials || typeof socials !== 'object') return [];
@@ -35,7 +35,7 @@ export function getEnabledSocialLinks(company: CompanyConfig | Record<string, un
     });
 }
 
-/** Wersja dla Schema.org: lista linkow do sameAs. */
+/** Schema.org version: list of links for sameAs. */
 export function getSocialUrls(company: CompanyConfig | Record<string, unknown>): string[] {
   return getEnabledSocialLinks(company).map((s) => s.href);
 }

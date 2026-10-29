@@ -94,35 +94,51 @@
             "description": "Zielgerichtete Förderung und Unterstützung bei Behinderung, Entwicklungsverzögerungen und sozial-emotionalem Förderbedarf.",
             "href": "/angebot/#heilpaedagogische-foerderung",
             "linkLabel": "Mehr erfahren",
-            "image": { "src": "/assets/images/praxis/foerderung-bausteine-spiel.webp", "alt": "Kind baut einen Turm aus bunten Holzbausteinen" }
+            "image": {
+              "src": "/assets/images/praxis/foerderung-bausteine-spiel.webp",
+              "alt": "Kind baut einen Turm aus bunten Holzbausteinen"
+            }
           },
           {
             "title": "Lerntherapie",
             "description": "Gezielte Hilfe bei Lernschwierigkeiten wie Lese-Rechtschreib-Schwäche (LRS) oder Dyskalkulie.",
             "href": "/angebot/#integrative-lerntherapie",
             "linkLabel": "Mehr erfahren",
-            "image": { "src": "/assets/images/praxis/lrs-anlautkarten-buzzer.webp", "alt": "Anlautkarten mit Buchstaben und ein blauer Buzzer" }
+            "image": {
+              "src": "/assets/images/praxis/lrs-anlautkarten-buzzer.webp",
+              "alt": "Anlautkarten mit Buchstaben und ein blauer Buzzer"
+            }
           },
           {
             "title": "Präventive Lerntherapie",
             "description": "Spielerische Förderung der Vorläuferfähigkeiten in Deutsch und Mathe, schon im Vorschulalter oder bei ersten Schwierigkeiten in der Grundschule. Besonders geeignet bei Konzentrationsproblemen, Unsicherheit mit Mengen und Zahlen oder Förderbedarf in der phonologischen Bewusstheit.",
             "href": "/angebot/#praevention",
             "linkLabel": "Mehr erfahren",
-            "image": { "src": "/assets/images/praxis/material-buntstifte-buecher.webp", "alt": "Becher mit Buntstiften, Bilderbuch und Fädelperlen", "position": "50% 60%" }
+            "image": {
+              "src": "/assets/images/praxis/material-buntstifte-buecher.webp",
+              "alt": "Becher mit Buntstiften, Bilderbuch und Fädelperlen",
+              "position": "50% 60%"
+            }
           },
           {
             "title": "Begleitung bei ADHS",
             "description": "Stärkung und Beratung für den Familienalltag mit ADHS sowie heilpädagogische Förderung in Verbindung mit Lerntherapie.",
             "href": "/angebot/#adhs",
             "linkLabel": "Mehr erfahren",
-            "image": { "src": "/assets/images/praxis/foerderung-tablet-kastanien-malen.webp", "alt": "Tablet mit Bildsymbolen, Farben und mit Kastanien bemaltes Papier" }
+            "image": {
+              "src": "/assets/images/praxis/foerderung-tablet-kastanien-malen.webp",
+              "alt": "Tablet mit Bildsymbolen, Farben und mit Kastanien bemaltes Papier"
+            }
           },
           {
             "title": "Pädagogische Beratung",
             "description": "Ein offenes Ohr und fachliche Impulse für Eltern und Bezugspersonen.",
             "href": "/kontakt/",
             "linkLabel": "Gespräch vereinbaren",
-            "image": { "src": "/assets/images/praxis/beratung-holzfiguren-familie.webp", "alt": "Fünf Holzfiguren unterschiedlicher Größe nebeneinander, wie eine Familie" }
+            "image": {
+              "src": "/assets/images/praxis/beratung-holzfiguren-familie.webp",
+              "alt": "Fünf Holzfiguren unterschiedlicher Größe nebeneinander, wie eine Familie"
+            }
           }
         ],
         "note": {
@@ -187,10 +203,22 @@
         "eyebrow": "Der erste Schritt",
         "title": "So starten wir gemeinsam",
         "steps": [
-          { "title": "Kontakt aufnehmen", "description": "Sie rufen mich an oder schreiben mir eine E-Mail und schildern kurz Ihr Anliegen." },
-          { "title": "Kostenloses Erstgespräch", "description": "In einem telefonischen Erstgespräch lernen wir uns kennen und klären, welche Unterstützung für Ihr Kind sinnvoll ist." },
-          { "title": "Diagnostik & Förderplan", "description": "Durch spielbasierte Beobachtung und Diagnostik ermittle ich Stärken und Unterstützungsbedarfe und erstelle einen individuellen Förderplan." },
-          { "title": "Förderung & Austausch", "description": "Ihr Kind wird regelmäßig gefördert, zu Hause oder im Therapieraum, und wir bleiben im engen Austausch." }
+          {
+            "title": "Kontakt aufnehmen",
+            "description": "Sie rufen mich an oder schreiben mir eine E-Mail und schildern kurz Ihr Anliegen."
+          },
+          {
+            "title": "Kostenloses Erstgespräch",
+            "description": "In einem telefonischen Erstgespräch lernen wir uns kennen und klären, welche Unterstützung für Ihr Kind sinnvoll ist."
+          },
+          {
+            "title": "Diagnostik & Förderplan",
+            "description": "Durch spielbasierte Beobachtung und Diagnostik ermittle ich Stärken und Unterstützungsbedarfe und erstelle einen individuellen Förderplan."
+          },
+          {
+            "title": "Förderung & Austausch",
+            "description": "Ihr Kind wird regelmäßig gefördert, zu Hause oder im Therapieraum, und wir bleiben im engen Austausch."
+          }
         ]
       }
     },
@@ -203,14 +231,35 @@
         "eyebrow": "FAQ",
         "title": "Häufige Fragen",
         "items": [
-          { "q": "Was kostet das Erstgespräch?", "a": "Nichts. Das Erstgespräch findet telefonisch statt und ist kostenlos. Wir lernen uns kennen und klären gemeinsam, welche Unterstützung für Ihr Kind sinnvoll ist." },
-          { "q": "Übernimmt das Jugendamt die Kosten?", "a": "Meine Praxis ist vom Jugendamt des Landkreises Regensburg anerkannt. Für Lerntherapie ist eine Kostenübernahme im Rahmen der Eingliederungshilfe nach § 35a SGB VIII möglich, wenn eine medizinische Diagnose vorliegt. Gern berate ich Sie zum Vorgehen." },
-          { "q": "Brauchen wir eine Diagnose?", "a": "Nein. Mein Angebot richtet sich sowohl an Kinder mit diagnostizierten Störungen als auch an Kinder, die präventiv Unterstützung benötigen. Für eine Kostenübernahme durch das Jugendamt ist eine medizinische Diagnose allerdings Voraussetzung." },
-          { "q": "Kommen Sie zu uns nach Hause?", "a": "Ja. Meine Praxis ist mobil: Ihr Kind kann in seiner vertrauten Umgebung gefördert werden oder in meinem ruhigen, strukturierten Therapieraum in Zeitlarn, je nach Bedarf und familiärer Situation. Für Hausbesuche berechne ich eine Kilometerpauschale." },
+          {
+            "q": "Was kostet das Erstgespräch?",
+            "a": "Nichts. Das Erstgespräch findet telefonisch statt und ist kostenlos. Wir lernen uns kennen und klären gemeinsam, welche Unterstützung für Ihr Kind sinnvoll ist."
+          },
+          {
+            "q": "Übernimmt das Jugendamt die Kosten?",
+            "a": "Meine Praxis ist vom Jugendamt des Landkreises Regensburg anerkannt. Für Lerntherapie ist eine Kostenübernahme im Rahmen der Eingliederungshilfe nach § 35a SGB VIII möglich, wenn eine medizinische Diagnose vorliegt. Gern berate ich Sie zum Vorgehen."
+          },
+          {
+            "q": "Brauchen wir eine Diagnose?",
+            "a": "Nein. Mein Angebot richtet sich sowohl an Kinder mit diagnostizierten Störungen als auch an Kinder, die präventiv Unterstützung benötigen. Für eine Kostenübernahme durch das Jugendamt ist eine medizinische Diagnose allerdings Voraussetzung."
+          },
+          {
+            "q": "Kommen Sie zu uns nach Hause?",
+            "a": "Ja. Meine Praxis ist mobil: Ihr Kind kann in seiner vertrauten Umgebung gefördert werden oder in meinem ruhigen, strukturierten Therapieraum in Zeitlarn, je nach Bedarf und familiärer Situation. Für Hausbesuche berechne ich eine Kilometerpauschale."
+          },
           { "q": "Wann finden die Termine statt?", "a": "Die Therapiezeiten liegen dienstags bis freitags am Nachmittag." },
-          { "q": "In welchem Gebiet sind Sie unterwegs?", "a": "Im Landkreis Regensburg und im südlichen Teil des Landkreises Schwandorf." },
-          { "q": "Ist Lerntherapie Nachhilfe?", "a": "Nein. Lerntherapie setzt nicht am aktuellen Schulstoff an, sondern an den Ursachen der Lernschwierigkeiten, z. B. an fehlenden Grundlagen im Lesen, Schreiben oder Rechnen, an der Konzentration oder am Selbstvertrauen." },
-          { "q": "Ist das eine medizinische Behandlung?", "a": "Nein. Mein Angebot ist pädagogisch-therapeutische Unterstützung und Begleitung und ersetzt keine ärztliche oder psychotherapeutische Behandlung." }
+          {
+            "q": "In welchem Gebiet sind Sie unterwegs?",
+            "a": "Im Landkreis Regensburg und im südlichen Teil des Landkreises Schwandorf."
+          },
+          {
+            "q": "Ist Lerntherapie Nachhilfe?",
+            "a": "Nein. Lerntherapie setzt nicht am aktuellen Schulstoff an, sondern an den Ursachen der Lernschwierigkeiten, z. B. an fehlenden Grundlagen im Lesen, Schreiben oder Rechnen, an der Konzentration oder am Selbstvertrauen."
+          },
+          {
+            "q": "Ist das eine medizinische Behandlung?",
+            "a": "Nein. Mein Angebot ist pädagogisch-therapeutische Unterstützung und Begleitung und ersetzt keine ärztliche oder psychotherapeutische Behandlung."
+          }
         ]
       }
     },
@@ -221,7 +270,7 @@
         "title": "Ihr Kind braucht Unterstützung?",
         "text": "Lassen Sie uns in einem kostenlosen telefonischen Erstgespräch herausfinden, was Ihrem Kind guttut.",
         "primary": { "label": "Kostenloses Erstgespräch", "href": "/kontakt/" },
-        "secondary": { "label": "0151 23410823", "href": "tel:+4915123410823" }
+        "secondary": { "label": "folgt-bald", "href": "" }
       }
     },
     { "id": "footer", "variant": "nova" }

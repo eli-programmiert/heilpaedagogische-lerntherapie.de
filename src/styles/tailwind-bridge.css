@@ -1,8 +1,8 @@
 /*
- * Granica integracji Tailwind v4 z tokenami Starter Kita.
+ * Integration boundary between Tailwind v4 and the design tokens.
  * This file only contains Tailwind imports, token mapping and
- * variables required by shadcn components. System styles of components
- * they remain in separate CSS layers imported by global.css.
+ * variables required by shadcn components. The component styles
+ * stay in separate CSS layers imported by global.css.
  */
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";

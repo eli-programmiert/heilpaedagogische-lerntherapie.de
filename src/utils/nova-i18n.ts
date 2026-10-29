@@ -1,8 +1,7 @@
 import copy from '@data/i18n/nova.json';
 
-// The practice website is German only. 'pl' and 'en' stay in the union so the
-// remaining Nova blocks (dev gallery) keep type-checking their own fallbacks.
-export type NovaLocale = 'de' | 'pl' | 'en';
+// The practice website is German only.
+export type NovaLocale = 'de';
 
 export type SiteCopy = typeof copy.de;
 

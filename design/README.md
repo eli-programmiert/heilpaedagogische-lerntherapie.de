@@ -17,6 +17,4 @@ The script synchronizes the profile to `src/styles/themes.css`,
 `src/styles/tailwind-theme.css` and `tailwind.tokens.js`. Generated files remain
 in the repository so builds are reproducible after cloning.
 
-Nova is the only profile supported by the site and the internal Studio. New
-visual directions should be developed in a separate repository or as a new
-template, rather than as a hidden switch in this product.
+Nova is the only design profile of the site.

@@ -3,7 +3,7 @@ import path from 'node:path';
 
 const basePath = (process.env.PUBLIC_BASE_PATH || '').trim().replace(/^\/+|\/+$/g, '');
 if (!basePath) {
-  console.log('prefix-base-assets: brak PUBLIC_BASE_PATH, pomijam.');
+  console.log('prefix-base-assets: no PUBLIC_BASE_PATH, skipping.');
   process.exit(0);
 }
 

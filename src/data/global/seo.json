@@ -3,11 +3,5 @@
   "defaultDescription": "Mobile heilpädagogische und lerntherapeutische Fachpraxis für Kinder bei LRS, Dyskalkulie, ADHS und Entwicklungsverzögerungen im Landkreis Regensburg und im südlichen Landkreis Schwandorf.",
   "defaultOgImage": "/og-image.png",
   "index": true,
-  "follow": true,
-  "analytics": {
-    "googleAnalyticsId": "",
-    "googleTagManagerId": "",
-    "facebookPixelId": "",
-    "clarityId": ""
-  }
+  "follow": true
 }

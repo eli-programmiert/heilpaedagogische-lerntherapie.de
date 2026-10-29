@@ -19,8 +19,8 @@
           {
             "icon": "phone",
             "title": "Anrufen",
-            "value": "0151 23410823",
-            "href": "tel:+4915123410823",
+            "value": "Telefonnummer: folgt-bald",
+            "href": "",
             "buttonLabel": "Jetzt anrufen",
             "note": "Falls ich gerade in einer Therapiestunde bin, rufe ich Sie gern zurück."
           },
@@ -55,7 +55,11 @@
           {
             "icon": "instagram-logo",
             "title": "Instagram",
-            "link": { "label": "@heilpaedagogische_lerntherapie", "href": "https://www.instagram.com/heilpaedagogische_lerntherapie/", "external": true }
+            "link": {
+              "label": "@heilpaedagogische_lerntherapie",
+              "href": "https://www.instagram.com/heilpaedagogische_lerntherapie/",
+              "external": true
+            }
           }
         ]
       }
@@ -68,9 +72,7 @@
         "tone": "page",
         "eyebrow": "Erstgespräch",
         "title": "Gut vorbereitet ins Erstgespräch",
-        "paragraphs": [
-          "Für das Erstgespräch brauchen Sie nichts vorzubereiten. Hilfreich ist, wenn Sie kurz überlegen:"
-        ],
+        "paragraphs": ["Für das Erstgespräch brauchen Sie nichts vorzubereiten. Hilfreich ist, wenn Sie kurz überlegen:"],
         "list": [
           "Was beobachten Sie bei Ihrem Kind, und seit wann?",
           "Gibt es bereits Diagnosen oder Berichte (z. B. von Kinderarzt, Schule oder Kita)?",

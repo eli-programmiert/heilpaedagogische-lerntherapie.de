@@ -3,11 +3,11 @@ import fs from 'node:fs';
 import path from 'node:path';
 
 /**
- * Test integralnosci systemu projektowego.
- * Sprawdza czy kolory zdefiniowane w themes.css spelniaja normy kontrastu WCAG.
+ * Design system integrity test.
+ * Checks that the colours defined in themes.css meet WCAG contrast ratios.
  */
 
-// Pomocnicza funkcja do obliczania luminancji
+// Helper that computes luminance
 function getLuminance(hex: string): number {
   let r = parseInt(hex.slice(1, 3), 16) / 255;
   let g = parseInt(hex.slice(3, 5), 16) / 255;
@@ -30,7 +30,7 @@ describe('Design Tokens Accessibility', () => {
   const themesPath = path.join(process.cwd(), 'src/styles/themes.css');
   const cssContent = fs.readFileSync(themesPath, 'utf8');
 
-  // Prosty parser dla zmiennych CSS (wyciaga hex)
+  // Simple parser for CSS variables (extracts the hex value)
   function getVarValue(varName: string): string | null {
     const regex = new RegExp(`${varName}:\\s*(#[0-9a-fA-F]{6})`, 'i');
     const match = cssContent.match(regex);
@@ -43,7 +43,7 @@ describe('Design Tokens Accessibility', () => {
 
     if (text && bg) {
       const contrast = getContrast(text, bg);
-      expect(contrast, `Kontrast ${text} na ${bg} wynosi ${contrast.toFixed(2)} - powinien być > 4.5`).toBeGreaterThan(4.5);
+      expect(contrast, `Contrast of ${text} on ${bg} is ${contrast.toFixed(2)}, should be > 4.5`).toBeGreaterThan(4.5);
     }
   });
 
@@ -53,7 +53,7 @@ describe('Design Tokens Accessibility', () => {
 
     if (text && bg) {
       const contrast = getContrast(text, bg);
-      expect(contrast, `Kontrast ${text} na ${bg} wynosi ${contrast.toFixed(2)} - powinien być > 4.5`).toBeGreaterThan(4.5);
+      expect(contrast, `Contrast of ${text} on ${bg} is ${contrast.toFixed(2)}, should be > 4.5`).toBeGreaterThan(4.5);
     }
   });
 
@@ -63,7 +63,7 @@ describe('Design Tokens Accessibility', () => {
 
     if (primary && bg) {
       const contrast = getContrast(primary, bg);
-      expect(contrast, `Kontrast koloru marki ${primary} na ${bg} wynosi ${contrast.toFixed(2)}`).toBeGreaterThan(3.0); // Dla duzego tekstu/UI 3.0 wystarczy
+      expect(contrast, `Contrast of brand colour ${primary} on ${bg} is ${contrast.toFixed(2)}`).toBeGreaterThan(3.0); // 3.0 is enough for large text/UI
     }
   });
 });

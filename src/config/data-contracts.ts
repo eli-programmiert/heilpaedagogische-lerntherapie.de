@@ -15,7 +15,6 @@ export const PageSeoSchema = z.object({
 
 export const PageLayoutSchema = z.object({
   theme: z.string().optional(),
-  sectionPattern: z.enum(['off', 'repeat', 'mesh', 'noise']).optional(),
 }).passthrough();
 
 /**

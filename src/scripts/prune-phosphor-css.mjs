@@ -52,7 +52,7 @@ function findIconSelectors(css) {
 }
 
 if (!fs.existsSync(distDir)) {
-  throw new Error('Brak katalogu dist/. Uruchom najpierw npm run build.');
+  throw new Error('dist/ is missing. Run npm run build first.');
 }
 
 const usedIcons = collectUsedIcons();
@@ -86,9 +86,9 @@ for (const file of collectFiles(distDir, '.css')) {
 
 const missingIcons = [...usedIcons].filter((iconName) => !availableIcons.has(iconName));
 if (missingIcons.length > 0) {
-  throw new Error(`Brak definicji CSS dla ikon użytych w dist: ${missingIcons.join(', ')}`);
+  throw new Error(`No CSS definition for icons used in dist: ${missingIcons.join(', ')}`);
 }
 
 console.log(
-  `phosphor: ${CHECK_ONLY ? 'sprawdzono' : `usunięto ${removedRules} nieużywanych reguł w`} ${cssFiles} plikach CSS; używane ikony: ${usedIcons.size}`,
+  `phosphor: ${CHECK_ONLY ? 'checked' : `removed ${removedRules} unused rules in`} ${cssFiles} CSS file(s); icons in use: ${usedIcons.size}`,
 );

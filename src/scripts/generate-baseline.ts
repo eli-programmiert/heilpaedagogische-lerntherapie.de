@@ -7,8 +7,6 @@ const patterns = [
   'src/components/ui/atoms/**/*.astro',
   'src/components/ui/layout/**/*.astro',
   'src/components/ui/molecules/Navbar/**/*.astro',
-  'src/components/ui/molecules/Footer.astro',
-  'src/components/ui/molecules/CookieConsent.astro',
   'src/components/registry/**/*.astro',
 ];
 
@@ -25,7 +23,7 @@ for (const relativePath of targets) {
         file: relativePath.replace(/\\/g, '/'),
         rule: issue.rule,
         line: issue.line,
-        reason: 'Pre-existing — do refaktoryzacji w osobnym tasku',
+        reason: 'Pre-existing — to be refactored separately',
       });
     }
   }

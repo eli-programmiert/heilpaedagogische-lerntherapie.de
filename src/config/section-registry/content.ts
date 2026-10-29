@@ -4,7 +4,7 @@ const icon = '<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 
 
 export const contentSections: Record<string, SectionEntry> = {
   pageIntro: {
-    id: 'pageIntro', label: 'Wprowadzenie podstrony', groupId: 'content', hint: 'Minimalny nagłówek podstrony', icon,
+    id: 'pageIntro', label: 'Page intro', groupId: 'content', hint: 'Minimal subpage header', icon,
     defaultVariant: 'default',
     variants: { default: { component: 'PageIntroBlock' } },
   },

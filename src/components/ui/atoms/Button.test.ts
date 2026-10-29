@@ -26,56 +26,56 @@ const sizeClasses: Record<ButtonSize, string> = {
   icon: 'size-10 sm:size-11',
 };
 
-describe('Button — logika propsów', () => {
-  describe('formatInternalLink (uzywany przez Button)', () => {
-    it('dodaje slash do linkow wewnetrznych', () => {
+describe('Button — prop logic', () => {
+  describe('formatInternalLink (used by Button)', () => {
+    it('adds a slash to internal links', () => {
       expect(formatInternalLink('kontakt')).toBe('/kontakt/');
-      expect(formatInternalLink('/uslugi')).toBe('/uslugi/');
+      expect(formatInternalLink('/angebot')).toBe('/angebot/');
     });
 
-    it('zachowuje linki zewnetrzne', () => {
+    it('keeps external links', () => {
       expect(formatInternalLink('https://google.com')).toBe('https://google.com');
       expect(formatInternalLink('mailto:test@example.com')).toBe('mailto:test@example.com');
       expect(formatInternalLink('tel:+48123456789')).toBe('tel:+48123456789');
     });
 
-    it('zwraca / dla pustego href', () => {
+    it('returns / for an empty href', () => {
       expect(formatInternalLink('')).toBe('/');
       expect(formatInternalLink(null as unknown as string)).toBe('/');
       expect(formatInternalLink(undefined as unknown as string)).toBe('/');
     });
 
-    it('zachowuje kotwice', () => {
-      expect(formatInternalLink('#sekcja')).toBe('#sekcja');
+    it('keeps anchors', () => {
+      expect(formatInternalLink('#section')).toBe('#section');
     });
 
-    it('zachowuje query params', () => {
+    it('keeps query params', () => {
       expect(formatInternalLink('/szukaj?q=test')).toBe('/szukaj/?q=test');
     });
   });
 
   describe('varianty', () => {
-    it('kazdy variant ma zdefiniowana klase CSS', () => {
+    it('every variant has a CSS class', () => {
       for (const v of ALL_VARIANTS) {
         expect(variantClasses[v]).toBeTruthy();
         expect(variantClasses[v]).toMatch(/^ui-button-/);
       }
     });
 
-    it('primary jest domyslnym variantem', () => {
+    it('primary is the default variant', () => {
       expect(variantClasses.primary).toBe('ui-button-primary');
     });
   });
 
   describe('rozmiary', () => {
-    it('kazdy rozmiar ma zdefiniowana klase wielkosci (h- lub size-)', () => {
+    it('every size has a size class (h- or size-)', () => {
       for (const s of ALL_SIZES) {
         expect(sizeClasses[s]).toBeTruthy();
         expect(sizeClasses[s]).toMatch(/^(h-|size-)/);
       }
     });
 
-    it('md jest domyslnym rozmiarem', () => {
+    it('md is the default size', () => {
       expect(sizeClasses.md).toContain('h-10');
     });
   });
@@ -87,13 +87,13 @@ describe('Button — logika propsów', () => {
       expect(Tag).toBe('a');
     });
 
-    it('brak href zostawia Tag jako <button>', () => {
+    it('without href the tag stays <button>', () => {
       const href = undefined as unknown as string;
       const resolved = href ? 'a' : 'button';
       expect(resolved).toBe('button');
     });
 
-    it('href zewnetrzny zachowuje <a>', () => {
+    it('an external href keeps <a>', () => {
       const href = 'https://example.com';
       const Tag = href ? 'a' : 'button';
       expect(Tag).toBe('a');
@@ -101,29 +101,29 @@ describe('Button — logika propsów', () => {
   });
 
   describe('full prop', () => {
-    it('full=true dodaje w-full', () => {
+    it('full=true adds w-full', () => {
       const full = true;
       expect(full ? 'w-full' : '').toBe('w-full');
     });
 
-    it('full=false nie dodaje w-full', () => {
+    it('full=false does not add w-full', () => {
       const full = false;
       expect(full ? 'w-full' : '').toBe('');
     });
 
-    it('full domyslnie false', () => {
+    it('full defaults to false', () => {
       const full = false;
       expect(full).toBe(false);
     });
   });
 
   describe('disabled', () => {
-    it('disabled=true dodaje klasy blokujace', () => {
+    it('disabled=true adds the disabled classes', () => {
       const disabled = true;
       expect(disabled ? 'pointer-events-none opacity-50' : '').toContain('pointer-events-none');
     });
 
-    it('disabled=false nie blokuje', () => {
+    it('disabled=false does not disable', () => {
       const disabled = false;
       expect(disabled ? 'pointer-events-none opacity-50' : '').toBe('');
     });

@@ -9,7 +9,7 @@ interface Props {
   full?: boolean;
   class?: string;
   disabled?: boolean;
-  hoverText?: string; // opcjonalny tekst hover; gdy pusty, roll pokazuje ten sam label
+  hoverText?: string; // optional hover text; when empty, the roll shows the same label
   [key: string]: any;
 }
 
@@ -56,7 +56,7 @@ const focusClasses = 'focus-visible:outline-none focus-visible:ring-3 focus-visi
 <Tag 
   href={href} 
   class:list={[
-    // Dlaczego: radius jest sterowany przez token motywu, aby kształt CTA był zgodny z aktywnym template'em.
+    // Why: the radius comes from a theme token, so the CTA shape matches the active theme.
     'ui-button ui-type-cta-label group inline-flex items-center justify-center gap-1.5 whitespace-nowrap transition-all font-semibold',
     variantClasses[variant] || variantClasses.primary,
     sizeClasses[size] || sizeClasses.md,

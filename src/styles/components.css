@@ -1,11 +1,11 @@
 /* Shared components and UI system typography. */
 
 @layer components {
-  /* Card Contract: One common hover animation for each interactive card
-     w kitcie (port kontraktu z mklegal). Lift idzie przez `transform`, bo reveal
-     in motion.css it uses the `translate` property and thus does not interfere with the hover.
-     We only add a class to cards that are supposed to react to hover (boards in grids:
-     article/div/a z border + bg + rounded). */
+  /* Card contract: one shared hover animation for every interactive card.
+     The lift uses `transform`, because the reveal in motion.css uses the
+     `translate` property, so the two do not interfere.
+     We only add the class to cards that should react to hover (tiles in grids:
+     article/div/a with border + bg + rounded). */
   .ui-card-interactive {
     transition:
       transform 250ms cubic-bezier(0.33, 1, 0.68, 1),
@@ -309,7 +309,7 @@
     background-color: var(--ui-bg-accent);
   }
 
-  /* Dodatkowe reguły profilu Nova są w src/styles/theme-overrides.css. */
+  /* Additional rules of the Nova profile live in src/styles/theme-overrides.css. */
 
   /* Button System */
   .ui-button {
@@ -432,9 +432,9 @@
     @apply bg-sky-600 text-white shadow-xl;
   }
 
-  /* Przycisk ikonowy (kwadratowy, bez tekstu): radius z tego samego tokenu
-     what .ui-button (--ui-button-radius) for icons e.g. in FloatingBar
-     looked consistent with CTA buttons throughout the system.*/
+  /* Icon button (square, no text): radius from the same token as
+     .ui-button (--ui-button-radius), so icon buttons look consistent with
+     the CTA buttons. */
   .ui-icon-button {
     @apply inline-flex h-10 w-10 p-0 items-center justify-center sm:h-12 sm:w-12;
     border-radius: var(--ui-button-radius, 0.75rem);
@@ -457,12 +457,12 @@
     display: grid;
     overflow: hidden;
     line-height: 1.5;
-    /* Dlaczego: nowrap blokuje zawijanie sie tekstu (np. dlugie hover label w cookie barze),
-       ktore zawyzalo wysokosc przycisku do dwoch linii. */
+    /* Why: nowrap stops the label from wrapping (e.g. a long hover label),
+       which made the button two lines tall. */
     white-space: nowrap;
-    /* Dlaczego: justify-items: center trzyma oba spany (default i hover) w srodku
-       komorki grid. Bez tego krotszy tekst hovera przyklejal sie do lewej
-       krawedzi i calosc wygladala jak przesuniecie w lewo. */
+    /* Why: justify-items: center keeps both spans (default and hover) in the
+       middle of the grid cell. Without it a shorter hover text stuck to the
+       left edge and the label looked shifted to the left. */
     justify-items: center;
   }
 
@@ -537,7 +537,7 @@
     display: none;
   }
 
-  /* Anchor targets: scroll-margin z uwzglednieniem fixed navbar */
+  /* Anchor targets: scroll-margin that accounts for the fixed navbar */
   :target {
     scroll-margin-top: calc(var(--site-header-height, 5.75rem) + 1rem);
   }
@@ -647,7 +647,7 @@
     margin-bottom: 0.5rem;
   }
 
-  /* Pogrubienie i kursywa */
+  /* Bold and italic */
   .prose strong {
     font-weight: 700;
     color: var(--tw-prose-bold);
@@ -657,7 +657,7 @@
     font-style: italic;
   }
 
-  /* Linki z animowanym underlinem */
+  /* Links with an animated underline */
   .prose a {
     color: var(--tw-prose-links);
     text-decoration: none;
@@ -696,7 +696,7 @@
     margin-bottom: 0.5rem;
   }
 
-  /* Kod inline */
+  /* Inline code */
   .prose code {
     font-family: 'Geist Mono', ui-monospace, monospace;
     font-size: 0.875em;
@@ -706,7 +706,7 @@
     font-weight: 500;
   }
 
-  /* Bloki kodu */
+  /* Code blocks */
   .prose pre {
     background-color: var(--tw-prose-pre-bg);
     border-radius: 0.75rem;
@@ -774,7 +774,7 @@
     background-color: color-mix(in oklab, var(--tw-prose-body) 3%, transparent);
   }
 
-  /* Linia pozioma */
+  /* Horizontal rule */
   .prose hr {
     border: none;
     height: 1px;
@@ -788,7 +788,7 @@
     margin-bottom: 0.5rem;
   }
 
-  /* Lenis smooth scroll (aktywny gdy <html data-lenis="true">) */
+  /* Lenis smooth scroll (active when <html data-lenis="true">) */
   html.lenis,
   html.lenis body {
     height: auto;

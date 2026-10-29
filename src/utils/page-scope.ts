@@ -1,11 +1,11 @@
-// Why: logika scope stron wyciagnieta z [...page].astro getStaticPaths.
-// Testowalna, reuzywalna, eliminuje duplikacje isAllowed miedzy plikami.
+// Why: the page scope logic is pulled out of [...page].astro getStaticPaths,
+// so it is testable and not duplicated between files.
 
 import { HERO_SECTION_IDS } from "@config/hero-ids";
 
 /**
- * Sprawdza czy slug strony jest dozwolony wg BUILD_SCOPE.pages.
- * Root '/' pasuje tylko do '/', pozostale wpisy to prefiksy.
+ * Checks whether a page slug is allowed by BUILD_SCOPE.pages.
+ * The root '/' only matches '/'; the other entries are prefixes.
  */
 export function isPageAllowed(slug: string, allowedPages: string[]): boolean {
   const allowAll = !allowedPages || allowedPages.length === 0;
@@ -19,14 +19,14 @@ export function isPageAllowed(slug: string, allowedPages: string[]): boolean {
 }
 
 /**
- * Sprawdza czy sekcje zawieraja hero wymagajace fullBleedTop.
+ * Checks whether the sections contain a hero that needs fullBleedTop.
  */
 export function hasHeroSection(sectionIds: string[]): boolean {
   return sectionIds.some((id) => (HERO_SECTION_IDS as readonly string[]).includes(id));
 }
 
 /**
- * Wylicza fullBleedTop dla Layout na podstawie wariantu navbaru i listy sekcji.
+ * Computes fullBleedTop for Layout from the navbar variant and the section list.
  */
 export function getFullBleedTop(
   navbarVariant: string | undefined,

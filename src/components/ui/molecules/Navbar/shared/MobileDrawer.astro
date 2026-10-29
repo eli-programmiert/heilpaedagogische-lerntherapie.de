@@ -13,8 +13,8 @@ const headerData = getNovaCopy(locale).navigation;
 const rootVisibility = drawerMode === "mobile" ? "xl:hidden" : "";
 const socialLinks = getNavDrawerSocialLinks();
 
-// Why: submenu (children) wymagaja osobnej struktury wiersza:
-// link nawiguje, osobny przycisk rozwijania otwiera accordion.
+// Why: submenus (children) need their own row structure:
+// the link navigates, a separate expand button opens the accordion.
 // Without children, the item remains a mere link.
 type MenuItem = {
 	label: string;
@@ -54,7 +54,7 @@ function subId(index: number): string {
 		aria-modal="true"
 		aria-label={headerData.aria.drawer}
 	>
-		<!-- Warstwy "talia kart" - dekoracja, wjezdzaja przed trescia-->
+		<!-- "Deck of cards" layers: decoration that slides in before the content -->
 		<div class="ui-nav-drawer__deck" aria-hidden="true">
 			<div class="ui-nav-drawer__layer ui-nav-drawer__layer--1"></div>
 			<div class="ui-nav-drawer__layer ui-nav-drawer__layer--2"></div>

@@ -46,11 +46,10 @@ One-time setup:
    - optional `@` AAAA records: `2606:50c0:8000::153`, `2606:50c0:8001::153`, `2606:50c0:8002::153`, `2606:50c0:8003::153`
    - `www` CNAME → `<github-user>.github.io`
 
-## Before going live
+## Open points
 
-- **Go-live blocker:** replace the placeholder texts in `src/content/legal/impressum.md` and `datenschutz.md` with Elisabeth's final texts and set `draft: false`. The build prints a warning while they are drafts.
-- The privacy policy must mention GitHub Pages hosting (server logs) and the IFLW seal image loaded from `www.iflw.de`.
+- The privacy policy should mention the IFLW seal image, which is loaded from `www.iflw.de` on Über mich and Lerntherapie.
 
-## Template documentation
+## Template
 
-The Nova template docs are kept for reference: `AI-QUICKSTART.md`, `CUSTOMIZATION.md`, `DESIGN_RULES.md`, `DEPLOYMENT.md`, `LICENSE.md`.
+The site is built on the Nova template. `DESIGN_RULES.md` describes the rules the UI components follow; `LICENSE.md` and `ASSETS-LICENSES.md` are the template's licence terms.

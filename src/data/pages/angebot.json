@@ -32,7 +32,10 @@
         "paragraphs": [
           "Für Kinder mit Entwicklungsbesonderheiten in Sprache, Wahrnehmung, Motorik, im sozial-emotionalen Bereich oder bei den schulischen Vorläuferfähigkeiten."
         ],
-        "image": { "src": "/assets/images/praxis/foerderung-bausteine-spiel.webp", "alt": "Kind baut einen Turm aus bunten Holzbausteinen" },
+        "image": {
+          "src": "/assets/images/praxis/foerderung-bausteine-spiel.webp",
+          "alt": "Kind baut einen Turm aus bunten Holzbausteinen"
+        },
         "lists": [
           {
             "title": "Ablauf",
@@ -75,7 +78,10 @@
         "paragraphs": [
           "Für Kinder mit Lernstörungen, Teilleistungsstörungen oder schulischen Schwierigkeiten. Die integrative Lerntherapie verbindet fachdidaktische Förderung, psychologische Begleitung und heilpädagogische Methoden."
         ],
-        "image": { "src": "/assets/images/praxis/lrs-anlautkarten-buzzer.webp", "alt": "Anlautkarten mit Buchstaben und ein blauer Buzzer" },
+        "image": {
+          "src": "/assets/images/praxis/lrs-anlautkarten-buzzer.webp",
+          "alt": "Anlautkarten mit Buchstaben und ein blauer Buzzer"
+        },
         "subCards": [
           {
             "title": "LRS / Legasthenie",
@@ -89,7 +95,10 @@
           },
           {
             "title": "Dyskalkulie",
-            "image": { "src": "/assets/images/praxis/dyskalkulie-zahlenstrahl-rechenkette.webp", "alt": "Zahlenstrahl bis 10, Rechenkette und Fingerbildkarte" },
+            "image": {
+              "src": "/assets/images/praxis/dyskalkulie-zahlenstrahl-rechenkette.webp",
+              "alt": "Zahlenstrahl bis 10, Rechenkette und Fingerbildkarte"
+            },
             "items": [
               "Fehleranalyse & mathematischer Neuaufbau",
               "Lernen auf enaktiver, ikonischer und symbolischer Ebene (handelnd, bildlich, symbolisch)",
@@ -100,11 +109,7 @@
           },
           {
             "title": "Psychologische Begleitung",
-            "items": [
-              "Abbau von Schulangst",
-              "Stärkung des Selbstwerts",
-              "Training exekutiver Funktionen"
-            ]
+            "items": ["Abbau von Schulangst", "Stärkung des Selbstwerts", "Training exekutiver Funktionen"]
           }
         ],
         "notes": [
@@ -116,7 +121,7 @@
           {
             "icon": "seal-check",
             "title": "Kostenübernahme möglich",
-            "text": "Für Lerntherapie ist eine Kostenübernahme durch das Jugendamt des Landkreises Regensburg nach § 35a SGB VIII möglich, wenn eine medizinische Diagnose vorliegt. [Mehr zur Kostenübernahme →](/preise/#kostenuebernahme)",
+            "text": "Für Lerntherapie ist eine Kostenübernahme durch das Jugendamt des Landkreises Regensburg nach § 35a SGB VIII möglich, wenn ein psychiatrisches Gutachten vorliegt. [Mehr zur Kostenübernahme →](/preise/#kostenuebernahme)",
             "appearance": "outline"
           }
         ],
@@ -132,10 +137,11 @@
         "imagePosition": "left",
         "eyebrow": "Vorschulalter & Grundschulalter",
         "title": "Lerntherapie in der Prävention",
-        "paragraphs": [
-          "Viele Lernschwierigkeiten lassen sich verhindern, wenn Kinder frühzeitig unterstützt werden."
-        ],
-        "image": { "src": "/assets/images/praxis/material-buntstifte-buecher.webp", "alt": "Becher mit Buntstiften, Bilderbuch und Fädelperlen" },
+        "paragraphs": ["Viele Lernschwierigkeiten lassen sich verhindern, wenn Kinder frühzeitig unterstützt werden."],
+        "image": {
+          "src": "/assets/images/praxis/material-buntstifte-buecher.webp",
+          "alt": "Becher mit Buntstiften, Bilderbuch und Fädelperlen"
+        },
         "lists": [
           {
             "title": "Mein Präventionsangebot richtet sich an Kinder, die …",
@@ -166,7 +172,6 @@
         "imagePosition": "right",
         "eyebrow": "ADHS",
         "title": "ADHS – heilpädagogische und lerntherapeutische Förderung & Elternbegleitung",
-        "image": { "src": "/assets/images/praxis/foerderung-tablet-kastanien-malen.webp", "alt": "Tablet mit Bildsymbolen als Strukturhilfe, Farben und Kastanien" },
         "lists": [
           {
             "title": "Ziele für das Kind",
@@ -201,12 +206,24 @@
         "meta": ["12 Wochen"],
         "price": "990 €",
         "steps": [
-          { "icon": "clipboard-text", "title": "Anamnese & Diagnostik", "description": "Erstgespräch (45–60 Min.), Beobachtungseinheit und ggf. Screening (45 Min.)" },
+          {
+            "icon": "clipboard-text",
+            "title": "Anamnese & Diagnostik",
+            "description": "Erstgespräch (45–60 Min.), Beobachtungseinheit und ggf. Screening (45 Min.)"
+          },
           { "icon": "list-checks", "title": "Förderplan", "description": "Erstellung eines individuellen Förderplans" },
           { "icon": "puzzle-piece", "title": "Intensive Förderung", "description": "10 heilpädagogische Einzeleinheiten" },
-          { "icon": "users-three", "title": "Eltern-Coaching", "description": "Zwei Sitzungen (je 60 Min.) zu Alltagsstrukturierung und Psychoedukation" },
+          {
+            "icon": "users-three",
+            "title": "Eltern-Coaching",
+            "description": "Zwei Sitzungen (je 60 Min.) zu Alltagsstrukturierung und Psychoedukation"
+          },
           { "icon": "phone", "title": "Wöchentliche Updates", "description": "Kurzer telefonischer Austausch (5–10 Min.)" },
-          { "icon": "flag-checkered", "title": "Abschluss & Auswertung", "description": "Abschlussgespräch mit Entwicklungsbericht und konkreten Empfehlungen für den Alltag (60 Min.)" }
+          {
+            "icon": "flag-checkered",
+            "title": "Abschluss & Auswertung",
+            "description": "Abschlussgespräch mit Entwicklungsbericht und konkreten Empfehlungen für den Alltag (60 Min.)"
+          }
         ],
         "cta": { "label": "Programm anfragen", "href": "/kontakt/" }
       }

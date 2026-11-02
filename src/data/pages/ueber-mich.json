@@ -85,8 +85,8 @@
         "id": "frieda",
         "tone": "base",
         "imagePosition": "right",
-        "eyebrow": "Tiergestützte Leseförderung",
-        "title": "Lesen mit Frieda",
+        "eyebrow": "Tiergestützte Arbeit",
+        "title": "Leseförderung mit Frieda",
         "paragraphs": [
           "Mit meiner Hündin Frieda, einem Zwergpudel, erleben Kinder eine wertfreie, entspannte Lernumgebung. Frieda unterstützt Lesemotivation, Emotionsregulation und Selbstvertrauen.",
           "Frieda ist über den **Verein für helfende Hunde e. V.** ausgebildet."
@@ -111,29 +111,12 @@
       }
     },
     {
-      "id": "cardGrid",
-      "variant": "default",
-      "data": {
-        "id": "persoenliches",
-        "tone": "page",
-        "eyebrow": "Persönliches",
-        "description": "In meiner Freizeit spiele ich Querflöte, bin gern in der Natur und unter Menschen und verbringe viel Zeit mit Frieda.",
-        "columns": 4,
-        "compact": true,
-        "items": [
-          { "icon": "music-notes", "title": "Querflöte" },
-          { "icon": "tree", "title": "Natur" },
-          { "icon": "users", "title": "Menschen" },
-          { "icon": "dog", "title": "Zeit mit Frieda" }
-        ]
-      }
-    },
-    {
       "id": "ctaBand",
       "variant": "default",
       "data": {
         "title": "Lernen wir uns kennen",
         "text": "Im kostenlosen telefonischen Erstgespräch nehme ich mir Zeit für Ihre Fragen.",
+
         "primary": { "label": "Kontakt aufnehmen", "href": "/kontakt/" },
         "secondary": { "label": "folgt-bald", "href": "" }
       }

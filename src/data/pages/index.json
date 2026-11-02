@@ -3,7 +3,7 @@
     "title": "Heilpädagogik & Lerntherapie in Zeitlarn und Landkreis Regensburg",
     "description": "Mobile heilpädagogische und lerntherapeutische Fachpraxis für Kinder bei LRS, Dyskalkulie, ADHS und Entwicklungsverzögerungen. Vom Jugendamt anerkannt, Kostenübernahme für Lerntherapie nach § 35a SGB VIII möglich."
   },
-  "heading": "Lernen darf wieder leichter werden.",
+  "heading": "Lernen verstehen und begleiten.",
   "sections": [
     { "id": "navbar", "variant": "floating" },
     {
@@ -11,8 +11,8 @@
       "variant": "default",
       "data": {
         "eyebrow": "Mobile Fachpraxis · Landkreis Regensburg",
-        "title": "Lernen darf wieder leichter werden.",
-        "description": "Heilpädagogische Förderung und integrative Lerntherapie für Kinder im Vorschul- und Schulalter, bei Ihnen zu Hause oder in meinem ruhigen Therapieraum in Zeitlarn.",
+        "title": "Lernen verstehen und begleiten.",
+        "description": "Heilpädagogische Förderung und integrative Lerntherapie für Kinder im Vorschul- und Schulalter.",
         "primaryCta": { "label": "Kostenloses Erstgespräch", "href": "/kontakt/" },
         "secondaryCta": { "label": "Mein Angebot", "href": "/angebot/" },
         "trustItems": [
@@ -40,7 +40,7 @@
         "compact": true,
         "icon": "seal-check",
         "title": "Anerkennung & Kostenübernahme",
-        "text": "Meine Praxis ist vom **Jugendamt des Landkreises Regensburg anerkannt**. Für **Lerntherapie** ist eine Kostenübernahme im Rahmen der Eingliederungshilfe nach **§ 35a SGB VIII** möglich, wenn eine medizinische Diagnose vorliegt. [Mehr zu Preisen & Kostenübernahme →](/preise/)"
+        "text": "Meine Praxis ist vom **Jugendamt des Landkreises Regensburg anerkannt**. Für **Lerntherapie** ist eine Kostenübernahme im Rahmen der Eingliederungshilfe nach **§ 35a SGB VIII** möglich, wenn ein psychiatrisches Gutachten vorliegt. [Mehr zu Preisen & Kostenübernahme →](/preise/)"
       }
     },
     {
@@ -53,7 +53,7 @@
         "title": "Herzlich willkommen!",
         "paragraphs": [
           "Ich heiße Elisabeth Eggersdorfer und starte meine freiberufliche Nebentätigkeit mit einer mobilen heilpädagogischen und lerntherapeutischen Fachpraxis. Ich begleite Familien, Kinder und Jugendliche, die Unterstützung im Alltag oder beim Lernen suchen.",
-          "Mein Einzugsgebiet umfasst den Landkreis Regensburg sowie den südlichen Teil des Landkreises Schwandorf. Die Therapiezeiten liegen **dienstags bis freitags am Nachmittag**."
+          "Mein Einzugsgebiet umfasst den Landkreis Regensburg sowie den südlichen Teil des Landkreises Schwandorf. Die Therapie findet am Nachmittag statt."
         ]
       }
     },
@@ -64,7 +64,7 @@
         "tone": "base",
         "eyebrow": "Für wen?",
         "title": "Für wen ist meine Praxis da?",
-        "description": "Ich begleite Kinder im Vorschul- und Schulalter, sowohl mit diagnostizierten Störungen als auch präventiv, wenn sich erste Schwierigkeiten zeigen.",
+        "description": "Ich begleite Kinder im Vorschul- und Schulalter sowohl bei bereits diagnostizierten Beeinträchtigungen als auch präventiv, wenn sich erste Schwierigkeiten oder Entwicklungsauffälligkeiten zeigen.",
         "items": [
           { "title": "ADHS", "icon": "lightning" },
           { "title": "Dyskalkulie / Rechenschwäche", "icon": "calculator" },
@@ -105,8 +105,8 @@
             "href": "/angebot/#integrative-lerntherapie",
             "linkLabel": "Mehr erfahren",
             "image": {
-              "src": "/assets/images/praxis/lrs-anlautkarten-buzzer.webp",
-              "alt": "Anlautkarten mit Buchstaben und ein blauer Buzzer"
+              "src": "/assets/images/praxis/dyskalkulie-zahlenstrahl-rechenkette.webp",
+              "alt": "Zahlenstrahl bis 10, Rechenkette und Fingerbildkarte"
             }
           },
           {
@@ -115,9 +115,8 @@
             "href": "/angebot/#praevention",
             "linkLabel": "Mehr erfahren",
             "image": {
-              "src": "/assets/images/praxis/material-buntstifte-buecher.webp",
-              "alt": "Becher mit Buntstiften, Bilderbuch und Fädelperlen",
-              "position": "50% 60%"
+              "src": "/assets/images/praxis/lrs-anlautkarten-buzzer.webp",
+              "alt": "Anlautkarten mit Buchstaben und ein blauer Buzzer"
             }
           },
           {
@@ -126,8 +125,8 @@
             "href": "/angebot/#adhs",
             "linkLabel": "Mehr erfahren",
             "image": {
-              "src": "/assets/images/praxis/foerderung-tablet-kastanien-malen.webp",
-              "alt": "Tablet mit Bildsymbolen, Farben und mit Kastanien bemaltes Papier"
+              "src": "/assets/images/praxis/adhs-gehirn-schmetterling.webp",
+              "alt": "Gehirn aus weißen Fäden mit einem bunten Schmetterling"
             }
           },
           {
@@ -213,7 +212,7 @@
           },
           {
             "title": "Diagnostik & Förderplan",
-            "description": "Durch spielbasierte Beobachtung und Diagnostik ermittle ich Stärken und Unterstützungsbedarfe und erstelle einen individuellen Förderplan."
+            "description": "Durch spielbasierte Beobachtung und lerntherapeutisch oder heilpädagogische Diagnostik ermittle ich Stärken und Unterstützungsbedarfe und erstelle einen individuellen Förderplan."
           },
           {
             "title": "Förderung & Austausch",
@@ -237,17 +236,17 @@
           },
           {
             "q": "Übernimmt das Jugendamt die Kosten?",
-            "a": "Meine Praxis ist vom Jugendamt des Landkreises Regensburg anerkannt. Für Lerntherapie ist eine Kostenübernahme im Rahmen der Eingliederungshilfe nach § 35a SGB VIII möglich, wenn eine medizinische Diagnose vorliegt. Gern berate ich Sie zum Vorgehen."
+            "a": "Meine Praxis ist vom Jugendamt des Landkreises Regensburg anerkannt. Für Lerntherapie ist eine Kostenübernahme im Rahmen der Eingliederungshilfe nach § 35a SGB VIII möglich, wenn ein psychiatrisches Gutachten vorliegt. Gern berate ich Sie zum Vorgehen."
           },
           {
             "q": "Brauchen wir eine Diagnose?",
-            "a": "Nein. Mein Angebot richtet sich sowohl an Kinder mit diagnostizierten Störungen als auch an Kinder, die präventiv Unterstützung benötigen. Für eine Kostenübernahme durch das Jugendamt ist eine medizinische Diagnose allerdings Voraussetzung."
+            "a": "Nein. Mein Angebot richtet sich sowohl an Kinder mit diagnostizierten Störungen als auch an Kinder, die präventiv Unterstützung benötigen. Für eine Kostenübernahme durch das Jugendamt ist ein psychiatrisches Gutachten allerdings Voraussetzung."
           },
           {
             "q": "Kommen Sie zu uns nach Hause?",
             "a": "Ja. Meine Praxis ist mobil: Ihr Kind kann in seiner vertrauten Umgebung gefördert werden oder in meinem ruhigen, strukturierten Therapieraum in Zeitlarn, je nach Bedarf und familiärer Situation. Für Hausbesuche berechne ich eine Kilometerpauschale."
           },
-          { "q": "Wann finden die Termine statt?", "a": "Die Therapiezeiten liegen dienstags bis freitags am Nachmittag." },
+          { "q": "Wann finden die Termine statt?", "a": "Die Therapie findet am Nachmittag statt." },
           {
             "q": "In welchem Gebiet sind Sie unterwegs?",
             "a": "Im Landkreis Regensburg und im südlichen Teil des Landkreises Schwandorf."

@@ -43,7 +43,7 @@
         "title": "Pakete",
         "items": [
           {
-            "title": "Präventionspaket LRS / Dyskalkulie",
+            "title": "Präventionspaket",
             "price": "560 €",
             "note": "10 Einheiten",
             "features": [
@@ -81,7 +81,7 @@
         "icon": "seal-check",
         "title": "Kostenübernahme für Lerntherapie",
         "text": [
-          "Meine Praxis ist vom Jugendamt des Landkreises Regensburg anerkannt. Für **Lerntherapie** ist eine Kostenübernahme im Rahmen der **Eingliederungshilfe nach § 35a SGB VIII** durch das Jugendamt des Landkreises Regensburg möglich, wenn eine medizinische Diagnose vorliegt.",
+          "Meine Praxis ist vom Jugendamt des Landkreises Regensburg anerkannt. Für **Lerntherapie** ist eine Kostenübernahme im Rahmen der **Eingliederungshilfe nach § 35a SGB VIII** durch das Jugendamt des Landkreises Regensburg möglich, wenn ein psychiatrisches Gutachten vorliegt.",
           "Gern berate ich Sie im kostenlosen Erstgespräch zum Vorgehen."
         ]
       }
@@ -98,7 +98,7 @@
           { "q": "Was kostet das Erstgespräch?", "a": "Nichts. Das telefonische Erstgespräch ist kostenlos." },
           {
             "q": "Für welche Leistungen übernimmt das Jugendamt die Kosten?",
-            "a": "Für Lerntherapie, im Rahmen der Eingliederungshilfe nach § 35a SGB VIII, wenn eine medizinische Diagnose vorliegt."
+            "a": "Für Lerntherapie, im Rahmen der Eingliederungshilfe nach § 35a SGB VIII, wenn ein psychiatrisches Gutachten vorliegt."
           },
           {
             "q": "Übernimmt die Krankenkasse die Kosten?",

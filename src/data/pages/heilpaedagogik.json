@@ -63,7 +63,7 @@
         "description": "Meine Förderung folgt einem klar strukturierten, professionellen Ablauf.",
         "items": [
           { "icon": "clipboard-text", "title": "Anamnese", "description": "Erfassung der Lebenswelt, Entwicklung und Bedürfnisse des Kindes." },
-          { "icon": "magnifying-glass", "title": "Beobachtung und Diagnostik", "description": "Spielbasierte, entwicklungsorientierte und alltagsnahe Diagnostik zur Ermittlung von Stärken und Unterstützungsbedarfen." },
+          { "icon": "magnifying-glass", "title": "Beobachtung und Diagnostik", "description": "Spielbasierte, entwicklungsorientierte und heilpädagogische Diagnostik zur Ermittlung von Stärken und Unterstützungsbedarfen." },
           { "icon": "list-checks", "title": "Förderplan", "description": "Individuelle Zielsetzung und Auswahl geeigneter Methoden." },
           { "icon": "handshake", "title": "Beziehungsaufbau", "description": "Aufbau einer tragfähigen, wertschätzenden Beziehung als Grundlage jeder Förderung." },
           { "icon": "puzzle-piece", "title": "Förderung", "description": "Spielerische, handlungsorientierte und ressourcenorientierte Entwicklungsbegleitung." },
